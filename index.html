@@ -11,14 +11,23 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Vazirmatn,system-ui,sans-serif;
   color:#fff;
   background:#070910;
   overflow-x:hidden;
 }
+
 body:before{
   content:"";
   position:fixed;
@@ -31,13 +40,30 @@ body:before{
   filter:blur(25px);
   animation:bg 14s ease-in-out infinite alternate;
 }
+
 @keyframes bg{
-  to{transform:translate(4%,-3%) scale(1.08)}
+  to{
+    transform:translate(4%,-3%) scale(1.08);
+  }
 }
 
-a{text-decoration:none;color:inherit}
-button,input,textarea,select{font:inherit}
-button{color:inherit;border:0;cursor:pointer}
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  color:inherit;
+  border:0;
+  cursor:pointer;
+}
 
 .wrap{
   width:min(1120px,92%);
@@ -58,7 +84,8 @@ button{color:inherit;border:0;cursor:pointer}
   -webkit-backdrop-filter:blur(24px);
 }
 
-/* NAV */
+/* ================= NAV ================= */
+
 .nav{
   position:fixed;
   top:16px;
@@ -119,7 +146,8 @@ button{color:inherit;border:0;cursor:pointer}
   background:rgba(255,255,255,.08);
 }
 
-/* GLOBAL */
+/* ================= GLOBAL ================= */
+
 .view{
   min-height:100vh;
   padding-top:1px;
@@ -136,8 +164,14 @@ button{color:inherit;border:0;cursor:pointer}
 }
 
 @keyframes pageIn{
-  from{opacity:0;transform:translateY(14px)}
-  to{opacity:1;transform:none}
+  from{
+    opacity:0;
+    transform:translateY(14px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 section{
@@ -237,7 +271,8 @@ section{
   border-radius:14px;
 }
 
-/* HOME */
+/* ================= HOME ================= */
+
 .hero{
   min-height:100vh;
   display:grid;
@@ -317,7 +352,9 @@ h1{
 }
 
 @keyframes float{
-  50%{transform:translateY(-12px) rotate(5deg)}
+  50%{
+    transform:translateY(-12px) rotate(5deg);
+  }
 }
 
 .cardLine{
@@ -332,7 +369,8 @@ h1{
   color:#fff;
 }
 
-/* FEATURE STRIP */
+/* ================= FEATURE ================= */
+
 .featureStrip{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -355,7 +393,89 @@ h1{
   font-size:13px;
 }
 
-/* SERVICE CATALOG */
+/* ================= PROJECTS ================= */
+
+.projectGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.projectCard{
+  min-height:330px;
+  display:flex;
+  flex-direction:column;
+}
+
+.projectVisual{
+  height:150px;
+  border-radius:20px;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 30% 30%,rgba(255,255,255,.25),transparent 20%),
+    linear-gradient(135deg,rgba(91,119,255,.38),rgba(151,72,255,.18));
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.projectVisual:before,
+.projectVisual:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter:blur(4px);
+}
+
+.projectVisual:before{
+  width:100px;
+  height:100px;
+  background:rgba(113,255,207,.18);
+  top:-35px;
+  right:-25px;
+}
+
+.projectVisual:after{
+  width:80px;
+  height:80px;
+  background:rgba(191,117,255,.22);
+  bottom:-30px;
+  left:-15px;
+}
+
+.projectSymbol{
+  font-size:52px;
+  position:relative;
+  z-index:2;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.3));
+}
+
+.projectTag{
+  color:#b9c5ff;
+  font-size:11px;
+  letter-spacing:.4px;
+}
+
+.projectCard h3{
+  font-size:23px;
+  margin-top:9px;
+}
+
+.projectCard p{
+  margin-top:8px;
+  flex:1;
+}
+
+.projectButton{
+  width:100%;
+  margin-top:22px;
+}
+
+/* ================= CATALOG ================= */
+
 .catalogHero{
   padding:150px 0 65px;
 }
@@ -418,7 +538,8 @@ h1{
   width:100%;
 }
 
-/* DETAIL */
+/* ================= DETAIL ================= */
+
 .detailHero{
   padding:150px 0 70px;
 }
@@ -500,7 +621,8 @@ h1{
   margin-left:9px;
 }
 
-/* ORDER */
+/* ================= ORDER ================= */
+
 .orderHero{
   padding:150px 0 45px;
 }
@@ -639,7 +761,8 @@ h1{
   color:#ff9baf;
 }
 
-/* SUCCESS */
+/* ================= SUCCESS ================= */
+
 .successBox{
   max-width:650px;
   margin:150px auto;
@@ -671,7 +794,8 @@ h1{
   margin:15px 0 25px;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 footer{
   text-align:center;
   color:#73798a;
@@ -679,7 +803,8 @@ footer{
   font-size:13px;
 }
 
-/* REVEAL */
+/* ================= REVEAL ================= */
+
 .reveal{
   opacity:0;
   transform:translateY(25px);
@@ -691,7 +816,8 @@ footer{
   transform:none;
 }
 
-/* TOAST */
+/* ================= TOAST ================= */
+
 .toast{
   position:fixed;
   z-index:500;
@@ -715,8 +841,10 @@ footer{
   transform:translate(-50%,0);
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
+
 @media(max-width:850px){
+
   .heroGrid{
     grid-template-columns:1fr;
   }
@@ -726,7 +854,8 @@ footer{
   }
 
   .grid3,
-  .serviceGrid{
+  .serviceGrid,
+  .projectGrid{
     grid-template-columns:1fr 1fr;
   }
 
@@ -742,6 +871,7 @@ footer{
 }
 
 @media(max-width:760px){
+
   .nav{
     top:10px;
   }
@@ -780,6 +910,7 @@ footer{
 
   .grid3,
   .serviceGrid,
+  .projectGrid,
   .featureStrip,
   .formGrid{
     grid-template-columns:1fr;
@@ -825,6 +956,7 @@ footer{
 <body>
 
 <!-- ================= NAV ================= -->
+
 <nav class="nav glass">
 
   <a class="brand" href="#home" data-route="home">
@@ -834,12 +966,12 @@ footer{
 
   <div class="navlinks glass" id="navlinks">
 
-    <a href="#home" data-route="home">خانه</a>
-    <a href="#about" data-route="home">درباره</a>
-    <a href="#skills" data-route="home">توانایی‌ها</a>
-    <a href="#projects" data-route="home">پروژه‌ها</a>
+    <a href="#home">خانه</a>
+    <a href="#about">درباره</a>
+    <a href="#skills">توانایی‌ها</a>
+    <a href="#projects">نمونه‌ها</a>
     <a href="#services">خدمات</a>
-    <a href="#contact" data-route="home">ارتباط</a>
+    <a href="#contact">ارتباط</a>
 
   </div>
 
@@ -886,7 +1018,7 @@ CREATIVE DIGITAL STUDIO
 مشاهده خدمات ↗
 </a>
 
-<a class="btn secondary" href="#contact" data-route="home">
+<a class="btn secondary" href="#contact">
 ارتباط با من
 </a>
 
@@ -1056,86 +1188,233 @@ CREATIVE DIGITAL STUDIO
 </section>
 
 
+<!-- =========================================================
+     PROJECTS / SAMPLES
+========================================================= -->
+
 <section id="projects">
 
 <div class="wrap">
 
 <div class="reveal">
 
-<h2 class="sectionTitle">پروژه‌ها</h2>
+<span class="eyebrow glass">
+<i class="dot"></i>
+SELECTED WORKS
+</span>
+
+<h2 class="sectionTitle">
+نمونه‌هایی که ساخته‌ام
+</h2>
 
 <p class="sectionSub">
-بخشی از پروژه‌ها و تجربه‌هایی که روی آن‌ها فعالیت می‌کنم.
+چند نمونه از تجربه‌های وب و پروژه‌های دیجیتالی که برای نمایش توانایی‌ها
+و سبک طراحی RJF8 ساخته شده‌اند.
 </p>
 
 </div>
 
 
-<div class="grid3">
+<div class="projectGrid">
 
-<article class="card glass reveal">
 
-<span style="color:#b9c5ff;font-size:12px">
-EDUCATIONAL GAME
+<!-- TECHORA -->
+
+<article class="card glass projectCard reveal">
+
+<div class="projectVisual">
+<div class="projectSymbol">⚡</div>
+</div>
+
+<span class="projectTag">
+TECH • ECOMMERCE
 </span>
 
-<h3 style="font-size:24px;margin-top:18px">
-فرار از شهر مجموعه‌ها
+<h3>
+Techora
 </h3>
 
 <p>
-یک ماجراجویی سه‌بعدی که مفاهیم مجموعه‌ها را به قوانین واقعی
-دنیای بازی تبدیل می‌کند.
+فروشگاه مدرن گجت و محصولات تکنولوژی با تمرکز روی تجربه خرید،
+نمایش محصول و رابط کاربری حرفه‌ای.
 </p>
 
-<a class="btn secondary" style="margin-top:25px" href="#contact" data-route="home">
+<a
+class="btn primary projectButton"
+href="Gajetstore.html"
+target="_blank"
+rel="noopener"
+>
 مشاهده پروژه ↗
 </a>
 
 </article>
 
 
-<article class="card glass reveal">
+<!-- NEURAL -->
 
-<span style="color:#b9c5ff;font-size:12px">
-WEB EXPERIENCE
+<article class="card glass projectCard reveal">
+
+<div class="projectVisual">
+<div class="projectSymbol">◉</div>
+</div>
+
+<span class="projectTag">
+AI • MAGAZINE
 </span>
 
-<h3 style="font-size:24px;margin-top:18px">
-RJF8 Studio
+<h3>
+Neural
 </h3>
 
 <p>
-هویت دیجیتال و فضای تعاملی این برند با تمرکز روی طراحی شیشه‌ای
-و مدرن.
+مجله‌ای دیجیتال برای خبرها، مقاله‌ها و مطالب جذاب دنیای
+هوش مصنوعی و فناوری‌های نو.
 </p>
 
-<a class="btn secondary" style="margin-top:25px" href="#home">
-صفحه اصلی ↗
+<a
+class="btn primary projectButton"
+href="Magale.html"
+target="_blank"
+rel="noopener"
+>
+مشاهده پروژه ↗
 </a>
 
 </article>
 
 
-<article class="card glass reveal">
+<!-- NEXA -->
 
-<span style="color:#b9c5ff;font-size:12px">
-COMING SOON
+<article class="card glass projectCard reveal">
+
+<div class="projectVisual">
+<div class="projectSymbol">▶</div>
+</div>
+
+<span class="projectTag">
+ENTERTAINMENT • CINEMA
 </span>
 
-<h3 style="font-size:24px;margin-top:18px">
-پروژه بعدی
+<h3>
+NEXA Cinema
 </h3>
 
 <p>
-پروژه‌های جدید در حال توسعه هستند و به مرور در این بخش قرار می‌گیرند.
+یک تجربه سینمایی دیجیتال برای کشف فیلم‌ها، دسته‌بندی محتوا
+و ساخت فضای مدرن برای علاقه‌مندان سینما.
 </p>
 
-<a class="btn secondary" style="margin-top:25px" href="#services">
-مشاهده خدمات ↗
+<a
+class="btn primary projectButton"
+href="Movie.html"
+target="_blank"
+rel="noopener"
+>
+مشاهده پروژه ↗
 </a>
 
 </article>
+
+
+<!-- SAFARINO -->
+
+<article class="card glass projectCard reveal">
+
+<div class="projectVisual">
+<div class="projectSymbol">✈</div>
+</div>
+
+<span class="projectTag">
+TRAVEL • BOOKING
+</span>
+
+<h3>
+Safarino
+</h3>
+
+<p>
+یک رابط مدرن برای کشف مقصدها، انتخاب تور و شروع یک سفر
+با تجربه‌ای ساده و جذاب.
+</p>
+
+<a
+class="btn primary projectButton"
+href="Safar.html"
+target="_blank"
+rel="noopener"
+>
+مشاهده پروژه ↗
+</a>
+
+</article>
+
+
+<!-- WANDER -->
+
+<article class="card glass projectCard reveal">
+
+<div class="projectVisual">
+<div class="projectSymbol">⌁</div>
+</div>
+
+<span class="projectTag">
+TRAVEL • DISCOVERY
+</span>
+
+<h3>
+Wander
+</h3>
+
+<p>
+مجله‌ای برای کشف جهان؛ از مقصدهای دیدنی و فرهنگ‌ها تا
+راهنماها و داستان‌های سفر.
+</p>
+
+<a
+class="btn primary projectButton"
+href="Wander.html"
+target="_blank"
+rel="noopener"
+>
+مشاهده پروژه ↗
+</a>
+
+</article>
+
+
+<!-- CHRONA -->
+
+<article class="card glass projectCard reveal">
+
+<div class="projectVisual">
+<div class="projectSymbol">◷</div>
+</div>
+
+<span class="projectTag">
+LIFESTYLE • WATCHES
+</span>
+
+<h3>
+Chrona
+</h3>
+
+<p>
+فروشگاه شیک ساعت و اکسسوری با تمرکز روی نمایش محصولات،
+استایل مینیمال و تجربه خرید لوکس.
+</p>
+
+<a
+class="btn primary projectButton"
+href="Watchstore.html"
+target="_blank"
+rel="noopener"
+>
+مشاهده پروژه ↗
+</a>
+
+</article>
+
 
 </div>
 
@@ -1229,7 +1508,6 @@ RJF8 SERVICES
 <div class="serviceGrid">
 
 
-<!-- 1 -->
 <article class="card glass serviceCard reveal">
 
 <div class="serviceTop">
@@ -1257,7 +1535,6 @@ RJF8 SERVICES
 </article>
 
 
-<!-- 2 -->
 <article class="card glass serviceCard reveal">
 
 <div class="serviceTop">
@@ -1285,7 +1562,6 @@ RJF8 SERVICES
 </article>
 
 
-<!-- 3 -->
 <article class="card glass serviceCard reveal">
 
 <div class="serviceTop">
@@ -1313,7 +1589,6 @@ RJF8 SERVICES
 </article>
 
 
-<!-- 4 -->
 <article class="card glass serviceCard reveal">
 
 <div class="serviceTop">
@@ -1341,7 +1616,6 @@ RJF8 SERVICES
 </article>
 
 
-<!-- 5 -->
 <article class="card glass serviceCard reveal">
 
 <div class="serviceTop">
@@ -1369,7 +1643,6 @@ RJF8 SERVICES
 </article>
 
 
-<!-- 6 -->
 <article class="card glass serviceCard reveal">
 
 <div class="serviceTop">
@@ -1397,7 +1670,6 @@ RJF8 SERVICES
 </article>
 
 
-<!-- 7 -->
 <article class="card glass serviceCard reveal">
 
 <div class="serviceTop">
@@ -1462,8 +1734,7 @@ WEB DEVELOPMENT
 طراحی و ساخت وب‌سایت
 </h1>
 
-<p class="intro" id="detailIntro">
-</p>
+<p class="intro" id="detailIntro"></p>
 
 <div class="detailActions">
 
@@ -1496,8 +1767,7 @@ WEB DEVELOPMENT
 چه چیزی دریافت می‌کنم؟
 </h2>
 
-<p id="detailLong">
-</p>
+<p id="detailLong"></p>
 
 </div>
 
@@ -1508,8 +1778,7 @@ WEB DEVELOPMENT
 این خدمت مناسب چه پروژه‌هایی است؟
 </h2>
 
-<ul id="detailList">
-</ul>
+<ul id="detailList"></ul>
 
 </div>
 
@@ -1590,7 +1859,6 @@ WEB DEVELOPMENT
 <form id="orderForm">
 
 <div class="formGrid">
-
 
 <div class="field">
 
@@ -1688,7 +1956,6 @@ required
 
 </div>
 
-
 </div>
 
 
@@ -1774,14 +2041,11 @@ type="submit"
 <div class="toast" id="toast"></div>
 
 
-<!-- SUPABASE -->
+<!-- ================= SUPABASE ================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
-/* =========================================================
-   SUPABASE
-========================================================= */
 
 const SUPABASE_URL =
 "https://gbuomuxrgmombwgsftce.supabase.co";
@@ -1796,385 +2060,349 @@ window.supabase.createClient(
 );
 
 
-/* =========================================================
-   SERVICE DATA
-========================================================= */
+/* ================= SERVICE DATA ================= */
 
 const services = {
 
-  web:{
-    badge:"WEB DEVELOPMENT",
-    title:"طراحی و ساخت وب‌سایت",
-    short:"ساخت وب‌سایت‌های مدرن، سریع و حرفه‌ای برای معرفی، فروش، خدمات و برند.",
-    intro:
-    "می‌توانم برایت یک وب‌سایت اختصاصی طراحی و اجرا کنم؛ از یک سایت شخصی و نمونه‌کار گرفته تا سایت شرکتی، فروشگاهی، معرفی خدمات یا یک تجربه کاملاً اختصاصی.",
-    long:
-    "در طراحی وب‌سایت فقط ظاهر صفحه مهم نیست. ساختار صفحات، تجربه کاربر، نمایش صحیح در موبایل و دسکتاپ، سرعت، مسیر حرکت کاربر و قابلیت توسعه در آینده هم در نظر گرفته می‌شود. هدف این است که وقتی مخاطب وارد سایت می‌شود، از همان لحظه اول با یک تجربه مرتب، مدرن و قابل اعتماد روبه‌رو شود. در صورت نیاز می‌توان امکاناتی مثل فرم سفارش، دیتابیس، حساب کاربری، پنل، سیستم محتوا و قابلیت‌های تعاملی را نیز به پروژه اضافه کرد.",
-    list:[
-      "وب‌سایت شخصی و نمونه‌کار",
-      "وب‌سایت معرفی کسب‌وکار و خدمات",
-      "فروشگاه و کاتالوگ محصولات",
-      "صفحات فرود و کمپین",
-      "وب‌سایت‌های تعاملی و اختصاصی",
-      "طراحی واکنش‌گرا برای موبایل و دسکتاپ",
-      "امکان توسعه و پشتیبانی پس از تحویل"
-    ]
-  },
+web:{
+badge:"WEB DEVELOPMENT",
+title:"طراحی و ساخت وب‌سایت",
+intro:"می‌توانم برایت یک وب‌سایت اختصاصی طراحی و اجرا کنم؛ از سایت شخصی و نمونه‌کار گرفته تا سایت شرکتی، فروشگاهی و تجربه‌های کاملاً اختصاصی.",
+long:"در طراحی وب‌سایت فقط ظاهر صفحه مهم نیست. ساختار صفحات، تجربه کاربر، نمایش صحیح در موبایل و دسکتاپ، سرعت، مسیر حرکت کاربر و قابلیت توسعه در آینده نیز در نظر گرفته می‌شود.",
+list:[
+"وب‌سایت شخصی و نمونه‌کار",
+"وب‌سایت معرفی کسب‌وکار",
+"فروشگاه و کاتالوگ محصولات",
+"صفحات فرود",
+"وب‌سایت‌های تعاملی",
+"طراحی واکنش‌گرا",
+"امکان توسعه و پشتیبانی"
+]
+},
 
-  game:{
-    badge:"GAME DEVELOPMENT",
-    title:"طراحی و ساخت بازی",
-    short:"ساخت بازی‌های تعاملی، آموزشی و سرگرمی با تمرکز روی تجربه واقعی کاربر.",
-    intro:
-    "اگر یک ایده برای بازی داری، می‌توانم آن را از یک ایده خام به یک نمونه قابل بازی و قابل ارائه تبدیل کنم.",
-    long:
-    "طراحی بازی شامل فقط ساخت چند صفحه نیست. مکانیک بازی، کنترل‌ها، مراحل، رابط کاربری، سیستم امتیاز، پیشرفت بازیکن و حس کلی تجربه باید کنار هم طراحی شوند. پروژه می‌تواند آموزشی، سرگرمی، دوبعدی یا سه‌بعدی باشد و بر اساس نیاز آن طراحی شود.",
-    list:[
-      "بازی‌های آموزشی",
-      "بازی‌های دوبعدی",
-      "نمونه‌های سه‌بعدی",
-      "سیستم مرحله و پیشرفت",
-      "رابط کاربری بازی",
-      "مکانیک‌ها و تعاملات اختصاصی",
-      "توسعه و بهبود نمونه‌های اولیه"
-    ]
-  },
+game:{
+badge:"GAME DEVELOPMENT",
+title:"طراحی و ساخت بازی",
+intro:"اگر یک ایده برای بازی داری، می‌توانم آن را از یک ایده خام به یک نمونه قابل بازی و قابل ارائه تبدیل کنم.",
+long:"طراحی بازی شامل مکانیک، کنترل‌ها، مراحل، رابط کاربری، سیستم امتیاز و پیشرفت بازیکن است.",
+list:[
+"بازی‌های آموزشی",
+"بازی‌های دوبعدی",
+"نمونه‌های سه‌بعدی",
+"سیستم مرحله و پیشرفت",
+"رابط کاربری بازی",
+"مکانیک‌های اختصاصی",
+"توسعه نمونه اولیه"
+]
+},
 
-  app:{
-    badge:"APP DESIGN",
-    title:"طراحی اپلیکیشن",
-    short:"طراحی تجربه کاربری و رابط اپلیکیشن برای ایده‌های مختلف.",
-    intro:
-    "می‌توانم ساختار و ظاهر یک اپلیکیشن را بر اساس ایده، کاربران هدف و امکانات موردنیاز طراحی کنم.",
-    long:
-    "در یک اپلیکیشن، مسیر حرکت کاربر باید ساده و واضح باشد. از صفحه شروع تا منوها، فرم‌ها، کارت‌ها و وضعیت‌های مختلف، همه بخش‌ها می‌توانند با یک سیستم بصری یکپارچه طراحی شوند. هدف ساخت تجربه‌ای است که هم زیبا باشد و هم استفاده از آن راحت باشد.",
-    list:[
-      "طراحی رابط کاربری",
-      "طراحی تجربه کاربری",
-      "صفحه ورود و ثبت‌نام",
-      "داشبورد و پنل‌ها",
-      "صفحات محتوا و خدمات",
-      "طراحی نسخه موبایل",
-      "نمونه اولیه قابل ارائه"
-    ]
-  },
+app:{
+badge:"APP DESIGN",
+title:"طراحی اپلیکیشن",
+intro:"ساختار و ظاهر یک اپلیکیشن بر اساس ایده، کاربران هدف و امکانات موردنیاز طراحی می‌شود.",
+long:"در یک اپلیکیشن مسیر حرکت کاربر باید ساده و واضح باشد. از صفحه شروع تا منوها، فرم‌ها و داشبوردها همه بخش‌ها با یک سیستم بصری یکپارچه طراحی می‌شوند.",
+list:[
+"طراحی رابط کاربری",
+"طراحی تجربه کاربری",
+"صفحه ورود و ثبت‌نام",
+"داشبورد",
+"صفحات محتوا",
+"طراحی موبایل",
+"نمونه اولیه"
+]
+},
 
-  logo:{
-    badge:"BRAND & LOGO",
-    title:"لوگو و هویت بصری",
-    short:"طراحی نشانه و هویت بصری اختصاصی برای برند و پروژه.",
-    intro:
-    "لوگو باید در نگاه اول قابل تشخیص باشد و بتواند هویت پروژه را منتقل کند.",
-    long:
-    "در طراحی هویت بصری، فقط یک علامت ساخته نمی‌شود. فرم، سبک، کاربردپذیری و هماهنگی عناصر بصری با شخصیت برند اهمیت دارد. خروجی می‌تواند برای استفاده در سایت، شبکه‌های اجتماعی، بازی، اپلیکیشن و سایر بخش‌های پروژه آماده شود.",
-    list:[
-      "طراحی لوگوی اختصاصی",
-      "نشانه و آیکن",
-      "هویت بصری پروژه",
-      "سبک تصویری برند",
-      "نسخه مناسب استفاده دیجیتال",
-      "طراحی عناصر مکمل",
-      "هماهنگ‌سازی با وب‌سایت و اپلیکیشن"
-    ]
-  },
+logo:{
+badge:"BRAND & LOGO",
+title:"لوگو و هویت بصری",
+intro:"لوگو باید در نگاه اول قابل تشخیص باشد و بتواند هویت پروژه را منتقل کند.",
+long:"در طراحی هویت بصری، فرم، سبک، کاربردپذیری و هماهنگی عناصر بصری با شخصیت برند اهمیت دارد.",
+list:[
+"طراحی لوگوی اختصاصی",
+"نشانه و آیکن",
+"هویت بصری",
+"سبک تصویری برند",
+"نسخه دیجیتال",
+"عناصر مکمل",
+"هماهنگی با سایت"
+]
+},
 
-  animation:{
-    badge:"ANIMATION",
-    title:"انیمیشن",
-    short:"ساخت محتوای متحرک و انیمیشن برای پروژه‌ها و شبکه‌های اجتماعی.",
-    intro:
-    "برای معرفی یک ایده یا برند، یک محتوای متحرک مناسب می‌تواند بسیار بیشتر از یک تصویر ساده دیده شود.",
-    long:
-    "می‌توان بر اساس هدف پروژه، سبک بصری و مدت محتوای موردنظر، یک انیمیشن یا محتوای متحرک طراحی کرد. تمرکز روی انتقال واضح ایده و ساخت تصویری جذاب و قابل استفاده در فضای دیجیتال است.",
-    list:[
-      "انیمیشن معرفی",
-      "محتوای کوتاه شبکه‌های اجتماعی",
-      "حرکت دادن عناصر گرافیکی",
-      "محتوای تبلیغاتی",
-      "انیمیشن برای پروژه‌های دیجیتال",
-      "ویدئوی معرفی محصول",
-      "طراحی سبک بصری متحرک"
-    ]
-  },
+animation:{
+badge:"ANIMATION",
+title:"انیمیشن",
+intro:"برای معرفی یک ایده یا برند، محتوای متحرک می‌تواند بسیار بیشتر از یک تصویر ساده دیده شود.",
+long:"بر اساس هدف پروژه، سبک بصری و مدت محتوا، می‌توان انیمیشن یا محتوای متحرک طراحی کرد.",
+list:[
+"انیمیشن معرفی",
+"محتوای شبکه‌های اجتماعی",
+"حرکت عناصر گرافیکی",
+"محتوای تبلیغاتی",
+"انیمیشن پروژه‌های دیجیتال",
+"ویدئوی معرفی",
+"طراحی سبک متحرک"
+]
+},
 
-  art:{
-    badge:"DIGITAL ART",
-    title:"تصویر و طراحی دیجیتال",
-    short:"خلق تصاویر و طراحی‌های اختصاصی برای استفاده در پروژه‌های دیجیتال.",
-    intro:
-    "اگر برای سایت، بازی، برند یا پروژه‌ات تصویر اختصاصی نیاز داری، می‌توانی سفارش را با توضیحات خودت ثبت کنی.",
-    long:
-    "نوع تصویر، سبک، ابعاد و کاربرد نهایی بر اساس پروژه مشخص می‌شود. هدف تولید تصویری است که با فضای کلی پروژه هماهنگ باشد و بتواند در محیط واقعی مورد استفاده قرار گیرد.",
-    list:[
-      "تصویر اختصاصی",
-      "تصویر برای وب‌سایت",
-      "تصویر برای بازی",
-      "تصاویر شبکه‌های اجتماعی",
-      "طراحی دیجیتال",
-      "تصاویر مفهومی",
-      "طراحی متناسب با هویت پروژه"
-    ]
-  },
+art:{
+badge:"DIGITAL ART",
+title:"تصویر و طراحی دیجیتال",
+intro:"اگر برای سایت، بازی، برند یا پروژه‌ات تصویر اختصاصی نیاز داری، می‌توانی سفارش خودت را ثبت کنی.",
+long:"نوع تصویر، سبک، ابعاد و کاربرد نهایی بر اساس پروژه مشخص می‌شود.",
+list:[
+"تصویر اختصاصی",
+"تصویر برای وب‌سایت",
+"تصویر برای بازی",
+"تصاویر شبکه‌های اجتماعی",
+"طراحی دیجیتال",
+"تصاویر مفهومی",
+"طراحی متناسب با پروژه"
+]
+},
 
-  custom:{
-    badge:"CUSTOM PROJECT",
-    title:"پروژه سفارشی",
-    short:"ایده‌ای داری که در دسته‌های بالا قرار نمی‌گیرد؟ توضیحش بده.",
-    intro:
-    "هر پروژه‌ای لازم نیست دقیقاً در یکی از دسته‌های آماده قرار بگیرد. می‌توانی ایده و نیازت را توضیح بدهی تا مسیر مناسب برای آن مشخص شود.",
-    long:
-    "در پروژه‌های سفارشی، ابتدا نیاز و هدف پروژه بررسی می‌شود و سپس می‌توان درباره ساختار، طراحی، امکانات و مسیر اجرا تصمیم گرفت. اگر هنوز دقیقاً نمی‌دانی چه چیزی لازم داری، همین بخش برای تو ساخته شده است.",
-    list:[
-      "ایده‌های اختصاصی",
-      "پروژه‌های ترکیبی",
-      "تجربه‌های تعاملی",
-      "پروژه‌های وب و دیجیتال",
-      "نمونه اولیه",
-      "ترکیب چند خدمت",
-      "پروژه‌های خارج از دسته‌بندی"
-    ]
-  }
+custom:{
+badge:"CUSTOM PROJECT",
+title:"پروژه سفارشی",
+intro:"هر پروژه‌ای لازم نیست دقیقاً در یکی از دسته‌های آماده قرار بگیرد. می‌توانی ایده و نیازت را توضیح بدهی.",
+long:"در پروژه‌های سفارشی ابتدا نیاز و هدف پروژه بررسی می‌شود و سپس درباره ساختار، طراحی و امکانات تصمیم گرفته می‌شود.",
+list:[
+"ایده‌های اختصاصی",
+"پروژه‌های ترکیبی",
+"تجربه‌های تعاملی",
+"پروژه‌های وب",
+"نمونه اولیه",
+"ترکیب چند خدمت",
+"پروژه‌های خارج از دسته‌بندی"
+]
+}
 
 };
 
 
-/* =========================================================
-   ROUTING
-========================================================= */
+/* ================= ROUTING ================= */
 
-const pages = {
-  home:document.getElementById("page-home"),
-  services:document.getElementById("page-services"),
-  detail:document.getElementById("page-detail"),
-  order:document.getElementById("page-order"),
-  success:document.getElementById("page-success")
+const pages={
+home:document.getElementById("page-home"),
+services:document.getElementById("page-services"),
+detail:document.getElementById("page-detail"),
+order:document.getElementById("page-order"),
+success:document.getElementById("page-success")
 };
 
-let currentService = "web";
-
+let currentService="web";
 
 function showPage(name){
 
-  Object.values(pages).forEach(page=>{
-    page.classList.remove("active");
-  });
+Object.values(pages).forEach(page=>{
+page.classList.remove("active");
+});
 
-  pages[name].classList.add("active");
+pages[name].classList.add("active");
 
-  window.scrollTo({
-    top:0,
-    behavior:"instant"
-  });
+window.scrollTo({
+top:0,
+behavior:"instant"
+});
 
-  closeMenu();
+closeMenu();
 
-  setTimeout(()=>{
-    observeReveals();
-  },50);
+setTimeout(observeReveals,50);
 }
 
 
 function goServices(){
-  location.hash = "services";
+location.hash="services";
 }
 
 
 function openService(id){
 
-  if(!services[id]) id="web";
+if(!services[id]) id="web";
 
-  currentService=id;
+currentService=id;
 
-  const s=services[id];
+const s=services[id];
 
-  document.getElementById("detailBadge").textContent=s.badge;
-  document.getElementById("detailTitle").textContent=s.title;
-  document.getElementById("detailIntro").textContent=s.intro;
-  document.getElementById("detailLong").textContent=s.long;
+document.getElementById("detailBadge").textContent=s.badge;
+document.getElementById("detailTitle").textContent=s.title;
+document.getElementById("detailIntro").textContent=s.intro;
+document.getElementById("detailLong").textContent=s.long;
 
-  const list=document.getElementById("detailList");
+document.getElementById("detailList").innerHTML=
+s.list.map(item=>`<li>${item}</li>`).join("");
 
-  list.innerHTML=s.list
-    .map(item=>`<li>${item}</li>`)
-    .join("");
+document.getElementById("detailOrderBtn").onclick=()=>{
+openOrder(id);
+};
 
-  document.getElementById("detailOrderBtn").onclick=()=>{
-    openOrder(id);
-  };
-
-  location.hash="service/"+id;
+location.hash="service/"+id;
 }
 
 
 function openOrder(id){
 
-  if(!services[id]) id=currentService || "web";
+if(!services[id]) id=currentService||"web";
 
-  currentService=id;
+currentService=id;
 
-  const s=services[id];
+const s=services[id];
 
-  document.getElementById("service").value=s.title;
-  document.getElementById("selectedServiceText").textContent=s.title;
+document.getElementById("service").value=s.title;
+document.getElementById("selectedServiceText").textContent=s.title;
 
-  location.hash="order/"+id;
+location.hash="order/"+id;
 }
 
 
 function route(){
 
-  const raw=location.hash.replace("#","") || "home";
+const raw=location.hash.replace("#","")||"home";
 
-  if(raw.startsWith("service/")){
-    const id=raw.split("/")[1];
-    openServiceWithoutHash(id);
-    return;
-  }
+if(raw.startsWith("service/")){
+openServiceWithoutHash(raw.split("/")[1]);
+return;
+}
 
-  if(raw.startsWith("order/")){
-    const id=raw.split("/")[1];
-    openOrderWithoutHash(id);
-    return;
-  }
+if(raw.startsWith("order/")){
+openOrderWithoutHash(raw.split("/")[1]);
+return;
+}
 
-  if(raw==="services"){
-    showPage("services");
-    return;
-  }
+if(raw==="services"){
+showPage("services");
+return;
+}
 
-  if(raw==="success"){
-    showPage("success");
-    return;
-  }
+if(raw==="success"){
+showPage("success");
+return;
+}
 
-  showPage("home");
+showPage("home");
 
-  const target=document.getElementById(raw);
+const target=document.getElementById(raw);
 
-  if(target){
-    setTimeout(()=>{
-      target.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-    },80);
-  }
+if(target){
+
+setTimeout(()=>{
+target.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+},80);
+
+}
+
 }
 
 
 function openServiceWithoutHash(id){
 
-  if(!services[id]) id="web";
+if(!services[id]) id="web";
 
-  currentService=id;
+currentService=id;
 
-  const s=services[id];
+const s=services[id];
 
-  document.getElementById("detailBadge").textContent=s.badge;
-  document.getElementById("detailTitle").textContent=s.title;
-  document.getElementById("detailIntro").textContent=s.intro;
-  document.getElementById("detailLong").textContent=s.long;
+document.getElementById("detailBadge").textContent=s.badge;
+document.getElementById("detailTitle").textContent=s.title;
+document.getElementById("detailIntro").textContent=s.intro;
+document.getElementById("detailLong").textContent=s.long;
 
-  document.getElementById("detailList").innerHTML=
-    s.list.map(item=>`<li>${item}</li>`).join("");
+document.getElementById("detailList").innerHTML=
+s.list.map(item=>`<li>${item}</li>`).join("");
 
-  document.getElementById("detailOrderBtn").onclick=()=>{
-    openOrder(id);
-  };
+document.getElementById("detailOrderBtn").onclick=()=>{
+openOrder(id);
+};
 
-  showPage("detail");
+showPage("detail");
 }
 
 
 function openOrderWithoutHash(id){
 
-  if(!services[id]) id="web";
+if(!services[id]) id="web";
 
-  currentService=id;
+currentService=id;
 
-  const s=services[id];
+const s=services[id];
 
-  document.getElementById("service").value=s.title;
-  document.getElementById("selectedServiceText").textContent=s.title;
+document.getElementById("service").value=s.title;
+document.getElementById("selectedServiceText").textContent=s.title;
 
-  showPage("order");
+showPage("order");
 }
 
 
 window.addEventListener("hashchange",route);
 
 
-/* =========================================================
-   MENU
-========================================================= */
+/* ================= MENU ================= */
 
 const menuBtn=document.getElementById("menuBtn");
 const navlinks=document.getElementById("navlinks");
 
 menuBtn.onclick=()=>{
-  navlinks.classList.toggle("open");
+navlinks.classList.toggle("open");
 };
 
 function closeMenu(){
-  navlinks.classList.remove("open");
+navlinks.classList.remove("open");
 }
 
 document.querySelectorAll(".navlinks a").forEach(a=>{
-  a.addEventListener("click",closeMenu);
+a.addEventListener("click",closeMenu);
 });
 
 
-/* =========================================================
-   REVEAL ANIMATION
-========================================================= */
+/* ================= REVEAL ================= */
 
 let observer;
 
 function observeReveals(){
 
-  if(observer) observer.disconnect();
+if(observer) observer.disconnect();
 
-  observer=new IntersectionObserver(
-    entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add("show");
-        }
-      });
-    },
-    {threshold:.1}
-  );
+observer=new IntersectionObserver(
+entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},
+{threshold:.1}
+);
 
-  document
-    .querySelectorAll(".active .reveal")
-    .forEach(el=>observer.observe(el));
+document
+.querySelectorAll(".active .reveal")
+.forEach(el=>observer.observe(el));
+
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* ================= TOAST ================= */
 
 let toastTimer;
 
 function toast(message){
 
-  const el=document.getElementById("toast");
+const el=document.getElementById("toast");
 
-  el.textContent=message;
-  el.classList.add("show");
+el.textContent=message;
+el.classList.add("show");
 
-  clearTimeout(toastTimer);
+clearTimeout(toastTimer);
 
-  toastTimer=setTimeout(()=>{
-    el.classList.remove("show");
-  },3000);
+toastTimer=setTimeout(()=>{
+el.classList.remove("show");
+},3000);
+
 }
 
 
-/* =========================================================
-   ORDER FORM → SUPABASE
-========================================================= */
+/* ================= SUPABASE ORDER ================= */
 
 const orderForm=document.getElementById("orderForm");
 const submitBtn=document.getElementById("submitBtn");
@@ -2182,87 +2410,80 @@ const formStatus=document.getElementById("formStatus");
 
 orderForm.addEventListener("submit",async event=>{
 
-  event.preventDefault();
+event.preventDefault();
 
-  const name=document.getElementById("name").value.trim();
-  const email=document.getElementById("email").value.trim();
-  const service=document.getElementById("service").value;
-  const message=document.getElementById("message").value.trim();
+const name=document.getElementById("name").value.trim();
+const email=document.getElementById("email").value.trim();
+const service=document.getElementById("service").value;
+const message=document.getElementById("message").value.trim();
 
-  if(!name || !email || !service || !message){
+if(!name||!email||!service||!message){
 
-    formStatus.textContent="لطفاً همه فیلدها را کامل کن.";
-    formStatus.className="status error";
+formStatus.textContent="لطفاً همه فیلدها را کامل کن.";
+formStatus.className="status error";
 
-    return;
-  }
+return;
+}
 
-  submitBtn.disabled=true;
-  submitBtn.style.opacity=".55";
-  submitBtn.textContent="در حال ارسال...";
+submitBtn.disabled=true;
+submitBtn.style.opacity=".55";
+submitBtn.textContent="در حال ارسال...";
 
-  formStatus.textContent="در حال ارسال سفارش...";
-  formStatus.className="status";
+formStatus.textContent="در حال ارسال سفارش...";
+formStatus.className="status";
 
-  try{
+try{
 
-    /*
-      فقط ستون‌های قابل ورود کاربر ارسال می‌شوند.
-      id و created_at توسط دیتابیس مدیریت می‌شوند.
-    */
+const {error}=await supabaseClient
+.from("orders")
+.insert([
+{
+name:name,
+email:email,
+service:service,
+message:message
+}
+]);
 
-    const {error}=await supabaseClient
-      .from("orders")
-      .insert([
-        {
-          name:name,
-          email:email,
-          service:service,
-          message:message
-        }
-      ]);
+if(error){
+throw error;
+}
 
-    if(error){
-      throw error;
-    }
+orderForm.reset();
 
-    orderForm.reset();
+formStatus.textContent="";
 
-    formStatus.textContent="";
+location.hash="success";
 
-    location.hash="success";
+toast("سفارش با موفقیت ثبت شد.");
 
-    toast("سفارش با موفقیت ثبت شد.");
+}catch(error){
 
-  }catch(error){
+console.error("Supabase order error:",error);
 
-    console.error("Supabase order error:",error);
+formStatus.textContent=
+"ارسال انجام نشد. اتصال دیتابیس یا تنظیمات جدول را بررسی کن.";
 
-    formStatus.textContent=
-      "ارسال انجام نشد. اتصال دیتابیس یا تنظیمات جدول را بررسی کن.";
+formStatus.className="status error";
 
-    formStatus.className="status error";
+toast("خطا در ارسال سفارش.");
 
-    toast("خطا در ارسال سفارش.");
+}finally{
 
-  }finally{
+submitBtn.disabled=false;
+submitBtn.style.opacity="1";
+submitBtn.textContent="ارسال سفارش 🚀";
 
-    submitBtn.disabled=false;
-    submitBtn.style.opacity="1";
-    submitBtn.textContent="ارسال سفارش 🚀";
-
-  }
+}
 
 });
 
 
-/* =========================================================
-   START
-========================================================= */
+/* ================= START ================= */
 
 route();
 
 </script>
 
 </body>
-  </html>
+</html>
