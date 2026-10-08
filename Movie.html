@@ -1,0 +1,3164 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>NEXA — سینما برای نسل جدید</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--purple:#8b5cf6;
+--purple2:#a78bfa;
+--pink:#ec4899;
+--blue:#38bdf8;
+--green:#34d399;
+--yellow:#fbbf24;
+--bg:#07070b;
+--panel:#101017;
+--panel2:#15151e;
+--muted:#888894;
+--text:#fff;
+--border:rgba(255,255,255,.075);
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:"Vazirmatn",Tahoma,sans-serif;
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+line-height:1.6;
+}
+
+button,
+input{
+font-family:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+width:min(1320px,92%);
+margin:auto;
+}
+
+.section{
+padding:62px 0;
+}
+
+.section-title{
+font-size:32px;
+font-weight:900;
+letter-spacing:-1px;
+}
+
+.section-sub{
+font-size:13px;
+color:var(--muted);
+margin-top:4px;
+}
+
+.mini-title{
+font-size:12px;
+color:#a78bfa;
+font-weight:700;
+margin-bottom:9px;
+}
+
+.reveal{
+opacity:0;
+transform:translateY(22px);
+transition:.55s ease;
+}
+
+.reveal.visible{
+opacity:1;
+transform:none;
+}
+
+/* HEADER */
+
+header{
+height:68px;
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:2000;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 4%;
+
+background:rgba(7,7,11,.78);
+backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
+
+border-bottom:1px solid var(--border);
+}
+
+.logo{
+font-size:24px;
+font-weight:900;
+letter-spacing:2px;
+}
+
+.logo span{
+color:var(--purple);
+}
+
+nav{
+display:flex;
+align-items:center;
+gap:23px;
+}
+
+nav a{
+font-size:12px;
+color:#9b9ba7;
+transition:.2s;
+}
+
+nav a:hover{
+color:white;
+}
+
+.header-actions{
+display:flex;
+gap:7px;
+align-items:center;
+}
+
+.icon-btn{
+width:39px;
+height:39px;
+border-radius:11px;
+border:1px solid var(--border);
+background:#111118;
+color:white;
+font-size:17px;
+transition:.2s;
+}
+
+.icon-btn:hover{
+background:var(--purple);
+border-color:var(--purple);
+}
+
+.menu-btn{
+display:none;
+}
+
+/* MOBILE MENU */
+
+.mobile-menu{
+position:fixed;
+top:68px;
+right:-100%;
+width:100%;
+z-index:1900;
+background:#0c0c12;
+border-bottom:1px solid var(--border);
+padding:10px;
+transition:.3s;
+}
+
+.mobile-menu.open{
+right:0;
+}
+
+.mobile-menu a{
+display:block;
+padding:14px;
+border-bottom:1px solid var(--border);
+font-size:13px;
+color:#bbb;
+}
+
+/* HERO */
+
+.hero{
+min-height:690px;
+padding-top:68px;
+display:flex;
+align-items:center;
+position:relative;
+overflow:hidden;
+
+background:
+radial-gradient(circle at 75% 35%,rgba(139,92,246,.25),transparent 27%),
+radial-gradient(circle at 20% 80%,rgba(236,72,153,.10),transparent 30%),
+#07070b;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+border-radius:50%;
+right:-180px;
+top:100px;
+background:rgba(139,92,246,.15);
+filter:blur(110px);
+}
+
+.hero-content{
+position:relative;
+z-index:3;
+max-width:680px;
+}
+
+.hero-badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:7px 12px;
+border-radius:30px;
+background:rgba(139,92,246,.1);
+border:1px solid rgba(139,92,246,.25);
+color:#c4b5fd;
+font-size:11px;
+margin-bottom:16px;
+}
+
+.hero-badge i{
+width:7px;
+height:7px;
+background:#a78bfa;
+border-radius:50%;
+box-shadow:0 0 12px #8b5cf6;
+}
+
+.hero h1{
+font-size:clamp(48px,7vw,82px);
+line-height:1.02;
+font-weight:900;
+letter-spacing:-5px;
+}
+
+.hero h1 span{
+background:linear-gradient(90deg,#a78bfa,#ec4899);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+.hero p{
+color:#a7a7b4;
+font-size:14px;
+line-height:2;
+max-width:590px;
+margin-top:17px;
+}
+
+.hero-buttons{
+display:flex;
+gap:9px;
+margin-top:23px;
+flex-wrap:wrap;
+}
+
+.btn{
+border:0;
+padding:12px 20px;
+border-radius:11px;
+font-size:12px;
+transition:.2s;
+}
+
+.btn-primary{
+background:linear-gradient(135deg,#8b5cf6,#ec4899);
+color:#fff;
+box-shadow:0 12px 35px rgba(139,92,246,.2);
+}
+
+.btn-primary:hover{
+transform:translateY(-2px);
+}
+
+.btn-dark{
+background:#14141c;
+border:1px solid var(--border);
+color:#ddd;
+}
+
+.btn-dark:hover{
+border-color:#8b5cf6;
+}
+
+/* HERO SIDE */
+
+.hero-poster{
+position:absolute;
+left:6%;
+top:50%;
+transform:translateY(-50%) rotate(-5deg);
+width:300px;
+height:430px;
+border-radius:23px;
+overflow:hidden;
+background:
+linear-gradient(160deg,#20123e,#0b0913 60%,#421b42);
+box-shadow:0 35px 90px rgba(0,0,0,.65);
+border:1px solid rgba(255,255,255,.1);
+}
+
+.poster-orb{
+position:absolute;
+width:220px;
+height:220px;
+border-radius:50%;
+background:radial-gradient(circle at 35% 30%,#f9a8d4,#8b5cf6 45%,transparent 70%);
+filter:blur(2px);
+top:60px;
+left:40px;
+}
+
+.poster-ring{
+position:absolute;
+width:260px;
+height:260px;
+border:1px solid rgba(255,255,255,.3);
+border-radius:50%;
+top:40px;
+left:20px;
+transform:rotate(25deg);
+}
+
+.poster-title{
+position:absolute;
+bottom:60px;
+right:22px;
+font-size:37px;
+font-weight:900;
+line-height:1;
+letter-spacing:-2px;
+}
+
+.poster-small{
+position:absolute;
+bottom:23px;
+right:24px;
+color:#aaa;
+font-size:9px;
+}
+
+/* QUICK STATS */
+
+.stats{
+margin-top:-30px;
+position:relative;
+z-index:5;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+}
+
+.stat{
+background:rgba(20,20,28,.9);
+border:1px solid var(--border);
+border-radius:15px;
+padding:17px;
+backdrop-filter:blur(15px);
+}
+
+.stat strong{
+font-size:22px;
+display:block;
+}
+
+.stat span{
+font-size:10px;
+color:#858591;
+}
+
+/* CONTENT STRIP */
+
+.content-strip{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-top:22px;
+}
+
+.info-card{
+background:#101017;
+border:1px solid var(--border);
+border-radius:15px;
+padding:18px;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.info-icon{
+width:42px;
+height:42px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#18131f;
+font-size:20px;
+}
+
+.info-card strong{
+font-size:12px;
+display:block;
+}
+
+.info-card small{
+font-size:9px;
+color:#777;
+}
+
+/* GENRES */
+
+.genre-grid{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:10px;
+margin-top:22px;
+}
+
+.genre{
+height:105px;
+border-radius:16px;
+border:1px solid var(--border);
+background:linear-gradient(145deg,#13131b,#0d0d13);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:6px;
+transition:.22s;
+cursor:pointer;
+}
+
+.genre:hover{
+transform:translateY(-4px);
+border-color:#8b5cf6;
+}
+
+.genre-icon{
+font-size:27px;
+}
+
+.genre span{
+font-size:11px;
+color:#aaa;
+}
+
+/* SECTION HEADER */
+
+.section-head{
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:15px;
+}
+
+.see-all{
+font-size:11px;
+color:#a78bfa;
+cursor:pointer;
+}
+
+/* MOVIES */
+
+.movie-toolbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:22px;
+margin-bottom:17px;
+}
+
+.filters{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+}
+
+.filter{
+border:1px solid var(--border);
+background:#101017;
+color:#999;
+padding:8px 13px;
+border-radius:9px;
+font-size:10px;
+transition:.2s;
+}
+
+.filter.active,
+.filter:hover{
+background:#8b5cf6;
+color:white;
+border-color:#8b5cf6;
+}
+
+.movie-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:13px;
+}
+
+.movie{
+background:#101017;
+border:1px solid var(--border);
+border-radius:17px;
+overflow:hidden;
+transition:.25s;
+cursor:pointer;
+}
+
+.movie:hover{
+transform:translateY(-5px);
+border-color:rgba(139,92,246,.5);
+box-shadow:0 18px 40px rgba(0,0,0,.3);
+}
+
+.movie-poster{
+height:255px;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+.movie-poster::before{
+content:"";
+position:absolute;
+width:160px;
+height:160px;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.27);
+}
+
+.movie-poster::after{
+content:"";
+position:absolute;
+width:90px;
+height:90px;
+border-radius:50%;
+background:rgba(255,255,255,.11);
+filter:blur(3px);
+}
+
+.poster-bg-1{background:linear-gradient(145deg,#0f172a,#4c1d95,#db2777)}
+.poster-bg-2{background:linear-gradient(145deg,#052e16,#065f46,#0ea5e9)}
+.poster-bg-3{background:linear-gradient(145deg,#172554,#312e81,#7c3aed)}
+.poster-bg-4{background:linear-gradient(145deg,#450a0a,#991b1b,#f97316)}
+.poster-bg-5{background:linear-gradient(145deg,#1e1b4b,#581c87,#be185d)}
+.poster-bg-6{background:linear-gradient(145deg,#082f49,#0369a1,#22d3ee)}
+.poster-bg-7{background:linear-gradient(145deg,#171717,#404040,#737373)}
+.poster-bg-8{background:linear-gradient(145deg,#172554,#1e3a8a,#06b6d4)}
+.poster-bg-9{background:linear-gradient(145deg,#431407,#9a3412,#f59e0b)}
+.poster-bg-10{background:linear-gradient(145deg,#022c22,#047857,#14b8a6)}
+.poster-bg-11{background:linear-gradient(145deg,#3b0764,#7e22ce,#c026d3)}
+.poster-bg-12{background:linear-gradient(145deg,#172554,#1d4ed8,#60a5fa)}
+
+.movie-symbol{
+font-size:62px;
+position:relative;
+z-index:2;
+filter:drop-shadow(0 12px 15px rgba(0,0,0,.3));
+}
+
+.movie-rating{
+position:absolute;
+top:10px;
+right:10px;
+background:rgba(0,0,0,.52);
+backdrop-filter:blur(8px);
+padding:5px 8px;
+border-radius:7px;
+font-size:9px;
+z-index:4;
+}
+
+.movie-tag{
+position:absolute;
+bottom:10px;
+left:10px;
+background:rgba(0,0,0,.5);
+padding:4px 7px;
+border-radius:6px;
+font-size:8px;
+z-index:4;
+}
+
+.movie-info{
+padding:13px;
+}
+
+.movie-info h3{
+font-size:13px;
+margin-bottom:5px;
+}
+
+.movie-meta{
+display:flex;
+gap:8px;
+color:#777;
+font-size:9px;
+}
+
+.movie-bottom{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-top:11px;
+}
+
+.movie-bottom>span{
+font-size:9px;
+color:#888;
+}
+
+.watch-btn{
+background:#fff;
+color:#111;
+border:0;
+padding:7px 10px;
+border-radius:8px;
+font-size:9px;
+font-weight:bold;
+}
+
+/* FEATURE */
+
+.feature{
+margin-top:8px;
+min-height:390px;
+border-radius:23px;
+overflow:hidden;
+position:relative;
+display:flex;
+align-items:center;
+background:
+radial-gradient(circle at 70% 40%,rgba(236,72,153,.25),transparent 30%),
+linear-gradient(120deg,#12121a,#21132b);
+}
+
+.feature-art{
+position:absolute;
+left:0;
+top:0;
+bottom:0;
+width:52%;
+background:
+radial-gradient(circle at 50% 50%,#ec4899,transparent 5%),
+radial-gradient(circle at 50% 50%,rgba(139,92,246,.5),transparent 35%);
+}
+
+.feature-art::before{
+content:"";
+position:absolute;
+width:280px;
+height:280px;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.25);
+top:55px;
+left:70px;
+}
+
+.feature-art::after{
+content:"";
+position:absolute;
+width:180px;
+height:180px;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.18);
+top:105px;
+left:120px;
+}
+
+.feature-content{
+position:relative;
+z-index:2;
+width:53%;
+margin-right:auto;
+padding:45px;
+}
+
+.feature-label{
+color:#f0abff;
+font-size:10px;
+margin-bottom:8px;
+}
+
+.feature-content h2{
+font-size:42px;
+line-height:1.05;
+margin-bottom:10px;
+}
+
+.feature-content p{
+color:#aaa;
+font-size:11px;
+line-height:2;
+max-width:470px;
+}
+
+.feature-meta{
+display:flex;
+gap:15px;
+margin:14px 0;
+color:#bbb;
+font-size:10px;
+}
+
+/* NEW RELEASES */
+
+.release-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:13px;
+margin-top:23px;
+}
+
+.release{
+display:flex;
+gap:13px;
+padding:13px;
+background:#101017;
+border:1px solid var(--border);
+border-radius:15px;
+transition:.2s;
+}
+
+.release:hover{
+border-color:#8b5cf6;
+transform:translateY(-3px);
+}
+
+.release-poster{
+width:80px;
+height:100px;
+border-radius:10px;
+flex-shrink:0;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+}
+
+.release-info{
+flex:1;
+}
+
+.release-info h3{
+font-size:12px;
+margin-bottom:4px;
+}
+
+.release-info p{
+font-size:9px;
+line-height:1.8;
+color:#777;
+}
+
+.release-bottom{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:8px;
+font-size:9px;
+color:#aaa;
+}
+
+/* TRENDING */
+
+.trend-list{
+margin-top:23px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.trend{
+display:flex;
+align-items:center;
+gap:11px;
+background:#101017;
+border:1px solid var(--border);
+border-radius:14px;
+padding:11px;
+transition:.2s;
+}
+
+.trend:hover{
+border-color:#8b5cf6;
+transform:translateX(-3px);
+}
+
+.trend-number{
+font-size:23px;
+font-weight:900;
+color:#333;
+}
+
+.trend-poster{
+width:53px;
+height:63px;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:23px;
+flex-shrink:0;
+}
+
+.trend-info{
+flex:1;
+}
+
+.trend-info strong{
+display:block;
+font-size:11px;
+margin-bottom:3px;
+}
+
+.trend-info small{
+color:#777;
+font-size:9px;
+}
+
+/* COLLECTION */
+
+.collection-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:13px;
+margin-top:22px;
+}
+
+.collection{
+min-height:170px;
+border-radius:18px;
+padding:20px;
+position:relative;
+overflow:hidden;
+border:1px solid var(--border);
+background:#111118;
+}
+
+.collection::after{
+content:"";
+position:absolute;
+width:170px;
+height:170px;
+border-radius:50%;
+right:-50px;
+top:-50px;
+background:rgba(139,92,246,.17);
+filter:blur(10px);
+}
+
+.collection h3{
+position:relative;
+z-index:2;
+font-size:18px;
+}
+
+.collection p{
+position:relative;
+z-index:2;
+color:#888;
+font-size:10px;
+max-width:230px;
+margin-top:6px;
+}
+
+.collection button{
+position:relative;
+z-index:2;
+margin-top:16px;
+padding:8px 12px;
+border-radius:8px;
+background:rgba(255,255,255,.08);
+border:1px solid var(--border);
+color:#ddd;
+font-size:9px;
+}
+
+.collection:nth-child(2)::after{
+background:rgba(236,72,153,.18);
+}
+
+.collection:nth-child(3)::after{
+background:rgba(56,189,248,.18);
+}
+
+/* REVIEWS */
+
+.review-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-top:22px;
+}
+
+.review{
+background:#101017;
+border:1px solid var(--border);
+border-radius:16px;
+padding:18px;
+}
+
+.stars{
+color:#fbbf24;
+font-size:12px;
+letter-spacing:2px;
+}
+
+.review p{
+font-size:11px;
+color:#999;
+line-height:2;
+margin:9px 0;
+}
+
+.user{
+display:flex;
+align-items:center;
+gap:9px;
+}
+
+.avatar{
+width:31px;
+height:31px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#8b5cf6,#ec4899);
+font-size:12px;
+font-weight:bold;
+}
+
+.user strong{
+font-size:10px;
+display:block;
+}
+
+.user small{
+font-size:8px;
+color:#666;
+}
+
+/* NEWS */
+
+.news-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr;
+gap:13px;
+margin-top:22px;
+}
+
+.news-card{
+background:#101017;
+border:1px solid var(--border);
+border-radius:17px;
+overflow:hidden;
+}
+
+.news-image{
+height:150px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:50px;
+}
+
+.news-content{
+padding:15px;
+}
+
+.news-content small{
+color:#8b5cf6;
+font-size:8px;
+}
+
+.news-content h3{
+font-size:13px;
+margin:6px 0;
+}
+
+.news-content p{
+color:#777;
+font-size:9px;
+line-height:1.9;
+}
+
+/* PLANS */
+
+.plans{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:13px;
+margin-top:23px;
+}
+
+.plan{
+background:#101017;
+border:1px solid var(--border);
+border-radius:19px;
+padding:23px;
+position:relative;
+}
+
+.plan.featured{
+border-color:#8b5cf6;
+box-shadow:0 18px 50px rgba(139,92,246,.1);
+}
+
+.plan-badge{
+position:absolute;
+top:12px;
+left:12px;
+background:#8b5cf6;
+padding:4px 8px;
+border-radius:6px;
+font-size:8px;
+}
+
+.plan h3{
+font-size:18px;
+}
+
+.plan p{
+color:#777;
+font-size:9px;
+}
+
+.plan-price{
+font-size:29px;
+font-weight:900;
+margin:15px 0;
+}
+
+.plan-price small{
+font-size:9px;
+font-weight:normal;
+color:#777;
+}
+
+.plan ul{
+list-style:none;
+margin-bottom:18px;
+}
+
+.plan li{
+font-size:10px;
+color:#aaa;
+margin-bottom:8px;
+}
+
+.plan li::before{
+content:"✓";
+color:#8b5cf6;
+margin-left:7px;
+}
+
+/* FAQ */
+
+.faq{
+max-width:850px;
+margin:22px auto 0;
+}
+
+.faq-item{
+border-bottom:1px solid var(--border);
+}
+
+.faq-question{
+width:100%;
+background:none;
+border:0;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:17px 5px;
+font-size:11px;
+text-align:right;
+}
+
+.faq-answer{
+max-height:0;
+overflow:hidden;
+color:#888;
+font-size:10px;
+line-height:2;
+transition:.3s;
+padding:0 5px;
+}
+
+.faq-item.open .faq-answer{
+max-height:150px;
+padding-bottom:15px;
+}
+
+.faq-plus{
+font-size:18px;
+color:#8b5cf6;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+background:
+radial-gradient(circle at 50% 0,rgba(139,92,246,.2),transparent 40%),
+#101017;
+border:1px solid var(--border);
+border-radius:22px;
+padding:45px 25px;
+text-align:center;
+}
+
+.newsletter h2{
+font-size:29px;
+}
+
+.newsletter p{
+color:#888;
+font-size:11px;
+margin:7px auto 18px;
+}
+
+.news-form{
+display:flex;
+max-width:520px;
+margin:auto;
+gap:7px;
+}
+
+.news-form input{
+flex:1;
+background:#07070b;
+border:1px solid var(--border);
+outline:0;
+color:white;
+padding:12px;
+border-radius:10px;
+font-size:11px;
+}
+
+.news-form input:focus{
+border-color:#8b5cf6;
+}
+
+/* FOOTER */
+
+footer{
+padding:55px 0 20px;
+background:#050509;
+border-top:1px solid var(--border);
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:35px;
+}
+
+.footer-brand p{
+color:#777;
+font-size:10px;
+line-height:2;
+max-width:340px;
+margin-top:10px;
+}
+
+footer h4{
+font-size:11px;
+margin-bottom:13px;
+}
+
+footer a{
+display:block;
+color:#777;
+font-size:9px;
+margin-bottom:9px;
+transition:.2s;
+}
+
+footer a:hover{
+color:white;
+}
+
+.footer-bottom{
+margin-top:35px;
+padding-top:15px;
+border-top:1px solid var(--border);
+display:flex;
+justify-content:space-between;
+color:#555;
+font-size:8px;
+}
+
+.footer-bottom b{
+color:#8b5cf6;
+}
+
+/* SEARCH */
+
+.search-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.72);
+backdrop-filter:blur(10px);
+z-index:4000;
+display:none;
+align-items:flex-start;
+justify-content:center;
+padding-top:100px;
+}
+
+.search-overlay.show{
+display:flex;
+}
+
+.search-window{
+width:min(650px,92%);
+background:#111118;
+border:1px solid var(--border);
+border-radius:18px;
+padding:17px;
+box-shadow:0 30px 100px rgba(0,0,0,.5);
+}
+
+.search-window input{
+width:100%;
+background:#08080d;
+border:1px solid var(--border);
+outline:0;
+color:white;
+padding:14px;
+border-radius:11px;
+font-size:12px;
+}
+
+.search-results{
+margin-top:12px;
+color:#888;
+font-size:10px;
+}
+
+/* MODAL */
+
+.movie-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+backdrop-filter:blur(10px);
+z-index:5000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.movie-modal.show{
+display:flex;
+}
+
+.movie-modal-box{
+width:min(720px,95%);
+background:#111118;
+border:1px solid var(--border);
+border-radius:20px;
+padding:27px;
+position:relative;
+box-shadow:0 30px 100px rgba(0,0,0,.6);
+}
+
+.modal-close{
+position:absolute;
+top:12px;
+left:12px;
+width:33px;
+height:33px;
+border-radius:9px;
+border:1px solid var(--border);
+background:#181820;
+color:white;
+}
+
+.modal-title{
+font-size:25px;
+font-weight:900;
+margin-bottom:5px;
+}
+
+.modal-meta{
+color:#777;
+font-size:10px;
+margin-bottom:17px;
+}
+
+.modal-text{
+color:#aaa;
+font-size:11px;
+line-height:2;
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+bottom:22px;
+left:50%;
+transform:translate(-50%,120px);
+background:#fff;
+color:#111;
+padding:11px 18px;
+border-radius:10px;
+font-size:10px;
+z-index:6000;
+transition:.3s;
+box-shadow:0 15px 50px rgba(0,0,0,.3);
+white-space:nowrap;
+}
+
+.toast.show{
+transform:translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+.hero-poster{
+opacity:.18;
+left:-60px;
+}
+
+.movie-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+.genre-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+.stats-grid{
+grid-template-columns:repeat(5,1fr);
+}
+
+}
+
+@media(max-width:800px){
+
+header{
+height:62px;
+}
+
+nav{
+display:none;
+}
+
+.menu-btn{
+display:block;
+}
+
+.hero{
+min-height:630px;
+padding-top:62px;
+}
+
+.hero-content{
+text-align:center;
+margin:auto;
+}
+
+.hero p{
+margin-left:auto;
+margin-right:auto;
+}
+
+.hero-buttons{
+justify-content:center;
+}
+
+.hero-poster{
+display:none;
+}
+
+.stats-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.content-strip{
+grid-template-columns:repeat(2,1fr);
+}
+
+.movie-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.feature{
+min-height:400px;
+}
+
+.feature-art{
+width:100%;
+opacity:.25;
+}
+
+.feature-content{
+width:100%;
+padding:35px;
+}
+
+.trend-list,
+.release-grid,
+.review-grid,
+.collection-grid{
+grid-template-columns:1fr;
+}
+
+.news-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.news-grid .news-card:first-child{
+grid-column:1/-1;
+}
+
+.plans{
+grid-template-columns:1fr;
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:550px){
+
+.container{
+width:91%;
+}
+
+.section{
+padding:48px 0;
+}
+
+.section-title{
+font-size:26px;
+}
+
+.hero h1{
+font-size:46px;
+letter-spacing:-3px;
+}
+
+.hero p{
+font-size:12px;
+}
+
+.stats-grid{
+grid-template-columns:1fr 1fr;
+gap:7px;
+}
+
+.stat{
+padding:14px;
+}
+
+.stat strong{
+font-size:19px;
+}
+
+.genre-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.genre{
+height:92px;
+}
+
+.movie-grid{
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.movie-poster{
+height:195px;
+}
+
+.movie-symbol{
+font-size:48px;
+}
+
+.movie-info{
+padding:10px;
+}
+
+.movie-info h3{
+font-size:11px;
+}
+
+.movie-meta{
+font-size:8px;
+}
+
+.watch-btn{
+padding:6px 7px;
+font-size:8px;
+}
+
+.content-strip{
+gap:7px;
+}
+
+.info-card{
+padding:13px;
+}
+
+.info-card strong{
+font-size:10px;
+}
+
+.info-card small{
+font-size:8px;
+}
+
+.feature-content{
+padding:30px 23px;
+}
+
+.feature-content h2{
+font-size:35px;
+}
+
+.news-grid{
+grid-template-columns:1fr;
+}
+
+.news-grid .news-card:first-child{
+grid-column:auto;
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+gap:23px 13px;
+}
+
+.footer-bottom{
+display:block;
+line-height:2;
+}
+
+.news-form{
+flex-direction:column;
+}
+
+.news-form .btn{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">NEX<span>A</span></div>
+
+<nav>
+<a href="#home">خانه</a>
+<a href="#genres">ژانرها</a>
+<a href="#movies">فیلم‌ها</a>
+<a href="#new">جدیدها</a>
+<a href="#trending">ترندها</a>
+<a href="#reviews">نظرات</a>
+<a href="#plans">اشتراک</a>
+<a href="#faq">سؤالات</a>
+</nav>
+
+<div class="header-actions">
+
+<button class="icon-btn" onclick="openSearch()">⌕</button>
+
+<button class="icon-btn" onclick="showToast('برای ورود، حساب کاربری خود را بسازید')">
+♙
+</button>
+
+<button class="icon-btn menu-btn" onclick="toggleMobileMenu()">
+☰
+</button>
+
+</div>
+
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+<a href="#home" onclick="closeMobileMenu()">خانه</a>
+<a href="#genres" onclick="closeMobileMenu()">ژانرها</a>
+<a href="#movies" onclick="closeMobileMenu()">فیلم‌ها</a>
+<a href="#new" onclick="closeMobileMenu()">تازه‌ها</a>
+<a href="#trending" onclick="closeMobileMenu()">ترندها</a>
+<a href="#reviews" onclick="closeMobileMenu()">نظرات کاربران</a>
+<a href="#plans" onclick="closeMobileMenu()">اشتراک</a>
+<a href="#faq" onclick="closeMobileMenu()">سؤالات متداول</a>
+</div>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="container">
+
+<div class="hero-content">
+
+<div class="hero-badge">
+<i></i>
+نسل جدید سرگرمی دیجیتال
+</div>
+
+<h1>
+فیلم ببین.<br>
+<span>متفاوت زندگی کن.</span>
+</h1>
+
+<p>
+به دنیایی از فیلم‌ها، سریال‌ها، مستندها و داستان‌های تازه وارد شو.
+NEXA محتوای مورد علاقه‌ات را در یک تجربه سینمایی سریع و مدرن جمع کرده است.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#movies" class="btn btn-primary">
+شروع تماشا
+</a>
+
+<a href="#genres" class="btn btn-dark">
+کشف ژانرها
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="hero-poster">
+
+<div class="poster-orb"></div>
+<div class="poster-ring"></div>
+
+<div class="poster-title">
+BEYOND<br>
+THE NIGHT
+</div>
+
+<div class="poster-small">
+NEXA ORIGINAL • 2026
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="stats">
+
+<div class="container">
+
+<div class="stats-grid">
+
+<div class="stat reveal">
+<strong>12K+</strong>
+<span>عنوان قابل تماشا</span>
+</div>
+
+<div class="stat reveal">
+<strong>4.9</strong>
+<span>میانگین امتیاز</span>
+</div>
+
+<div class="stat reveal">
+<strong>4K</strong>
+<span>کیفیت تصویر</span>
+</div>
+
+<div class="stat reveal">
+<strong>180+</strong>
+<span>اثر جدید ماهانه</span>
+</div>
+
+<div class="stat reveal">
+<strong>24/7</strong>
+<span>دسترسی به محتوا</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- QUICK CONTENT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="content-strip">
+
+<div class="info-card reveal">
+<div class="info-icon">🎬</div>
+<div>
+<strong>اکران‌های تازه</strong>
+<small>هر هفته آثار جدید</small>
+</div>
+</div>
+
+<div class="info-card reveal">
+<div class="info-icon">⚡</div>
+<div>
+<strong>پخش سریع</strong>
+<small>تجربه روان روی موبایل</small>
+</div>
+</div>
+
+<div class="info-card reveal">
+<div class="info-icon">⭐</div>
+<div>
+<strong>امتیاز کاربران</strong>
+<small>انتخاب راحت‌تر فیلم‌ها</small>
+</div>
+</div>
+
+<div class="info-card reveal">
+<div class="info-icon">📱</div>
+<div>
+<strong>همه‌جا در دسترس</strong>
+<small>موبایل، تبلت و دسکتاپ</small>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- GENRES -->
+
+<section class="section" id="genres">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+<div class="section-title reveal">دنیای خودت را انتخاب کن</div>
+<div class="section-sub reveal">هر حال و هوایی، یک داستان دارد.</div>
+</div>
+
+<span class="see-all">۶ ژانر محبوب</span>
+
+</div>
+
+<div class="genre-grid">
+
+<div class="genre reveal" onclick="filterGenre('action')">
+<div class="genre-icon">⚡</div>
+<span>اکشن</span>
+</div>
+
+<div class="genre reveal" onclick="filterGenre('sci')">
+<div class="genre-icon">🚀</div>
+<span>علمی‌تخیلی</span>
+</div>
+
+<div class="genre reveal" onclick="filterGenre('drama')">
+<div class="genre-icon">🎭</div>
+<span>درام</span>
+</div>
+
+<div class="genre reveal" onclick="filterGenre('horror')">
+<div class="genre-icon">👁️</div>
+<span>ترسناک</span>
+</div>
+
+<div class="genre reveal" onclick="filterGenre('comedy')">
+<div class="genre-icon">😂</div>
+<span>کمدی</span>
+</div>
+
+<div class="genre reveal" onclick="filterGenre('animation')">
+<div class="genre-icon">✨</div>
+<span>انیمیشن</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MOVIES -->
+
+<section class="section" id="movies">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+<div class="section-title reveal">محبوب‌ترین فیلم‌ها</div>
+<div class="section-sub reveal">انتخاب‌هایی که این روزها بیشتر دیده می‌شوند.</div>
+</div>
+
+<span class="see-all">۱۲ عنوان</span>
+
+</div>
+
+<div class="movie-toolbar">
+
+<div class="filters">
+
+<button class="filter active" onclick="filterMovies('all',this)">همه</button>
+<button class="filter" onclick="filterMovies('action',this)">اکشن</button>
+<button class="filter" onclick="filterMovies('sci',this)">علمی‌تخیلی</button>
+<button class="filter" onclick="filterMovies('drama',this)">درام</button>
+<button class="filter" onclick="filterMovies('animation',this)">انیمیشن</button>
+<button class="filter" onclick="filterMovies('comedy',this)">کمدی</button>
+
+</div>
+
+</div>
+
+<div class="movie-grid" id="movieGrid">
+
+<!-- 1 -->
+
+<div class="movie reveal" data-genre="sci" data-title="Beyond The Night"
+onclick="openMovie('Beyond The Night','علمی‌تخیلی • 2026','گروهی از انسان‌ها در آینده‌ای دور با پدیده‌ای ناشناخته در مرزهای فضا روبه‌رو می‌شوند.')">
+
+<div class="movie-poster poster-bg-1">
+<span class="movie-rating">★ 9.1</span>
+<span class="movie-symbol">🌌</span>
+<span class="movie-tag">NEXA ORIGINAL</span>
+</div>
+
+<div class="movie-info">
+<h3>Beyond The Night</h3>
+<div class="movie-meta">
+<span>2026</span><span>2h 14m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>علمی‌تخیلی</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 2 -->
+
+<div class="movie reveal" data-genre="action" data-title="Zero Point"
+onclick="openMovie('Zero Point','اکشن • 2026','یک مأمور سابق باید قبل از رسیدن زمان صفر، راز یک پرونده فراموش‌شده را کشف کند.')">
+
+<div class="movie-poster poster-bg-2">
+<span class="movie-rating">★ 8.8</span>
+<span class="movie-symbol">⚡</span>
+</div>
+
+<div class="movie-info">
+<h3>Zero Point</h3>
+<div class="movie-meta">
+<span>2026</span><span>1h 58m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>اکشن</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 3 -->
+
+<div class="movie reveal" data-genre="drama" data-title="After Rain"
+onclick="openMovie('After Rain','درام • 2025','داستانی آرام درباره شروع دوباره، انتخاب‌های سخت و آدم‌هایی که گذشته را پشت سر می‌گذارند.')">
+
+<div class="movie-poster poster-bg-3">
+<span class="movie-rating">★ 8.6</span>
+<span class="movie-symbol">🌧️</span>
+</div>
+
+<div class="movie-info">
+<h3>After Rain</h3>
+<div class="movie-meta">
+<span>2025</span><span>2h 03m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>درام</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 4 -->
+
+<div class="movie reveal" data-genre="action" data-title="Red Signal"
+onclick="openMovie('Red Signal','اکشن • 2026','وقتی تمام ارتباطات یک شهر قطع می‌شود، یک پیام مرموز مسیر داستان را تغییر می‌دهد.')">
+
+<div class="movie-poster poster-bg-4">
+<span class="movie-rating">★ 8.4</span>
+<span class="movie-symbol">🔴</span>
+</div>
+
+<div class="movie-info">
+<h3>Red Signal</h3>
+<div class="movie-meta">
+<span>2026</span><span>1h 49m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>اکشن</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 5 -->
+
+<div class="movie reveal" data-genre="horror" data-title="The Last Door"
+onclick="openMovie('The Last Door','ترسناک • 2025','خانه‌ای که سال‌ها خالی بوده، یک شب دوباره چراغ‌هایش روشن می‌شود.')">
+
+<div class="movie-poster poster-bg-5">
+<span class="movie-rating">★ 8.2</span>
+<span class="movie-symbol">🚪</span>
+</div>
+
+<div class="movie-info">
+<h3>The Last Door</h3>
+<div class="movie-meta">
+<span>2025</span><span>1h 44m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>ترسناک</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 6 -->
+
+<div class="movie reveal" data-genre="animation" data-title="Blue Planet"
+onclick="openMovie('Blue Planet','انیمیشن • 2026','سفر یک موجود کوچک در سیاره‌ای که هر روز شکل تازه‌ای پیدا می‌کند.')">
+
+<div class="movie-poster poster-bg-6">
+<span class="movie-rating">★ 9.0</span>
+<span class="movie-symbol">🌍</span>
+</div>
+
+<div class="movie-info">
+<h3>Blue Planet</h3>
+<div class="movie-meta">
+<span>2026</span><span>1h 32m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>انیمیشن</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 7 -->
+
+<div class="movie reveal" data-genre="comedy" data-title="One More Day"
+onclick="openMovie('One More Day','کمدی • 2025','یک روز معمولی که قرار است کاملاً معمولی باقی نماند!')">
+
+<div class="movie-poster poster-bg-7">
+<span class="movie-rating">★ 8.0</span>
+<span class="movie-symbol">😎</span>
+</div>
+
+<div class="movie-info">
+<h3>One More Day</h3>
+<div class="movie-meta">
+<span>2025</span><span>1h 38m</span><span>HD</span>
+</div>
+<div class="movie-bottom">
+<span>کمدی</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 8 -->
+
+<div class="movie reveal" data-genre="sci" data-title="Orbit"
+onclick="openMovie('Orbit','علمی‌تخیلی • 2026','یک تیم تحقیقاتی در مدار زمین سیگنالی دریافت می‌کند که نباید وجود داشته باشد.')">
+
+<div class="movie-poster poster-bg-8">
+<span class="movie-rating">★ 8.9</span>
+<span class="movie-symbol">🪐</span>
+</div>
+
+<div class="movie-info">
+<h3>Orbit</h3>
+<div class="movie-meta">
+<span>2026</span><span>2h 08m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>علمی‌تخیلی</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 9 -->
+
+<div class="movie reveal" data-genre="action" data-title="Final Chase"
+onclick="openMovie('Final Chase','اکشن • 2026','یک تعقیب‌وگریز در شهری که هیچ‌کس نمی‌داند چه کسی واقعاً فراری است.')">
+
+<div class="movie-poster poster-bg-9">
+<span class="movie-rating">★ 8.5</span>
+<span class="movie-symbol">🏎️</span>
+</div>
+
+<div class="movie-info">
+<h3>Final Chase</h3>
+<div class="movie-meta">
+<span>2026</span><span>2h 01m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>اکشن</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 10 -->
+
+<div class="movie reveal" data-genre="drama" data-title="Silent City"
+onclick="openMovie('Silent City','درام • 2026','شهری که همه چیز در آن ادامه دارد، جز صدای آدم‌هایی که در آن زندگی می‌کنند.')">
+
+<div class="movie-poster poster-bg-10">
+<span class="movie-rating">★ 8.7</span>
+<span class="movie-symbol">🏙️</span>
+</div>
+
+<div class="movie-info">
+<h3>Silent City</h3>
+<div class="movie-meta">
+<span>2026</span><span>1h 56m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>درام</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 11 -->
+
+<div class="movie reveal" data-genre="animation" data-title="Dream Factory"
+onclick="openMovie('Dream Factory','انیمیشن • 2026','جایی که رویاها ساخته می‌شوند و یک اشتباه کوچک همه چیز را تغییر می‌دهد.')">
+
+<div class="movie-poster poster-bg-11">
+<span class="movie-rating">★ 8.8</span>
+<span class="movie-symbol">✨</span>
+</div>
+
+<div class="movie-info">
+<h3>Dream Factory</h3>
+<div class="movie-meta">
+<span>2026</span><span>1h 41m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>انیمیشن</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+<!-- 12 -->
+
+<div class="movie reveal" data-genre="sci" data-title="Deep Blue"
+onclick="openMovie('Deep Blue','علمی‌تخیلی • 2026','یک گروه تحقیقاتی به اعماق اقیانوس می‌رود و با چیزی ناشناخته روبه‌رو می‌شود.')">
+
+<div class="movie-poster poster-bg-12">
+<span class="movie-rating">★ 8.9</span>
+<span class="movie-symbol">🌊</span>
+</div>
+
+<div class="movie-info">
+<h3>Deep Blue</h3>
+<div class="movie-meta">
+<span>2026</span><span>2h 10m</span><span>4K</span>
+</div>
+<div class="movie-bottom">
+<span>علمی‌تخیلی</span>
+<button class="watch-btn">جزئیات</button>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURE -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="feature reveal">
+
+<div class="feature-art"></div>
+
+<div class="feature-content">
+
+<div class="feature-label">NEXA ORIGINAL</div>
+
+<h2>Beyond<br>The Night</h2>
+
+<p>
+یک سفر سینمایی به جایی فراتر از مرزهای شناخته‌شده.
+تصویری بزرگ، داستانی مرموز و جهانی که هنوز کسی آن را ندیده است.
+</p>
+
+<div class="feature-meta">
+<span>★ 9.1</span>
+<span>2026</span>
+<span>2h 14m</span>
+<span>4K</span>
+</div>
+
+<button class="btn btn-primary"
+onclick="openMovie('Beyond The Night','NEXA Original • 2026','این عنوان یکی از آثار ویژه NEXA است.')">
+مشاهده اطلاعات
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- NEW RELEASES -->
+
+<section class="section" id="new">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+<div class="section-title reveal">تازه‌های NEXA</div>
+<div class="section-sub reveal">آثاری که همین روزها به مجموعه اضافه شده‌اند.</div>
+</div>
+
+<span class="see-all">مشاهده همه</span>
+
+</div>
+
+<div class="release-grid">
+
+<div class="release reveal">
+
+<div class="release-poster poster-bg-9">🏎️</div>
+
+<div class="release-info">
+<h3>Final Chase</h3>
+<p>یک تعقیب‌وگریز نفس‌گیر در قلب شهری بزرگ.</p>
+<div class="release-bottom">
+<span>اکشن</span>
+<span>امروز</span>
+</div>
+</div>
+
+</div>
+
+<div class="release reveal">
+
+<div class="release-poster poster-bg-10">🏙️</div>
+
+<div class="release-info">
+<h3>Silent City</h3>
+<p>درامی آرام درباره شهری که دیگر صدایی ندارد.</p>
+<div class="release-bottom">
+<span>درام</span>
+<span>دیروز</span>
+</div>
+</div>
+
+</div>
+
+<div class="release reveal">
+
+<div class="release-poster poster-bg-11">✨</div>
+
+<div class="release-info">
+<h3>Dream Factory</h3>
+<p>ماجراجویی یک شخصیت کوچک در کارخانه رویاها.</p>
+<div class="release-bottom">
+<span>انیمیشن</span>
+<span>۳ روز پیش</span>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TRENDING -->
+
+<section class="section" id="trending">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+<div class="section-title reveal">ترند این هفته</div>
+<div class="section-sub reveal">چیزهایی که همه درباره‌شان صحبت می‌کنند.</div>
+</div>
+
+<span class="see-all">به‌روزرسانی امروز</span>
+
+</div>
+
+<div class="trend-list">
+
+<div class="trend reveal">
+<div class="trend-number">01</div>
+<div class="trend-poster poster-bg-1">🌌</div>
+<div class="trend-info">
+<strong>Beyond The Night</strong>
+<small>۲.۴ میلیون تماشا</small>
+</div>
+</div>
+
+<div class="trend reveal">
+<div class="trend-number">02</div>
+<div class="trend-poster poster-bg-2">⚡</div>
+<div class="trend-info">
+<strong>Zero Point</strong>
+<small>۱.۹ میلیون تماشا</small>
+</div>
+</div>
+
+<div class="trend reveal">
+<div class="trend-number">03</div>
+<div class="trend-poster poster-bg-6">🌍</div>
+<div class="trend-info">
+<strong>Blue Planet</strong>
+<small>۱.۷ میلیون تماشا</small>
+</div>
+</div>
+
+<div class="trend reveal">
+<div class="trend-number">04</div>
+<div class="trend-poster poster-bg-8">🪐</div>
+<div class="trend-info">
+<strong>Orbit</strong>
+<small>۱.۴ میلیون تماشا</small>
+</div>
+</div>
+
+<div class="trend reveal">
+<div class="trend-number">05</div>
+<div class="trend-poster poster-bg-3">🌧️</div>
+<div class="trend-info">
+<strong>After Rain</strong>
+<small>۱.۲ میلیون تماشا</small>
+</div>
+</div>
+
+<div class="trend reveal">
+<div class="trend-number">06</div>
+<div class="trend-poster poster-bg-4">🔴</div>
+<div class="trend-info">
+<strong>Red Signal</strong>
+<small>۹۸۰ هزار تماشا</small>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- COLLECTION -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title reveal">کالکشن‌های ویژه</div>
+<div class="section-sub reveal">اگر نمی‌دانی چه چیزی ببینی، از اینجا شروع کن.</div>
+
+<div class="collection-grid">
+
+<div class="collection reveal">
+<h3>شب‌های علمی‌تخیلی</h3>
+<p>سفر به فضا، آینده، دنیاهای ناشناخته و اتفاقاتی که هنوز برای ما ممکن نیستند.</p>
+<button onclick="showToast('کالکشن علمی‌تخیلی انتخاب شد')">مشاهده کالکشن</button>
+</div>
+
+<div class="collection reveal">
+<h3>هیجان تا آخر شب</h3>
+<p>تعقیب‌وگریز، مأموریت‌های خطرناک و داستان‌هایی که اجازه نمی‌دهند صفحه را ببندی.</p>
+<button onclick="showToast('کالکشن اکشن انتخاب شد')">مشاهده کالکشن</button>
+</div>
+
+<div class="collection reveal">
+<h3>برای یک شب آرام</h3>
+<p>درام‌های آرام، داستان‌های انسانی و فیلم‌هایی برای زمانی که فقط یک داستان خوب می‌خواهی.</p>
+<button onclick="showToast('کالکشن درام انتخاب شد')">مشاهده کالکشن</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section class="section" id="reviews">
+
+<div class="container">
+
+<div class="section-title reveal">کاربران چه می‌گویند؟</div>
+<div class="section-sub reveal">تجربه تماشای NEXA از نگاه کاربران.</div>
+
+<div class="review-grid">
+
+<div class="review reveal">
+
+<div class="stars">★★★★★</div>
+
+<p>
+«ظاهر سایت خیلی تمیز است و پیدا کردن فیلمی که می‌خواهم واقعاً سریع انجام می‌شود.»
+</p>
+
+<div class="user">
+<div class="avatar">A</div>
+<div>
+<strong>آرین</strong>
+<small>عضو NEXA</small>
+</div>
+</div>
+
+</div>
+
+<div class="review reveal">
+
+<div class="stars">★★★★★</div>
+
+<p>
+«بخش ترندها برای من خیلی کاربردی است؛ معمولاً از همان‌جا فیلم انتخاب می‌کنم.»
+</p>
+
+<div class="user">
+<div class="avatar">N</div>
+<div>
+<strong>نیما</strong>
+<small>عضو NEXA</small>
+</div>
+</div>
+
+</div>
+
+<div class="review reveal">
+
+<div class="stars">★★★★☆</div>
+
+<p>
+«روی موبایل هم ظاهر خوبی دارد و کارت‌های فیلم خیلی مرتب چیده شده‌اند.»
+</p>
+
+<div class="user">
+<div class="avatar">S</div>
+<div>
+<strong>سارا</strong>
+<small>عضو NEXA</small>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- NEWS -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title reveal">مجله NEXA</div>
+<div class="section-sub reveal">خبرها و مطالب کوتاه دنیای سینما.</div>
+
+<div class="news-grid">
+
+<div class="news-card reveal">
+
+<div class="news-image poster-bg-1">🎬</div>
+
+<div class="news-content">
+<small>ویژه</small>
+<h3>چرا فیلم‌های علمی‌تخیلی دوباره محبوب شده‌اند؟</h3>
+<p>
+از دنیاهای آینده تا داستان‌های فضایی؛ ژانری که همیشه راهی برای غافلگیر کردن مخاطب دارد.
+</p>
+</div>
+
+</div>
+
+<div class="news-card reveal">
+
+<div class="news-image poster-bg-4">🎥</div>
+
+<div class="news-content">
+<small>سینما</small>
+<h3>۵ فیلم برای یک شب هیجان‌انگیز</h3>
+<p>انتخاب‌هایی سریع برای زمانی که دنبال یک فیلم پرهیجان هستی.</p>
+</div>
+
+</div>
+
+<div class="news-card reveal">
+
+<div class="news-image poster-bg-6">🌌</div>
+
+<div class="news-content">
+<small>پیشنهاد NEXA</small>
+<h3>اگر Orbit را دوست داشتی...</h3>
+<p>چند عنوان مشابه برای ادامه یک شب علمی‌تخیلی.</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PLANS -->
+
+<section class="section" id="plans">
+
+<div class="container">
+
+<div class="section-title reveal">اشتراک NEXA</div>
+<div class="section-sub reveal">تو انتخاب کن چطور تماشا کنی.</div>
+
+<div class="plans">
+
+<div class="plan reveal">
+
+<h3>Basic</h3>
+<p>برای شروع</p>
+
+<div class="plan-price">
+۹۹
+<small>هزار تومان / ماه</small>
+</div>
+
+<ul>
+<li>کیفیت Full HD</li>
+<li>تماشای موبایل</li>
+<li>دسترسی به فیلم‌ها</li>
+<li>بدون دانلود آفلاین</li>
+</ul>
+
+<button class="btn btn-dark"
+style="width:100%"
+onclick="choosePlan('Basic')">
+انتخاب پلن
+</button>
+
+</div>
+
+<div class="plan featured reveal">
+
+<div class="plan-badge">محبوب‌ترین</div>
+
+<h3>Pro</h3>
+<p>برای سینما دوستان</p>
+
+<div class="plan-price">
+۱۶۹
+<small>هزار تومان / ماه</small>
+</div>
+
+<ul>
+<li>کیفیت 4K</li>
+<li>سه دستگاه همزمان</li>
+<li>دانلود آفلاین</li>
+<li>محتوای اختصاصی NEXA</li>
+</ul>
+
+<button class="btn btn-primary"
+style="width:100%"
+onclick="choosePlan('Pro')">
+شروع اشتراک
+</button>
+
+</div>
+
+<div class="plan reveal">
+
+<h3>Ultra</h3>
+<p>برای خانواده</p>
+
+<div class="plan-price">
+۲۴۹
+<small>هزار تومان / ماه</small>
+</div>
+
+<ul>
+<li>کیفیت 4K HDR</li>
+<li>پنج دستگاه همزمان</li>
+<li>دانلود آفلاین</li>
+<li>پروفایل اختصاصی</li>
+</ul>
+
+<button class="btn btn-dark"
+style="width:100%"
+onclick="choosePlan('Ultra')">
+انتخاب پلن
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="section" id="faq">
+
+<div class="container">
+
+<div style="text-align:center">
+
+<div class="section-title reveal">سؤالات متداول</div>
+
+<div class="section-sub reveal">
+قبل از شروع، جواب سؤالاتت را پیدا کن.
+</div>
+
+</div>
+
+<div class="faq">
+
+<div class="faq-item">
+
+<button class="faq-question" onclick="toggleFaq(this)">
+آیا NEXA روی موبایل هم کار می‌کند؟
+<span class="faq-plus">+</span>
+</button>
+
+<div class="faq-answer">
+بله. طراحی سایت واکنش‌گراست و برای موبایل، تبلت و دسکتاپ ساخته شده است.
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question" onclick="toggleFaq(this)">
+آیا می‌توان فیلم‌ها را جستجو کرد؟
+<span class="faq-plus">+</span>
+</button>
+
+<div class="faq-answer">
+بله. از آیکون جستجوی بالای صفحه استفاده کنید و نام فیلم مورد نظر را وارد کنید.
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question" onclick="toggleFaq(this)">
+آیا امکان دانلود آفلاین وجود دارد؟
+<span class="faq-plus">+</span>
+</button>
+
+<div class="faq-answer">
+در نسخه واقعی سرویس می‌توان قابلیت دانلود آفلاین را برای پلن‌های مشخص فعال کرد.
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<button class="faq-question" onclick="toggleFaq(this)">
+چطور اشتراک بخرم؟
+<span class="faq-plus">+</span>
+</button>
+
+<div class="faq-answer">
+پلن مورد نظر را انتخاب کنید. در این نسخه دکمه انتخاب پلن یک پیام نمایشی نمایش می‌دهد.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- NEWSLETTER -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="newsletter reveal">
+
+<h2>از فیلم‌های جدید باخبر شو</h2>
+
+<p>
+هر هفته بهترین فیلم‌ها، پیشنهادها و مطالب NEXA را دریافت کن.
+</p>
+
+<div class="news-form">
+
+<input
+type="email"
+id="emailInput"
+placeholder="ایمیل شما">
+
+<button
+class="btn btn-primary"
+onclick="subscribe()">
+عضویت
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer id="contact">
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div class="footer-brand">
+
+<div class="logo">
+NEX<span>A</span>
+</div>
+
+<p>
+NEXA یک نمونه طراحی مدرن برای پلتفرم سرگرمی و استریم فیلم و سریال است؛
+با تمرکز روی تجربه کاربری، ظاهر سینمایی و عملکرد مناسب روی موبایل.
+</p>
+
+</div>
+
+<div>
+<h4>NEXA</h4>
+<a href="#home">خانه</a>
+<a href="#movies">فیلم‌ها</a>
+<a href="#new">تازه‌ها</a>
+<a href="#trending">ترندها</a>
+</div>
+
+<div>
+<h4>دسترسی</h4>
+<a href="#genres">ژانرها</a>
+<a href="#reviews">نظرات</a>
+<a href="#plans">اشتراک</a>
+<a href="#faq">سؤالات</a>
+</div>
+
+<div>
+<h4>ارتباط</h4>
+<a href="#">Instagram</a>
+<a href="#">Telegram</a>
+<a href="#">YouTube</a>
+<a href="mailto:hello@nexa.ir">Email</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<span>
+© 2026 NEXA — All Rights Reserved
+</span>
+
+<span>
+Designed & Powered by <b>RJF8</b>
+</span>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- SEARCH -->
+
+<div class="search-overlay" id="searchOverlay">
+
+<div class="search-window">
+
+<input
+id="searchInput"
+placeholder="نام فیلم را جستجو کنید..."
+oninput="searchMovies()">
+
+<div class="search-results" id="searchResults">
+نام فیلم را وارد کنید...
+</div>
+
+</div>
+
+</div>
+
+<!-- MOVIE MODAL -->
+
+<div class="movie-modal" id="movieModal">
+
+<div class="movie-modal-box">
+
+<button class="modal-close" onclick="closeMovie()">×</button>
+
+<div class="modal-title" id="modalTitle"></div>
+
+<div class="modal-meta" id="modalMeta"></div>
+
+<div class="modal-text" id="modalText"></div>
+
+<br>
+
+<button class="btn btn-primary"
+onclick="showToast('این قابلیت در نسخه نمایشی است')">
+▶ شروع تماشا
+</button>
+
+</div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* MOBILE MENU */
+
+function toggleMobileMenu(){
+document.getElementById("mobileMenu").classList.toggle("open");
+}
+
+function closeMobileMenu(){
+document.getElementById("mobileMenu").classList.remove("open");
+}
+
+/* SEARCH */
+
+function openSearch(){
+
+document.getElementById("searchOverlay").classList.add("show");
+
+setTimeout(function(){
+document.getElementById("searchInput").focus();
+},100);
+
+}
+
+function closeSearch(){
+
+document.getElementById("searchOverlay").classList.remove("show");
+
+document.getElementById("searchInput").value="";
+
+document.getElementById("searchResults").textContent=
+"نام فیلم را وارد کنید...";
+
+}
+
+document.getElementById("searchOverlay").addEventListener("click",function(e){
+
+if(e.target===this){
+closeSearch();
+}
+
+});
+
+/* MOVIE SEARCH */
+
+function searchMovies(){
+
+let value=document
+.getElementById("searchInput")
+.value
+.trim()
+.toLowerCase();
+
+let movies=document.querySelectorAll(".movie");
+
+let found=[];
+
+movies.forEach(function(movie){
+
+let title=movie.dataset.title.toLowerCase();
+
+if(value && title.includes(value)){
+found.push(movie.dataset.title);
+}
+
+});
+
+let result=document.getElementById("searchResults");
+
+if(!value){
+
+result.textContent="نام فیلم را وارد کنید...";
+return;
+
+}
+
+if(found.length===0){
+
+result.textContent="فیلمی با این نام پیدا نشد.";
+
+}else{
+
+result.innerHTML=
+"نتیجه: <b style='color:#fff'>"+
+found.join("، ")+"</b>";
+
+}
+
+}
+
+/* FILTER */
+
+function filterMovies(type,button){
+
+document
+.querySelectorAll(".filter")
+.forEach(function(x){
+x.classList.remove("active");
+});
+
+button.classList.add("active");
+
+document
+.querySelectorAll(".movie")
+.forEach(function(movie){
+
+if(type==="all" || movie.dataset.genre===type){
+
+movie.style.display="";
+
+}else{
+
+movie.style.display="none";
+
+}
+
+});
+
+}
+
+/* GENRE */
+
+function filterGenre(type){
+
+let buttons=document.querySelectorAll(".filter");
+
+buttons.forEach(function(btn){
+btn.classList.remove("active");
+});
+
+let target=null;
+
+buttons.forEach(function(btn){
+
+if(btn.getAttribute("onclick") &&
+btn.getAttribute("onclick").includes("'"+type+"'")){
+
+target=btn;
+
+}
+
+});
+
+if(target){
+target.classList.add("active");
+}
+
+document
+.querySelectorAll(".movie")
+.forEach(function(movie){
+
+movie.style.display=
+movie.dataset.genre===type
+?""
+:"none";
+
+});
+
+document.getElementById("movies").scrollIntoView({
+behavior:"smooth"
+});
+
+showToast("فیلم‌های این ژانر نمایش داده شدند");
+
+}
+
+/* MOVIE MODAL */
+
+function openMovie(title,meta,text){
+
+document.getElementById("modalTitle").textContent=title;
+
+document.getElementById("modalMeta").textContent=meta;
+
+document.getElementById("modalText").textContent=text;
+
+document.getElementById("movieModal").classList.add("show");
+
+}
+
+function closeMovie(){
+
+document.getElementById("movieModal").classList.remove("show");
+
+}
+
+/* FAQ */
+
+function toggleFaq(button){
+
+let item=button.parentElement;
+
+let all=document.querySelectorAll(".faq-item");
+
+all.forEach(function(x){
+
+if(x!==item){
+x.classList.remove("open");
+
+let p=x.querySelector(".faq-plus");
+
+if(p){
+p.textContent="+";
+}
+
+}
+
+});
+
+item.classList.toggle("open");
+
+let plus=button.querySelector(".faq-plus");
+
+plus.textContent=
+item.classList.contains("open")
+?"−"
+:"+";
+
+}
+
+/* PLAN */
+
+function choosePlan(name){
+
+showToast("پلن "+name+" انتخاب شد ✓");
+
+}
+
+/* NEWSLETTER */
+
+function subscribe(){
+
+let email=document
+.getElementById("emailInput")
+.value
+.trim();
+
+if(!email){
+
+showToast("لطفاً ایمیل خود را وارد کنید");
+return;
+
+}
+
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+showToast("ایمیل وارد شده معتبر نیست");
+return;
+
+}
+
+showToast("عضویت شما با موفقیت انجام شد ✓");
+
+document.getElementById("emailInput").value="";
+
+}
+
+/* TOAST */
+
+let toastTimer;
+
+function showToast(message){
+
+let toast=document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+clearTimeout(toastTimer);
+
+toastTimer=setTimeout(function(){
+
+toast.classList.remove("show");
+
+},2500);
+
+}
+
+/* ESC */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+closeSearch();
+closeMovie();
+closeMobileMenu();
+
+}
+
+});
+
+/* SCROLL REVEAL */
+
+const observer=new IntersectionObserver(function(entries){
+
+entries.forEach(function(entry){
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("visible");
+
+}
+
+});
+
+},{
+threshold:.08
+});
+
+document
+.querySelectorAll(".reveal")
+.forEach(function(el){
+
+observer.observe(el);
+
+});
+
+/* INITIAL */
+
+window.addEventListener("load",function(){
+
+document
+.querySelectorAll(".reveal")
+.forEach(function(el,index){
+
+setTimeout(function(){
+el.classList.add("visible");
+},Math.min(index*25,500));
+
+});
+
+});
+
+</script>
+
+</body>
+  </html>
