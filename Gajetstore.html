@@ -1,0 +1,2599 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TECHORA | فروشگاه گجت</title>
+
+    <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f5f7fb;
+            color: #151922;
+            overflow-x: hidden;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 72px;
+
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid #e7eaf0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #635bff;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: #686f7d;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #635bff;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-btn,
+        .cart-btn,
+        .menu-btn {
+            border: 0;
+            background: #f0f2f7;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 13px;
+
+            cursor: pointer;
+            font-size: 18px;
+
+            transition: 0.2s;
+        }
+
+        .search-btn:hover,
+        .cart-btn:hover,
+        .menu-btn:hover {
+            background: #e5e7ff;
+            color: #635bff;
+        }
+
+        .cart-btn {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+
+            width: 19px;
+            height: 19px;
+
+            border-radius: 50%;
+
+            background: #635bff;
+            color: #fff;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            padding: 145px 6% 80px;
+
+            min-height: 760px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 80% 30%,
+                    rgba(99, 91, 255, 0.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 20% 80%,
+                    rgba(0, 200, 255, 0.09),
+                    transparent 30%
+                );
+        }
+
+        .hero-text small {
+            color: #635bff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 76px);
+            line-height: 1.05;
+            letter-spacing: -4px;
+            margin: 18px 0;
+        }
+
+        .hero h1 span {
+            color: #635bff;
+        }
+
+        .hero p {
+            max-width: 540px;
+
+            color: #737b89;
+
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+
+            margin-top: 30px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 24px;
+
+            border-radius: 14px;
+            border: 0;
+
+            cursor: pointer;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: #635bff;
+            color: #fff;
+
+            box-shadow: 0 12px 30px rgba(99, 91, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 18px 35px rgba(99, 91, 255, 0.28);
+        }
+
+        .btn-light {
+            background: #fff;
+
+            border: 1px solid #e1e4eb;
+
+            color: #343945;
+        }
+
+        .btn-light:hover {
+            border-color: #635bff;
+            color: #635bff;
+        }
+
+
+        /* =========================================================
+           HERO PRODUCT
+        ========================================================= */
+
+        .hero-product {
+            position: relative;
+
+            height: 500px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-glow {
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background: #635bff;
+
+            filter: blur(90px);
+
+            opacity: 0.15;
+        }
+
+        .phone {
+            width: 230px;
+            height: 430px;
+
+            border-radius: 34px;
+
+            background: #161922;
+
+            padding: 10px;
+
+            box-shadow:
+                0 40px 80px rgba(0, 0, 0, 0.22),
+                0 0 0 8px rgba(255, 255, 255, 0.55);
+
+            position: relative;
+
+            transform: rotate(7deg);
+
+            z-index: 2;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+
+            border-radius: 27px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #15152d,
+                    #615bff 45%,
+                    #00c9ff
+                );
+
+            position: relative;
+        }
+
+        .phone-screen::before {
+            content: "";
+
+            position: absolute;
+
+            width: 140px;
+            height: 140px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.18);
+
+            top: 80px;
+            left: 35px;
+
+            filter: blur(2px);
+        }
+
+        .phone-screen::after {
+            content: "TECHORA";
+
+            position: absolute;
+
+            bottom: 35px;
+            left: 0;
+            right: 0;
+
+            text-align: center;
+
+            color: #fff;
+
+            font-size: 13px;
+            letter-spacing: 3px;
+        }
+
+        .camera {
+            position: absolute;
+
+            top: 18px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 75px;
+            height: 22px;
+
+            border-radius: 20px;
+
+            background: #05060a;
+
+            z-index: 3;
+        }
+
+        .floating {
+            position: absolute;
+
+            background: #fff;
+
+            padding: 15px 18px;
+
+            border-radius: 17px;
+
+            box-shadow:
+                0 15px 40px rgba(30, 35, 50, 0.13);
+
+            z-index: 5;
+
+            font-size: 13px;
+        }
+
+        .floating.one {
+            top: 85px;
+            right: 5%;
+        }
+
+        .floating.two {
+            bottom: 80px;
+            left: 4%;
+        }
+
+        .floating strong {
+            display: block;
+
+            font-size: 18px;
+
+            margin-top: 4px;
+        }
+
+
+        /* =========================================================
+           SECTIONS
+        ========================================================= */
+
+        section {
+            padding: 90px 6%;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+            margin-bottom: 35px;
+
+            gap: 20px;
+        }
+
+        .section-head h2 {
+            font-size: 34px;
+            letter-spacing: -1.5px;
+        }
+
+        .section-head p {
+            color: #818895;
+            font-size: 14px;
+
+            margin-top: 8px;
+        }
+
+
+        /* =========================================================
+           CATEGORIES
+        ========================================================= */
+
+        .categories {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 14px;
+        }
+
+        .category {
+            background: #fff;
+
+            border: 1px solid #e8ebf1;
+
+            border-radius: 20px;
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .category:hover,
+        .category.active {
+            transform: translateY(-5px);
+
+            border-color: #635bff;
+
+            box-shadow:
+                0 15px 35px rgba(40, 45, 80, 0.08);
+        }
+
+        .category-icon {
+            font-size: 32px;
+
+            margin-bottom: 12px;
+        }
+
+        .category span {
+            font-size: 13px;
+            color: #555d6b;
+        }
+
+
+        /* =========================================================
+           PRODUCTS
+        ========================================================= */
+
+        .products {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .product {
+            background: #fff;
+
+            border: 1px solid #e8ebf1;
+
+            border-radius: 22px;
+
+            padding: 14px;
+
+            transition: 0.25s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .product:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 20px 45px rgba(30, 35, 50, 0.09);
+        }
+
+        .product-image {
+            height: 230px;
+
+            border-radius: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 90px;
+
+            background: #f2f4f8;
+
+            position: relative;
+        }
+
+        .product-tag {
+            position: absolute;
+
+            top: 10px;
+            right: 10px;
+
+            background: #151922;
+            color: #fff;
+
+            font-size: 10px;
+
+            padding: 6px 9px;
+
+            border-radius: 8px;
+        }
+
+        .product-info {
+            padding: 17px 5px 5px;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 9px;
+        }
+
+        .product-info p {
+            font-size: 12px;
+
+            color: #8a919d;
+
+            margin-bottom: 16px;
+        }
+
+        .price-row {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .add {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 12px;
+
+            border: 0;
+
+            background: #635bff;
+            color: #fff;
+
+            font-size: 21px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .add:hover {
+            transform: scale(1.08);
+        }
+
+
+        /* =========================================================
+           BANNER
+        ========================================================= */
+
+        .banner {
+            margin: 20px 6% 80px;
+
+            border-radius: 30px;
+
+            padding: 55px;
+
+            background: #151922;
+
+            color: #fff;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 30px;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .banner::after {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            background: #635bff;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            opacity: 0.25;
+
+            left: -80px;
+            top: -120px;
+        }
+
+        .banner h2 {
+            font-size: 38px;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner p {
+            color: #aeb4c0;
+
+            margin-top: 10px;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner .btn {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact-box {
+            background: #fff;
+
+            border: 1px solid #e8ebf1;
+
+            border-radius: 24px;
+
+            padding: 30px;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .contact-box p {
+            color: #858c98;
+
+            margin-top: 10px;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           CART
+        ========================================================= */
+
+        .cart-panel {
+            position: fixed;
+
+            top: 0;
+            right: -430px;
+
+            width: 400px;
+            max-width: 92%;
+
+            height: 100vh;
+
+            background: #fff;
+
+            z-index: 2000;
+
+            box-shadow:
+                -20px 0 60px rgba(0, 0, 0, 0.18);
+
+            padding: 25px;
+
+            transition: 0.35s;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-panel.open {
+            right: 0;
+        }
+
+        .cart-head {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-cart {
+            border: 0;
+
+            background: #f0f2f6;
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+
+            overflow: auto;
+
+            padding: 15px 0;
+        }
+
+        .empty-cart {
+            text-align: center;
+
+            color: #9aa0aa;
+
+            margin-top: 80px;
+        }
+
+        .cart-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 12px;
+
+            background: #f1f3f7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 27px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info strong {
+            font-size: 13px;
+
+            display: block;
+
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info small {
+            color: #777;
+        }
+
+        .remove {
+            border: 0;
+
+            background: none;
+
+            color: #e34b5f;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+        .cart-total {
+            border-top: 1px solid #eee;
+
+            padding-top: 20px;
+        }
+
+        .total-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+           SEARCH
+        ========================================================= */
+
+        .search-box {
+            position: fixed;
+
+            top: -100px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: min(700px, 90%);
+
+            z-index: 3000;
+
+            background: #fff;
+
+            border-radius: 18px;
+
+            padding: 12px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.2);
+
+            display: flex;
+
+            gap: 10px;
+
+            transition: 0.3s;
+        }
+
+        .search-box.open {
+            top: 90px;
+        }
+
+        .search-box input {
+            flex: 1;
+
+            border: 0;
+
+            outline: 0;
+
+            padding: 14px;
+
+            font-size: 14px;
+
+            background: #f4f5f8;
+
+            border-radius: 12px;
+        }
+
+        .search-box button {
+            border: 0;
+
+            background: #635bff;
+
+            color: #fff;
+
+            border-radius: 12px;
+
+            padding: 0 20px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast {
+            position: fixed;
+
+            bottom: 25px;
+            left: 50%;
+
+            transform: translate(-50%, 120px);
+
+            background: #151922;
+            color: #fff;
+
+            padding: 14px 20px;
+
+            border-radius: 14px;
+
+            font-size: 13px;
+
+            z-index: 5000;
+
+            transition: 0.35s;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast.show {
+            transform: translate(-50%, 0);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            background: #151922;
+
+            color: #fff;
+
+            padding: 55px 6% 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        .footer-brand p {
+            color: #9299a5;
+
+            line-height: 2;
+
+            font-size: 13px;
+
+            max-width: 350px;
+
+            margin-top: 15px;
+        }
+
+        footer h4 {
+            margin-bottom: 18px;
+        }
+
+        footer a {
+            display: block;
+
+            color: #949ba7;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            margin-top: 45px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #747b87;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           MOBILE MENU
+        ========================================================= */
+
+        .mobile-menu {
+            position: fixed;
+
+            top: 72px;
+            right: -100%;
+
+            width: 100%;
+
+            background: #fff;
+
+            z-index: 900;
+
+            padding: 20px;
+
+            box-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+
+            padding: 16px;
+
+            border-bottom: 1px solid #eee;
+
+            color: #555;
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            nav {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                padding-top: 125px;
+
+                text-align: center;
+            }
+
+            .hero p {
+                margin: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-product {
+                height: 440px;
+            }
+
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                height: 64px;
+
+                padding: 0 4%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .header-actions {
+                gap: 5px;
+            }
+
+            .search-btn,
+            .cart-btn,
+            .menu-btn {
+                width: 38px;
+                height: 38px;
+            }
+
+            .hero {
+                padding: 105px 5% 50px;
+
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+
+                letter-spacing: -3px;
+            }
+
+            .hero-product {
+                height: 390px;
+            }
+
+            .phone {
+                width: 185px;
+                height: 350px;
+            }
+
+            .floating {
+                font-size: 10px;
+
+                padding: 11px;
+            }
+
+            .floating strong {
+                font-size: 14px;
+            }
+
+            section {
+                padding: 65px 5%;
+            }
+
+            .section-head {
+                display: block;
+            }
+
+            .section-head h2 {
+                font-size: 28px;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products {
+                grid-template-columns: 1fr 1fr;
+
+                gap: 10px;
+            }
+
+            .product {
+                border-radius: 16px;
+
+                padding: 9px;
+            }
+
+            .product-image {
+                height: 150px;
+
+                font-size: 60px;
+            }
+
+            .product-info h3 {
+                font-size: 13px;
+            }
+
+            .product-info p {
+                font-size: 10px;
+            }
+
+            .price {
+                font-size: 12px;
+            }
+
+            .add {
+                width: 34px;
+                height: 34px;
+
+                font-size: 18px;
+            }
+
+            .banner {
+                margin: 10px 5% 50px;
+
+                padding: 35px 25px;
+
+                display: block;
+            }
+
+            .banner h2 {
+                font-size: 28px;
+            }
+
+            .banner .btn {
+                margin-top: 22px;
+            }
+
+            .contact-box {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+
+                gap: 30px 20px;
+            }
+
+            .copyright {
+                display: block;
+
+                line-height: 2;
+            }
+
+            .mobile-menu {
+                top: 64px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header>
+
+        <div class="logo">
+            TECH<span>ORA</span>
+        </div>
+
+        <nav>
+            <a href="#home">خانه</a>
+            <a href="#categories">دسته‌بندی</a>
+            <a href="#products">محصولات</a>
+            <a href="#offers">پیشنهاد ویژه</a>
+            <a href="#contact">تماس</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                class="search-btn"
+                onclick="toggleSearch()"
+                aria-label="جستجو"
+            >
+                ⌕
+            </button>
+
+            <button
+                class="cart-btn"
+                onclick="toggleCart()"
+                aria-label="سبد خرید"
+            >
+                🛒
+
+                <span
+                    class="cart-count"
+                    id="cartCount"
+                >
+                    0
+                </span>
+            </button>
+
+            <button
+                class="menu-btn"
+                onclick="toggleMenu()"
+                aria-label="منو"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MOBILE MENU
+    ========================================================= -->
+
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+    >
+        <a href="#home" onclick="closeMenu()">خانه</a>
+        <a href="#categories" onclick="closeMenu()">دسته‌بندی</a>
+        <a href="#products" onclick="closeMenu()">محصولات</a>
+        <a href="#offers" onclick="closeMenu()">پیشنهاد ویژه</a>
+        <a href="#contact" onclick="closeMenu()">تماس</a>
+    </div>
+
+
+    <!-- =========================================================
+         SEARCH
+    ========================================================= -->
+
+    <div
+        class="search-box"
+        id="searchBox"
+    >
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="جستجوی محصول..."
+            oninput="searchProducts()"
+        >
+
+        <button onclick="closeSearch()">
+            بستن
+        </button>
+
+    </div>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section
+        class="hero"
+        id="home"
+    >
+
+        <div class="hero-text">
+
+            <small>
+                نسل جدید تکنولوژی
+            </small>
+
+            <h1>
+                تکنولوژی<br>
+                برای <span>سبک زندگی</span>
+            </h1>
+
+            <p>
+                محصولات مدرن، گجت‌های هوشمند و لوازم دیجیتال
+                برای کسانی که دوست دارند همیشه یک قدم جلوتر باشند.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    class="btn btn-primary"
+                    href="#products"
+                >
+                    مشاهده محصولات
+                </a>
+
+                <a
+                    class="btn btn-light"
+                    href="#categories"
+                >
+                    دسته‌بندی‌ها
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-product">
+
+            <div class="product-glow"></div>
+
+            <div class="floating one">
+                محصول محبوب
+                <strong>Smart Phone</strong>
+            </div>
+
+            <div class="floating two">
+                ارسال سریع
+                <strong>24 ساعت</strong>
+            </div>
+
+            <div class="phone">
+
+                <div class="camera"></div>
+
+                <div class="phone-screen"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CATEGORIES
+    ========================================================= -->
+
+    <section id="categories">
+
+        <div class="section-head">
+
+            <div>
+
+                <h2>
+                    دسته‌بندی محصولات
+                </h2>
+
+                <p>
+                    چیزی که دنبالش هستی را سریع پیدا کن.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="categories">
+
+            <div
+                class="category active"
+                data-filter="all"
+                onclick="filterProducts('all', this)"
+            >
+                <div class="category-icon">
+                    ✨
+                </div>
+
+                <span>
+                    همه
+                </span>
+            </div>
+
+
+            <div
+                class="category"
+                data-filter="phone"
+                onclick="filterProducts('phone', this)"
+            >
+                <div class="category-icon">
+                    📱
+                </div>
+
+                <span>
+                    موبایل
+                </span>
+            </div>
+
+
+            <div
+                class="category"
+                data-filter="audio"
+                onclick="filterProducts('audio', this)"
+            >
+                <div class="category-icon">
+                    🎧
+                </div>
+
+                <span>
+                    صوتی
+                </span>
+            </div>
+
+
+            <div
+                class="category"
+                data-filter="watch"
+                onclick="filterProducts('watch', this)"
+            >
+                <div class="category-icon">
+                    ⌚
+                </div>
+
+                <span>
+                    ساعت هوشمند
+                </span>
+            </div>
+
+
+            <div
+                class="category"
+                data-filter="gaming"
+                onclick="filterProducts('gaming', this)"
+            >
+                <div class="category-icon">
+                    🎮
+                </div>
+
+                <span>
+                    گیمینگ
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PRODUCTS
+    ========================================================= -->
+
+    <section id="products">
+
+        <div class="section-head">
+
+            <div>
+
+                <h2>
+                    محصولات منتخب
+                </h2>
+
+                <p>
+                    انتخاب‌های محبوب کاربران TECHORA
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="products"
+            id="productGrid"
+        >
+
+            <!-- PRODUCT 1 -->
+
+            <div
+                class="product"
+                data-category="phone"
+                data-name="Nova X Pro"
+            >
+
+                <div class="product-image">
+
+                    📱
+
+                    <span class="product-tag">
+                        جدید
+                    </span>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Nova X Pro
+                    </h3>
+
+                    <p>
+                        گوشی هوشمند نسل جدید
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ۳۴,۹۰۰,۰۰۰ تومان
+                        </span>
+
+                        <button
+                            class="add"
+                            onclick="addToCart(
+                                'Nova X Pro',
+                                '📱',
+                                '۳۴,۹۰۰,۰۰۰'
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div
+                class="product"
+                data-category="audio"
+                data-name="AirBeat Max"
+            >
+
+                <div class="product-image">
+
+                    🎧
+
+                    <span class="product-tag">
+                        پرفروش
+                    </span>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        AirBeat Max
+                    </h3>
+
+                    <p>
+                        هدفون بی‌سیم با حذف نویز
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ۸,۷۵۰,۰۰۰ تومان
+                        </span>
+
+                        <button
+                            class="add"
+                            onclick="addToCart(
+                                'AirBeat Max',
+                                '🎧',
+                                '۸,۷۵۰,۰۰۰'
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+
+            <div
+                class="product"
+                data-category="watch"
+                data-name="Pulse Watch 4"
+            >
+
+                <div class="product-image">
+                    ⌚
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Pulse Watch 4
+                    </h3>
+
+                    <p>
+                        ساعت هوشمند ورزشی
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ۶,۳۰۰,۰۰۰ تومان
+                        </span>
+
+                        <button
+                            class="add"
+                            onclick="addToCart(
+                                'Pulse Watch 4',
+                                '⌚',
+                                '۶,۳۰۰,۰۰۰'
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+
+            <div
+                class="product"
+                data-category="gaming"
+                data-name="Core Gamepad"
+            >
+
+                <div class="product-image">
+
+                    🎮
+
+                    <span class="product-tag">
+                        ویژه
+                    </span>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Core Gamepad
+                    </h3>
+
+                    <p>
+                        دسته حرفه‌ای گیمینگ
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ۴,۸۵۰,۰۰۰ تومان
+                        </span>
+
+                        <button
+                            class="add"
+                            onclick="addToCart(
+                                'Core Gamepad',
+                                '🎮',
+                                '۴,۸۵۰,۰۰۰'
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 5 -->
+
+            <div
+                class="product"
+                data-category="audio"
+                data-name="Mini Pods"
+            >
+
+                <div class="product-image">
+                    🎵
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Mini Pods
+                    </h3>
+
+                    <p>
+                        ایربادز کوچک و سبک
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ۳,۲۵۰,۰۰۰ تومان
+                        </span>
+
+                        <button
+                            class="add"
+                            onclick="addToCart(
+                                'Mini Pods',
+                                '🎵',
+                                '۳,۲۵۰,۰۰۰'
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 6 -->
+
+            <div
+                class="product"
+                data-category="phone"
+                data-name="Pixel Air"
+            >
+
+                <div class="product-image">
+                    📲
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Pixel Air
+                    </h3>
+
+                    <p>
+                        گوشی باریک و قدرتمند
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ۲۶,۴۰۰,۰۰۰ تومان
+                        </span>
+
+                        <button
+                            class="add"
+                            onclick="addToCart(
+                                'Pixel Air',
+                                '📲',
+                                '۲۶,۴۰۰,۰۰۰'
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 7 -->
+
+            <div
+                class="product"
+                data-category="watch"
+                data-name="Fit One"
+            >
+
+                <div class="product-image">
+                    ⌚
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Fit One
+                    </h3>
+
+                    <p>
+                        دستبند هوشمند روزمره
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ۲,۱۵۰,۰۰۰ تومان
+                        </span>
+
+                        <button
+                            class="add"
+                            onclick="addToCart(
+                                'Fit One',
+                                '⌚',
+                                '۲,۱۵۰,۰۰۰'
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 8 -->
+
+            <div
+                class="product"
+                data-category="gaming"
+                data-name="Game Station"
+            >
+
+                <div class="product-image">
+                    🕹️
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Game Station
+                    </h3>
+
+                    <p>
+                        کنسول گیمینگ خانگی
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ۱۸,۹۰۰,۰۰۰ تومان
+                        </span>
+
+                        <button
+                            class="add"
+                            onclick="addToCart(
+                                'Game Station',
+                                '🕹️',
+                                '۱۸,۹۰۰,۰۰۰'
+                            )"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         OFFER
+    ========================================================= -->
+
+    <div
+        class="banner"
+        id="offers"
+    >
+
+        <div>
+
+            <h2>
+                تخفیف ویژه این هفته
+            </h2>
+
+            <p>
+                برای خریدهای بالای ۱۰ میلیون تومان ارسال رایگان.
+            </p>
+
+        </div>
+
+        <a
+            href="#products"
+            class="btn btn-primary"
+        >
+            خرید کنید
+        </a>
+
+    </div>
+
+
+    <!-- =========================================================
+         CONTACT
+    ========================================================= -->
+
+    <section id="contact">
+
+        <div class="section-head">
+
+            <div>
+
+                <h2>
+                    با ما در ارتباط باشید
+                </h2>
+
+                <p>
+                    برای سفارش یا دریافت اطلاعات بیشتر با ما تماس بگیرید.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <div>
+
+                <strong>
+                    📍 آدرس
+                </strong>
+
+                <p>
+                    تهران، خیابان فناوری
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    ☎️ تلفن
+                </strong>
+
+                <p>
+                    021-12345678
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    ✉️ ایمیل
+                </strong>
+
+                <p>
+                    hello@techora.ir
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+                    TECH<span>ORA</span>
+                </div>
+
+                <p>
+                    فروشگاه مدرن محصولات دیجیتال و گجت‌های هوشمند.
+                    تجربه‌ای ساده و سریع برای خرید تکنولوژی.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    فروشگاه
+                </h4>
+
+                <a href="#products">
+                    محصولات
+                </a>
+
+                <a href="#categories">
+                    دسته‌بندی‌ها
+                </a>
+
+                <a href="#offers">
+                    تخفیف‌ها
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    پشتیبانی
+                </h4>
+
+                <a href="#contact">
+                    تماس با ما
+                </a>
+
+                <a href="#">
+                    سؤالات متداول
+                </a>
+
+                <a href="#">
+                    قوانین خرید
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    شبکه‌ها
+                </h4>
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Telegram
+                </a>
+
+                <a href="#">
+                    YouTube
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <span>
+                © 2026 TECHORA
+            </span>
+
+            <span>
+                Designed & Powered by
+                <b>RJF8</b>
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         CART PANEL
+    ========================================================= -->
+
+    <div
+        class="cart-panel"
+        id="cartPanel"
+    >
+
+        <div class="cart-head">
+
+            <strong>
+                سبد خرید
+            </strong>
+
+            <button
+                class="close-cart"
+                onclick="toggleCart()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+
+            <div class="empty-cart">
+                سبد خرید خالی است 🛒
+            </div>
+
+        </div>
+
+
+        <div class="cart-total">
+
+            <div class="total-row">
+
+                <span>
+                    مجموع
+                </span>
+
+                <span id="cartTotal">
+                    ۰ تومان
+                </span>
+
+            </div>
+
+            <button
+                class="btn btn-primary"
+                style="width: 100%"
+                onclick="checkout()"
+            >
+                ادامه و ثبت سفارش
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================= -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           MOBILE MENU
+        ========================================================= */
+
+        function toggleMenu() {
+            document
+                .getElementById("mobileMenu")
+                .classList
+                .toggle("open");
+        }
+
+        function closeMenu() {
+            document
+                .getElementById("mobileMenu")
+                .classList
+                .remove("open");
+        }
+
+
+        /* =========================================================
+           SEARCH
+        ========================================================= */
+
+        function toggleSearch() {
+
+            const searchBox =
+                document.getElementById("searchBox");
+
+            searchBox.classList.toggle("open");
+
+            if (searchBox.classList.contains("open")) {
+
+                setTimeout(() => {
+
+                    document
+                        .getElementById("searchInput")
+                        .focus();
+
+                }, 200);
+            }
+        }
+
+
+        function closeSearch() {
+
+            document
+                .getElementById("searchBox")
+                .classList
+                .remove("open");
+        }
+
+
+        /* =========================================================
+           SEARCH PRODUCTS
+        ========================================================= */
+
+        function searchProducts() {
+
+            const value =
+                document
+                    .getElementById("searchInput")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+            document
+                .querySelectorAll(".product")
+                .forEach(product => {
+
+                    const name =
+                        product.dataset.name.toLowerCase();
+
+                    product.style.display =
+                        name.includes(value)
+                            ? ""
+                            : "none";
+                });
+        }
+
+
+        /* =========================================================
+           FILTER PRODUCTS
+        ========================================================= */
+
+        function filterProducts(category, element) {
+
+            document
+                .querySelectorAll(".category")
+                .forEach(categoryItem => {
+
+                    categoryItem.classList.remove("active");
+                });
+
+            element.classList.add("active");
+
+
+            document
+                .querySelectorAll(".product")
+                .forEach(product => {
+
+                    if (
+                        category === "all" ||
+                        product.dataset.category === category
+                    ) {
+
+                        product.style.display = "";
+
+                    } else {
+
+                        product.style.display = "none";
+                    }
+                });
+
+
+            document
+                .getElementById("products")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+        }
+
+
+        /* =========================================================
+           CART
+        ========================================================= */
+
+        let cart = [];
+
+
+        function addToCart(name, icon, price) {
+
+            cart.push({
+                name: name,
+                icon: icon,
+                price: price
+            });
+
+            updateCart();
+
+            showToast(
+                name + " به سبد خرید اضافه شد ✓"
+            );
+        }
+
+
+        function updateCart() {
+
+            const cartCount =
+                document.getElementById("cartCount");
+
+            const container =
+                document.getElementById("cartItems");
+
+            const totalElement =
+                document.getElementById("cartTotal");
+
+
+            cartCount.textContent = cart.length;
+
+
+            if (cart.length === 0) {
+
+                container.innerHTML =
+                    '<div class="empty-cart">سبد خرید خالی است 🛒</div>';
+
+                totalElement.textContent =
+                    "۰ تومان";
+
+                return;
+            }
+
+
+            container.innerHTML = "";
+
+            let total = 0;
+
+
+            cart.forEach((item, index) => {
+
+                const number =
+                    parseInt(
+                        item.price
+                            .replaceAll(",", "")
+                            .replace(/[^\d]/g, "")
+                    );
+
+                total += number;
+
+
+                const div =
+                    document.createElement("div");
+
+                div.className = "cart-item";
+
+
+                div.innerHTML = `
+                    <div class="cart-item-icon">
+                        ${item.icon}
+                    </div>
+
+                    <div class="cart-item-info">
+                        <strong>
+                            ${item.name}
+                        </strong>
+
+                        <small>
+                            ${item.price} تومان
+                        </small>
+                    </div>
+
+                    <button
+                        class="remove"
+                        onclick="removeItem(${index})"
+                    >
+                        ×
+                    </button>
+                `;
+
+
+                container.appendChild(div);
+            });
+
+
+            totalElement.textContent =
+                total.toLocaleString("fa-IR") +
+                " تومان";
+        }
+
+
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+            updateCart();
+
+            showToast(
+                "محصول از سبد حذف شد"
+            );
+        }
+
+
+        function toggleCart() {
+
+            document
+                .getElementById("cartPanel")
+                .classList
+                .toggle("open");
+        }
+
+
+        function checkout() {
+
+            if (cart.length === 0) {
+
+                showToast(
+                    "سبد خرید شما خالی است"
+                );
+
+                return;
+            }
+
+            showToast(
+                "سفارش شما آماده ثبت است ✓"
+            );
+        }
+
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        let toastTimer;
+
+
+        function showToast(message) {
+
+            const toast =
+                document.getElementById("toast");
+
+            toast.textContent = message;
+
+            toast.classList.add("show");
+
+
+            clearTimeout(toastTimer);
+
+
+            toastTimer =
+                setTimeout(() => {
+
+                    toast.classList.remove("show");
+
+                }, 2500);
+        }
+
+
+        /* =========================================================
+           ESC KEY
+        ========================================================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Escape") {
+
+                    document
+                        .getElementById("cartPanel")
+                        .classList
+                        .remove("open");
+
+                    document
+                        .getElementById("searchBox")
+                        .classList
+                        .remove("open");
+
+                    document
+                        .getElementById("mobileMenu")
+                        .classList
+                        .remove("open");
+                }
+            }
+        );
+
+
+        /* =========================================================
+           CLOSE SEARCH WHEN CLICKING OUTSIDE
+        ========================================================= */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                const search =
+                    document.getElementById("searchBox");
+
+                const button =
+                    document.querySelector(".search-btn");
+
+
+                if (
+                    search.classList.contains("open") &&
+                    !search.contains(event.target) &&
+                    !button.contains(event.target)
+                ) {
+
+                    search.classList.remove("open");
+                }
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
