@@ -1,0 +1,3190 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>AURA — آینده همین حالاست</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Vazirmatn",Tahoma,sans-serif;
+    background:#080a0f;
+    color:#f7f8ff;
+    overflow-x:hidden;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+:root{
+    --bg:#080a0f;
+    --panel:#10131b;
+    --panel2:#151923;
+    --line:rgba(255,255,255,.08);
+    --text:#f7f8ff;
+    --muted:#8d94a5;
+    --cyan:#35d6ff;
+    --violet:#8d6cff;
+    --green:#54e6a0;
+    --orange:#ffae62;
+}
+
+.container{
+    width:min(1220px,90%);
+    margin:auto;
+}
+
+.section{
+    padding:100px 0;
+}
+
+.title{
+    font-size:clamp(28px,4vw,43px);
+    font-weight:900;
+    letter-spacing:-1.5px;
+}
+
+.subtitle{
+    margin-top:9px;
+    font-size:13px;
+    line-height:2;
+    color:var(--muted);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    height:72px;
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    z-index:3000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 5%;
+
+    background:rgba(8,10,15,.78);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border-bottom:1px solid var(--line);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.logo span{
+    color:var(--cyan);
+}
+
+nav{
+    display:flex;
+    gap:27px;
+}
+
+nav a{
+    font-size:12px;
+    color:#9ca3b3;
+    transition:.25s;
+}
+
+nav a:hover{
+    color:#fff;
+}
+
+.header-tools{
+    display:flex;
+    gap:8px;
+}
+
+.icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+
+    background:#11151e;
+    border:1px solid var(--line);
+
+    color:#fff;
+    font-size:17px;
+
+    transition:.25s;
+}
+
+.icon:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+}
+
+.menu{
+    display:none;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile{
+    position:fixed;
+    top:72px;
+    right:-100%;
+
+    width:100%;
+    z-index:2500;
+
+    background:#0c0f16;
+    border-bottom:1px solid var(--line);
+
+    padding:12px;
+
+    transition:.3s;
+}
+
+.mobile.open{
+    right:0;
+}
+
+.mobile a{
+    display:block;
+    padding:16px;
+
+    border-bottom:1px solid var(--line);
+
+    color:#bbb;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:820px;
+    padding-top:72px;
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(53,214,255,.16),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 15% 75%,
+            rgba(141,108,255,.14),
+            transparent 30%
+        );
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    right:-180px;
+    bottom:-180px;
+
+    border-radius:50%;
+
+    background:rgba(53,214,255,.08);
+
+    filter:blur(100px);
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:60px;
+
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    font-size:11px;
+    color:#aeefff;
+
+    background:rgba(53,214,255,.08);
+    border:1px solid rgba(53,214,255,.2);
+
+    margin-bottom:20px;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:0 0 14px var(--cyan);
+}
+
+.hero h1{
+    font-size:clamp(48px,7vw,82px);
+    line-height:1.05;
+
+    letter-spacing:-5px;
+    font-weight:900;
+}
+
+.hero h1 span{
+    color:var(--cyan);
+}
+
+.hero-text{
+    color:#a2a8b7;
+
+    font-size:15px;
+    line-height:2.1;
+
+    max-width:620px;
+
+    margin-top:22px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+
+    margin-top:30px;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:13px 21px;
+
+    border-radius:12px;
+
+    border:1px solid var(--line);
+
+    font-size:12px;
+
+    transition:.25s;
+}
+
+.primary{
+    background:var(--cyan);
+    color:#031016;
+
+    border-color:var(--cyan);
+
+    font-weight:800;
+
+    box-shadow:0 15px 40px rgba(53,214,255,.15);
+}
+
+.primary:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 20px 50px rgba(53,214,255,.25);
+}
+
+.secondary{
+    background:#11151e;
+    color:#ddd;
+}
+
+.secondary:hover{
+    border-color:var(--cyan);
+}
+
+/* =========================
+   HERO VISUAL
+========================= */
+
+.orbit{
+    height:470px;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.core{
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff,
+            #35d6ff 20%,
+            #226a9c 50%,
+            #101722 72%
+        );
+
+    box-shadow:
+        0 0 50px rgba(53,214,255,.5),
+        0 0 120px rgba(53,214,255,.18);
+
+    position:relative;
+    z-index:3;
+
+    animation:float 5s ease-in-out infinite;
+}
+
+.ring{
+    position:absolute;
+
+    width:310px;
+    height:120px;
+
+    border:1px solid rgba(53,214,255,.35);
+
+    border-radius:50%;
+
+    transform:rotate(-25deg);
+}
+
+.ring:nth-child(2){
+    width:400px;
+    height:170px;
+
+    transform:rotate(35deg);
+
+    border-color:rgba(141,108,255,.3);
+}
+
+.ring:nth-child(3){
+    width:470px;
+    height:220px;
+
+    transform:rotate(-60deg);
+
+    border-color:rgba(255,255,255,.08);
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-14px);
+    }
+}
+
+.floating-card{
+    position:absolute;
+    z-index:5;
+
+    background:rgba(15,19,28,.85);
+
+    border:1px solid var(--line);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:15px;
+
+    padding:12px 15px;
+
+    font-size:10px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.card-one{
+    top:40px;
+    right:0;
+}
+
+.card-two{
+    bottom:55px;
+    left:5px;
+}
+
+.card-three{
+    top:50%;
+    left:-10px;
+}
+
+.card-number{
+    font-size:19px;
+    font-weight:900;
+
+    display:block;
+
+    margin-bottom:3px;
+}
+
+.card-label{
+    color:#7f8798;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    margin-top:-35px;
+
+    position:relative;
+    z-index:10;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+}
+
+.stat{
+    padding:22px;
+
+    background:rgba(17,21,30,.88);
+
+    border:1px solid var(--line);
+
+    border-radius:17px;
+
+    backdrop-filter:blur(15px);
+}
+
+.stat strong{
+    font-size:25px;
+    display:block;
+}
+
+.stat span{
+    font-size:10px;
+    color:#7f8790;
+}
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:14px;
+
+    margin-top:35px;
+}
+
+.category{
+    min-height:155px;
+
+    padding:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #11151e,
+            #0d1017
+        );
+
+    border:1px solid var(--line);
+
+    border-radius:20px;
+
+    transition:.3s;
+
+    position:relative;
+    overflow:hidden;
+
+    cursor:pointer;
+}
+
+.category:hover{
+    transform:translateY(-6px);
+
+    border-color:rgba(53,214,255,.4);
+}
+
+.category-icon{
+    font-size:35px;
+
+    margin-bottom:22px;
+}
+
+.category h3{
+    font-size:15px;
+
+    margin-bottom:7px;
+}
+
+.category p{
+    font-size:10px;
+
+    color:#777f90;
+
+    line-height:1.8;
+}
+
+.category small{
+    position:absolute;
+
+    left:17px;
+    bottom:15px;
+
+    color:#35d6ff;
+
+    font-size:9px;
+}
+
+/* =========================
+   DISCOVER
+========================= */
+
+.discover{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+    margin-top:40px;
+}
+
+.discover-card{
+    min-height:310px;
+
+    border:1px solid var(--line);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#11151e;
+}
+
+.discover-card:first-child{
+    background:
+        radial-gradient(
+            circle at 75% 20%,
+            rgba(53,214,255,.2),
+            transparent 30%
+        ),
+        #11151e;
+}
+
+.discover-card:last-child{
+    background:
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(141,108,255,.2),
+            transparent 35%
+        ),
+        #11151e;
+}
+
+.discover-card h2{
+    font-size:30px;
+
+    max-width:360px;
+
+    line-height:1.25;
+}
+
+.discover-card p{
+    font-size:12px;
+
+    line-height:2;
+
+    color:#89909e;
+
+    max-width:390px;
+
+    margin-top:15px;
+
+    margin-bottom:20px;
+}
+
+.discover-visual{
+    position:absolute;
+
+    left:25px;
+    bottom:20px;
+
+    font-size:85px;
+
+    opacity:.8;
+}
+
+/* =========================
+   ARTICLES
+========================= */
+
+.toolbar{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    margin-top:40px;
+    margin-bottom:25px;
+
+    gap:15px;
+}
+
+.filters{
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+}
+
+.filter{
+    padding:8px 13px;
+
+    border-radius:9px;
+
+    border:1px solid var(--line);
+
+    background:#10141c;
+
+    color:#858c9b;
+
+    font-size:10px;
+}
+
+.filter.active,
+.filter:hover{
+    background:var(--cyan);
+
+    color:#061017;
+
+    border-color:var(--cyan);
+}
+
+.article-grid{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:17px;
+}
+
+.article{
+    background:#10141c;
+
+    border:1px solid var(--line);
+
+    border-radius:19px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+    cursor:pointer;
+}
+
+.article:hover{
+    transform:translateY(-6px);
+
+    border-color:rgba(53,214,255,.3);
+}
+
+.article-cover{
+    height:190px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:65px;
+
+    position:relative;
+}
+
+.cover1{
+    background:linear-gradient(
+        135deg,
+        #063b48,
+        #0d7490,
+        #35d6ff
+    );
+}
+
+.cover2{
+    background:linear-gradient(
+        135deg,
+        #201447,
+        #49308d,
+        #8d6cff
+    );
+}
+
+.cover3{
+    background:linear-gradient(
+        135deg,
+        #102f20,
+        #176341,
+        #54e6a0
+    );
+}
+
+.cover4{
+    background:linear-gradient(
+        135deg,
+        #43250d,
+        #9c5d20,
+        #ffae62
+    );
+}
+
+.cover5{
+    background:linear-gradient(
+        135deg,
+        #331426,
+        #7e2854,
+        #ec5a9c
+    );
+}
+
+.cover6{
+    background:linear-gradient(
+        135deg,
+        #171c28,
+        #35415c,
+        #9daac7
+    );
+}
+
+.article-info{
+    padding:18px;
+}
+
+.article-tag{
+    font-size:9px;
+
+    color:var(--cyan);
+}
+
+.article h3{
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin:8px 0;
+}
+
+.article p{
+    font-size:10px;
+
+    color:#777f8d;
+
+    line-height:1.9;
+}
+
+.article-meta{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:16px;
+
+    color:#626a78;
+
+    font-size:9px;
+}
+
+/* =========================
+   TECHNOLOGY
+========================= */
+
+.tech{
+    display:grid;
+
+    grid-template-columns:.8fr 1.2fr;
+
+    gap:20px;
+
+    margin-top:40px;
+}
+
+.tech-main{
+    min-height:390px;
+
+    border-radius:24px;
+
+    border:1px solid var(--line);
+
+    padding:35px;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(84,230,160,.15),
+            transparent 30%
+        ),
+        #10141c;
+}
+
+.tech-main h2{
+    font-size:36px;
+
+    line-height:1.2;
+}
+
+.tech-main p{
+    color:#7f8795;
+
+    font-size:12px;
+
+    line-height:2;
+
+    margin-top:15px;
+
+    max-width:500px;
+}
+
+.tech-score{
+    font-size:54px;
+
+    font-weight:900;
+
+    margin-top:45px;
+}
+
+.tech-score span{
+    font-size:12px;
+
+    font-weight:400;
+
+    color:#777;
+}
+
+.tech-list{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+}
+
+.tech-item{
+    padding:20px;
+
+    background:#10141c;
+
+    border:1px solid var(--line);
+
+    border-radius:18px;
+}
+
+.tech-item strong{
+    display:block;
+
+    font-size:14px;
+
+    margin-bottom:7px;
+}
+
+.tech-item span{
+    font-size:10px;
+
+    color:#777f8b;
+
+    line-height:1.8;
+}
+
+/* =========================
+   TRENDS
+========================= */
+
+.trends{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+
+    margin-top:35px;
+}
+
+.trend{
+    padding:20px;
+
+    background:#10141c;
+
+    border:1px solid var(--line);
+
+    border-radius:18px;
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+}
+
+.rank{
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#343b48;
+}
+
+.trend-icon{
+    width:58px;
+    height:58px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:27px;
+
+    background:#171c26;
+}
+
+.trend-info{
+    flex:1;
+}
+
+.trend-info strong{
+    font-size:12px;
+
+    display:block;
+
+    margin-bottom:5px;
+}
+
+.trend-info small{
+    font-size:9px;
+
+    color:#737b8a;
+}
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+.newsletter{
+    padding:70px 30px;
+
+    border:1px solid var(--line);
+
+    border-radius:25px;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at 50% 0,
+            rgba(53,214,255,.14),
+            transparent 40%
+        ),
+        #10141c;
+}
+
+.newsletter h2{
+    font-size:35px;
+}
+
+.newsletter p{
+    font-size:12px;
+
+    color:#7f8794;
+
+    margin:10px 0 25px;
+}
+
+.form{
+    display:flex;
+
+    max-width:500px;
+
+    margin:auto;
+
+    gap:8px;
+}
+
+.form input{
+    flex:1;
+
+    padding:14px;
+
+    border-radius:11px;
+
+    background:#080a0f;
+
+    border:1px solid var(--line);
+
+    color:#fff;
+
+    outline:0;
+}
+
+.form input:focus{
+    border-color:var(--cyan);
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq{
+    max-width:850px;
+
+    margin:40px auto 0;
+}
+
+.faq-item{
+    border-bottom:1px solid var(--line);
+}
+
+.question{
+    width:100%;
+
+    padding:21px 5px;
+
+    background:none;
+
+    border:0;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    text-align:right;
+
+    font-size:12px;
+}
+
+.answer{
+    max-height:0;
+
+    overflow:hidden;
+
+    padding:0 5px;
+
+    color:#777f8b;
+
+    font-size:11px;
+
+    line-height:2;
+
+    transition:.3s;
+}
+
+.faq-item.open .answer{
+    max-height:150px;
+
+    padding-bottom:20px;
+}
+
+.plus{
+    color:var(--cyan);
+
+    font-size:18px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:70px 0 25px;
+
+    border-top:1px solid var(--line);
+
+    background:#05070b;
+}
+
+.footer-grid{
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr 1fr;
+
+    gap:35px;
+}
+
+.footer-brand p{
+    color:#6f7784;
+
+    font-size:11px;
+
+    line-height:2;
+
+    max-width:370px;
+
+    margin-top:14px;
+}
+
+footer h4{
+    font-size:12px;
+
+    margin-bottom:17px;
+}
+
+footer a{
+    display:block;
+
+    font-size:10px;
+
+    color:#707785;
+
+    margin-bottom:11px;
+}
+
+footer a:hover{
+    color:#fff;
+}
+
+.footer-bottom{
+    display:flex;
+
+    justify-content:space-between;
+
+    padding-top:22px;
+
+    margin-top:45px;
+
+    border-top:1px solid var(--line);
+
+    color:#505764;
+
+    font-size:9px;
+}
+
+.footer-bottom b{
+    color:var(--cyan);
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.overlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:5000;
+
+    display:none;
+
+    align-items:flex-start;
+    justify-content:center;
+
+    padding-top:110px;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(10px);
+}
+
+.overlay.show{
+    display:flex;
+}
+
+.search-box{
+    width:min(650px,90%);
+
+    background:#11151e;
+
+    border:1px solid var(--line);
+
+    border-radius:20px;
+
+    padding:20px;
+}
+
+.search-box input{
+    width:100%;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    background:#080a0f;
+
+    border:1px solid var(--line);
+
+    outline:0;
+
+    color:#fff;
+}
+
+.search-box input:focus{
+    border-color:var(--cyan);
+}
+
+.results{
+    margin-top:15px;
+
+    font-size:11px;
+
+    color:#7e8694;
+
+    line-height:2;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:6000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.8);
+
+    backdrop-filter:blur(12px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(700px,95%);
+
+    background:#11151e;
+
+    border:1px solid var(--line);
+
+    border-radius:23px;
+
+    padding:30px;
+
+    position:relative;
+}
+
+.close{
+    position:absolute;
+
+    left:15px;
+    top:15px;
+
+    width:35px;
+    height:35px;
+
+    border-radius:10px;
+
+    background:#191e28;
+
+    border:1px solid var(--line);
+
+    color:#fff;
+
+    font-size:18px;
+}
+
+.close:hover{
+    border-color:var(--cyan);
+
+    color:var(--cyan);
+}
+
+.modal-box h2{
+    font-size:27px;
+
+    margin-bottom:7px;
+}
+
+.modal-meta{
+    font-size:10px;
+
+    color:var(--cyan);
+}
+
+.modal-box p{
+    font-size:12px;
+
+    line-height:2.2;
+
+    color:#858d9a;
+
+    margin:20px 0;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+    left:50%;
+
+    transform:translate(-50%,120px);
+
+    z-index:8000;
+
+    background:#fff;
+
+    color:#111;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    font-size:11px;
+
+    transition:.35s;
+
+    box-shadow:0 15px 50px rgba(0,0,0,.4);
+
+    max-width:90%;
+
+    text-align:center;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(25px);
+
+    transition:.7s;
+}
+
+.reveal.visible{
+    opacity:1;
+
+    transform:none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
+    .hero-text{
+        margin:auto;
+    }
+
+    .actions{
+        justify-content:center;
+    }
+
+    .orbit{
+        height:380px;
+    }
+
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .article-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .tech{
+        grid-template-columns:1fr;
+    }
+
+    .trends{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:750px){
+
+    header{
+        height:65px;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .mobile{
+        top:65px;
+    }
+
+    .hero{
+        min-height:780px;
+    }
+
+    .hero h1{
+        font-size:48px;
+
+        letter-spacing:-3px;
+    }
+
+    .hero-text{
+        font-size:13px;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .discover{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:550px){
+
+    .container{
+        width:90%;
+    }
+
+    .section{
+        padding:75px 0;
+    }
+
+    .hero-grid{
+        gap:20px;
+    }
+
+    .orbit{
+        height:300px;
+
+        transform:scale(.78);
+    }
+
+    .floating-card{
+        display:none;
+    }
+
+    .category-grid{
+        grid-template-columns:1fr 1fr;
+
+        gap:9px;
+    }
+
+    .category{
+        min-height:140px;
+
+        padding:17px;
+    }
+
+    .category-icon{
+        font-size:27px;
+
+        margin-bottom:17px;
+    }
+
+    .article-grid{
+        grid-template-columns:1fr 1fr;
+
+        gap:9px;
+    }
+
+    .article-cover{
+        height:150px;
+
+        font-size:50px;
+    }
+
+    .article-info{
+        padding:12px;
+    }
+
+    .article h3{
+        font-size:11px;
+    }
+
+    .article p{
+        font-size:9px;
+    }
+
+    .article-meta{
+        font-size:8px;
+    }
+
+    .tech-list{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .trends{
+        grid-template-columns:1fr;
+    }
+
+    .newsletter{
+        padding:45px 20px;
+    }
+
+    .newsletter h2{
+        font-size:27px;
+    }
+
+    .form{
+        flex-direction:column;
+    }
+
+    .form .btn{
+        width:100%;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-bottom{
+        display:block;
+
+        line-height:2.2;
+    }
+
+    .footer-bottom span{
+        display:block;
+
+        margin-bottom:4px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        AUR<span>A</span>
+    </div>
+
+    <nav>
+        <a href="#home">خانه</a>
+        <a href="#discover">کشف کن</a>
+        <a href="#articles">مقالات</a>
+        <a href="#technology">تکنولوژی</a>
+        <a href="#trends">ترندها</a>
+        <a href="#faq">سؤالات</a>
+    </nav>
+
+    <div class="header-tools">
+
+        <button
+            class="icon"
+            aria-label="جستجو"
+            onclick="openSearch()"
+        >⌕</button>
+
+        <button
+            class="icon"
+            aria-label="علاقه‌مندی"
+            onclick="showToast('این بخش به‌زودی فعال می‌شود')"
+        >♡</button>
+
+        <button
+            class="icon menu"
+            aria-label="منو"
+            onclick="toggleMenu()"
+        >☰</button>
+
+    </div>
+
+</header>
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile" id="mobile">
+
+    <a href="#home" onclick="closeMenu()">خانه</a>
+    <a href="#discover" onclick="closeMenu()">کشف کن</a>
+    <a href="#articles" onclick="closeMenu()">مقالات</a>
+    <a href="#technology" onclick="closeMenu()">تکنولوژی</a>
+    <a href="#trends" onclick="closeMenu()">ترندها</a>
+    <a href="#faq" onclick="closeMenu()">سؤالات متداول</a>
+
+</div>
+
+<main>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-grid">
+
+            <div>
+
+                <div class="badge">
+                    <span class="dot"></span>
+                    نسخه ۲۰۲۶ • آینده دیجیتال
+                </div>
+
+                <h1>
+                    آینده را
+                    <br>
+                    <span>زودتر ببین.</span>
+                </h1>
+
+                <p class="hero-text">
+                    AURA جایی برای کشف دنیای تکنولوژی،
+                    گجت‌ها، اپلیکیشن‌ها، هوش مصنوعی و ایده‌هایی
+                    است که قرار است شکل زندگی دیجیتال ما را تغییر دهند.
+                </p>
+
+                <div class="actions">
+
+                    <a
+                        href="#articles"
+                        class="btn primary"
+                    >
+                        شروع کشف
+                    </a>
+
+                    <a
+                        href="#technology"
+                        class="btn secondary"
+                    >
+                        آخرین تکنولوژی‌ها
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="orbit">
+
+                <div class="core"></div>
+
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+
+                <div class="floating-card card-one">
+                    <span class="card-number">98%</span>
+                    <span class="card-label">رشد جستجوی AI</span>
+                </div>
+
+                <div class="floating-card card-two">
+                    <span class="card-number">4.9★</span>
+                    <span class="card-label">محبوبیت کاربران</span>
+                </div>
+
+                <div class="floating-card card-three">
+                    <span class="card-number">24K</span>
+                    <span class="card-label">خواننده امروز</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="stats">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat reveal">
+                <strong>۲۴K+</strong>
+                <span>بازدید امروز</span>
+            </div>
+
+            <div class="stat reveal">
+                <strong>۳۸۰+</strong>
+                <span>مقاله منتشر شده</span>
+            </div>
+
+            <div class="stat reveal">
+                <strong>۷۲</strong>
+                <span>بررسی گجت</span>
+            </div>
+
+            <div class="stat reveal">
+                <strong>۴.۹</strong>
+                <span>رضایت کاربران</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="title reveal">
+            دنیای مورد علاقه‌ات را انتخاب کن
+        </div>
+
+        <div class="subtitle reveal">
+            از هوش مصنوعی تا گجت‌های آینده؛
+            هر چیزی که دنیای دیجیتال را جذاب‌تر می‌کند.
+        </div>
+
+        <div class="category-grid">
+
+            <div
+                class="category reveal"
+                onclick="category('هوش مصنوعی')"
+            >
+                <div class="category-icon">◉</div>
+
+                <h3>هوش مصنوعی</h3>
+
+                <p>
+                    ابزارها، مدل‌ها، کاربردها و اتفاقات تازه دنیای AI.
+                </p>
+
+                <small>۱۲۴ مطلب</small>
+            </div>
+
+            <div
+                class="category reveal"
+                onclick="category('گجت‌ها')"
+            >
+                <div class="category-icon">⌁</div>
+
+                <h3>گجت‌ها</h3>
+
+                <p>
+                    بررسی گوشی، لپ‌تاپ، ساعت و دستگاه‌های هوشمند.
+                </p>
+
+                <small>۸۶ مطلب</small>
+            </div>
+
+            <div
+                class="category reveal"
+                onclick="category('اپلیکیشن‌ها')"
+            >
+                <div class="category-icon">▦</div>
+
+                <h3>اپلیکیشن</h3>
+
+                <p>
+                    برنامه‌هایی که ارزش نصب کردن و شناختن دارند.
+                </p>
+
+                <small>۷۲ مطلب</small>
+            </div>
+
+            <div
+                class="category reveal"
+                onclick="category('آینده')"
+            >
+                <div class="category-icon">∞</div>
+
+                <h3>آینده</h3>
+
+                <p>
+                    ایده‌ها و فناوری‌هایی که زندگی فردا را می‌سازند.
+                </p>
+
+                <small>۵۸ مطلب</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     DISCOVER
+========================= -->
+
+<section class="section" id="discover">
+
+    <div class="container">
+
+        <div class="title reveal">
+            امروز چه چیزی کشف کنیم؟
+        </div>
+
+        <div class="subtitle reveal">
+            دو مسیر متفاوت برای شروع گشت‌وگذار در AURA.
+        </div>
+
+        <div class="discover">
+
+            <div class="discover-card reveal">
+
+                <h2>
+                    ۵ تکنولوژی که امسال باید بشناسی
+                </h2>
+
+                <p>
+                    فناوری فقط درباره دستگاه‌های سریع‌تر نیست؛
+                    بعضی تغییرات کوچک می‌توانند شیوه کار،
+                    یادگیری و سرگرمی ما را عوض کنند.
+                </p>
+
+                <button
+                    class="btn primary"
+                    onclick="openArticle(
+                        '۵ تکنولوژی که امسال باید بشناسی',
+                        'در این مقاله با پنج فناوری مهم و تأثیرگذار آشنا می‌شویم.'
+                    )"
+                >
+                    مطالعه مقاله
+                </button>
+
+                <div class="discover-visual">⚡</div>
+
+            </div>
+
+            <div class="discover-card reveal">
+
+                <h2>
+                    هوش مصنوعی دقیقاً کجا به درد ما می‌خورد؟
+                </h2>
+
+                <p>
+                    از ساخت تصویر و ویدیو تا برنامه‌نویسی،
+                    تحقیق و یادگیری؛ AI دیگر فقط یک مفهوم
+                    آینده‌نگرانه نیست.
+                </p>
+
+                <button
+                    class="btn secondary"
+                    onclick="openArticle(
+                        'هوش مصنوعی در زندگی روزمره',
+                        'هوش مصنوعی می‌تواند بسیاری از کارهای روزمره را سریع‌تر و ساده‌تر کند.'
+                    )"
+                >
+                    کشف کن
+                </button>
+
+                <div class="discover-visual">◉</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     ARTICLES
+========================= -->
+
+<section class="section" id="articles">
+
+    <div class="container">
+
+        <div class="title reveal">
+            جدیدترین مطالب
+        </div>
+
+        <div class="subtitle reveal">
+            مطالب کوتاه، کاربردی و بدون حاشیه
+            برای اینکه از دنیای دیجیتال عقب نمانی.
+        </div>
+
+        <div class="toolbar">
+
+            <div class="filters">
+
+                <button
+                    class="filter active"
+                    onclick="filterArticles('all',this)"
+                >
+                    همه
+                </button>
+
+                <button
+                    class="filter"
+                    onclick="filterArticles('ai',this)"
+                >
+                    هوش مصنوعی
+                </button>
+
+                <button
+                    class="filter"
+                    onclick="filterArticles('gadget',this)"
+                >
+                    گجت
+                </button>
+
+                <button
+                    class="filter"
+                    onclick="filterArticles('future',this)"
+                >
+                    آینده
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="article-grid">
+
+            <div
+                class="article reveal"
+                data-type="ai"
+                onclick="openArticle(
+                    'آیا هوش مصنوعی جای برنامه‌نویس‌ها را می‌گیرد؟',
+                    'هوش مصنوعی ابزار قدرتمندی است، اما نقش انسان در طراحی، تصمیم‌گیری و حل مسئله همچنان اهمیت زیادی دارد.'
+                )"
+            >
+
+                <div class="article-cover cover1">◉</div>
+
+                <div class="article-info">
+
+                    <span class="article-tag">AI</span>
+
+                    <h3>
+                        آیا هوش مصنوعی جای برنامه‌نویس‌ها را می‌گیرد؟
+                    </h3>
+
+                    <p>
+                        نگاهی ساده به تغییراتی که ابزارهای AI
+                        در برنامه‌نویسی ایجاد کرده‌اند.
+                    </p>
+
+                    <div class="article-meta">
+                        <span>۶ دقیقه مطالعه</span>
+                        <span>امروز</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                class="article reveal"
+                data-type="gadget"
+                onclick="openArticle(
+                    'گوشی هوشمند آینده چه شکلی است؟',
+                    'نمایشگرها، باتری، پردازنده و هوش مصنوعی می‌توانند نسل بعدی گوشی‌ها را متفاوت کنند.'
+                )"
+            >
+
+                <div class="article-cover cover2">▣</div>
+
+                <div class="article-info">
+
+                    <span class="article-tag">GADGET</span>
+
+                    <h3>
+                        گوشی هوشمند آینده چه شکلی است؟
+                    </h3>
+
+                    <p>
+                        از نمایشگرهای جدید تا باتری‌های بهتر؛
+                        مسیر آینده موبایل چیست؟
+                    </p>
+
+                    <div class="article-meta">
+                        <span>۵ دقیقه مطالعه</span>
+                        <span>۲ ساعت پیش</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                class="article reveal"
+                data-type="future"
+                onclick="openArticle(
+                    'خانه‌های هوشمند نسل بعد',
+                    'خانه هوشمند فقط چراغی نیست که با گوشی روشن شود؛ سیستم‌ها می‌توانند رفتار محیط را بفهمند.'
+                )"
+            >
+
+                <div class="article-cover cover3">⌂</div>
+
+                <div class="article-info">
+
+                    <span class="article-tag">FUTURE</span>
+
+                    <h3>
+                        خانه‌های هوشمند نسل بعد
+                    </h3>
+
+                    <p>
+                        خانه‌هایی که محیط را تحلیل می‌کنند
+                        و خودشان با شرایط سازگار می‌شوند.
+                    </p>
+
+                    <div class="article-meta">
+                        <span>۷ دقیقه مطالعه</span>
+                        <span>امروز</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                class="article reveal"
+                data-type="gadget"
+                onclick="openArticle(
+                    'آیا تبلت می‌تواند جای لپ‌تاپ را بگیرد؟',
+                    'برای بعضی کاربران بله؛ اما نوع استفاده، نرم‌افزار و لوازم جانبی تعیین‌کننده هستند.'
+                )"
+            >
+
+                <div class="article-cover cover4">▤</div>
+
+                <div class="article-info">
+
+                    <span class="article-tag">GADGET</span>
+
+                    <h3>
+                        آیا تبلت می‌تواند جای لپ‌تاپ را بگیرد؟
+                    </h3>
+
+                    <p>
+                        بررسی کاربردهایی که تبلت‌ها
+                        در آن‌ها واقعاً قدرتمند شده‌اند.
+                    </p>
+
+                    <div class="article-meta">
+                        <span>۴ دقیقه مطالعه</span>
+                        <span>دیروز</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                class="article reveal"
+                data-type="ai"
+                onclick="openArticle(
+                    'نسل جدید ابزارهای ساخت ویدیو با AI',
+                    'ساخت ویدیو با هوش مصنوعی سریع‌تر شده و ابزارهای جدید امکانات بیشتری ارائه می‌کنند.'
+                )"
+            >
+
+                <div class="article-cover cover5">▶</div>
+
+                <div class="article-info">
+
+                    <span class="article-tag">AI</span>
+
+                    <h3>
+                        نسل جدید ابزارهای ساخت ویدیو با AI
+                    </h3>
+
+                    <p>
+                        چطور مدل‌های جدید ساخت ویدیو
+                        مسیر تولید محتوا را تغییر می‌دهند؟
+                    </p>
+
+                    <div class="article-meta">
+                        <span>۸ دقیقه مطالعه</span>
+                        <span>۲ روز پیش</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                class="article reveal"
+                data-type="future"
+                onclick="openArticle(
+                    'آینده اینترنت بدون صفحه نمایش',
+                    'دستگاه‌های پوشیدنی و رابط‌های جدید می‌توانند شکل تعامل ما با اینترنت را تغییر دهند.'
+                )"
+            >
+
+                <div class="article-cover cover6">◎</div>
+
+                <div class="article-info">
+
+                    <span class="article-tag">FUTURE</span>
+
+                    <h3>
+                        آینده اینترنت بدون صفحه نمایش
+                    </h3>
+
+                    <p>
+                        آیا روزی می‌رسد که برای استفاده
+                        از اینترنت به گوشی نگاه نکنیم؟
+                    </p>
+
+                    <div class="article-meta">
+                        <span>۶ دقیقه مطالعه</span>
+                        <span>۳ روز پیش</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     TECHNOLOGY
+========================= -->
+
+<section class="section" id="technology">
+
+    <div class="container">
+
+        <div class="title reveal">
+            نبض تکنولوژی
+        </div>
+
+        <div class="subtitle reveal">
+            یک نگاه سریع به موضوعاتی که بیشترین توجه
+            را به خودشان جلب کرده‌اند.
+        </div>
+
+        <div class="tech">
+
+            <div class="tech-main reveal">
+
+                <h2>
+                    هوش مصنوعی
+                    <br>
+                    در مرکز توجه
+                </h2>
+
+                <p>
+                    مدل‌های هوش مصنوعی از ابزارهای ساده تولید
+                    متن فراتر رفته‌اند. تصویر، صدا، ویدیو،
+                    کدنویسی و تحلیل داده حالا بخشی از این اکوسیستم هستند.
+                </p>
+
+                <div class="tech-score">
+                    ۹۶٪
+                    <span>رشد علاقه کاربران</span>
+                </div>
+
+            </div>
+
+            <div class="tech-list">
+
+                <div class="tech-item reveal">
+                    <strong>AI Agents</strong>
+                    <span>
+                        سیستم‌هایی که می‌توانند چند مرحله
+                        از یک کار را خودکار انجام دهند.
+                    </span>
+                </div>
+
+                <div class="tech-item reveal">
+                    <strong>Wearables</strong>
+                    <span>
+                        دستگاه‌های پوشیدنی هوشمند هر سال
+                        کوچک‌تر و کاربردی‌تر می‌شوند.
+                    </span>
+                </div>
+
+                <div class="tech-item reveal">
+                    <strong>Cloud Gaming</strong>
+                    <span>
+                        اجرای بازی‌های سنگین بدون نیاز
+                        به سخت‌افزار بسیار قدرتمند.
+                    </span>
+                </div>
+
+                <div class="tech-item reveal">
+                    <strong>Robotics</strong>
+                    <span>
+                        نسل جدید ربات‌ها به سمت درک بهتر
+                        محیط حرکت می‌کند.
+                    </span>
+                </div>
+
+                <div class="tech-item reveal">
+                    <strong>Smart Cars</strong>
+                    <span>
+                        خودروها بیشتر شبیه کامپیوترهای
+                        متحرک می‌شوند.
+                    </span>
+                </div>
+
+                <div class="tech-item reveal">
+                    <strong>Spatial Computing</strong>
+                    <span>
+                        ترکیب فضای واقعی و دیجیتال
+                        برای تجربه‌های جدید.
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     TRENDS
+========================= -->
+
+<section class="section" id="trends">
+
+    <div class="container">
+
+        <div class="title reveal">
+            ترندهای امروز
+        </div>
+
+        <div class="subtitle reveal">
+            موضوعاتی که کاربران AURA بیشتر از همه دنبال می‌کنند.
+        </div>
+
+        <div class="trends">
+
+            <div class="trend reveal">
+                <div class="rank">01</div>
+                <div class="trend-icon">◉</div>
+
+                <div class="trend-info">
+                    <strong>ابزارهای AI</strong>
+                    <small>+۳۸٪ جستجو</small>
+                </div>
+            </div>
+
+            <div class="trend reveal">
+                <div class="rank">02</div>
+                <div class="trend-icon">▣</div>
+
+                <div class="trend-info">
+                    <strong>گوشی‌های تاشو</strong>
+                    <small>+۲۷٪ جستجو</small>
+                </div>
+            </div>
+
+            <div class="trend reveal">
+                <div class="rank">03</div>
+                <div class="trend-icon">⌁</div>
+
+                <div class="trend-info">
+                    <strong>ربات‌های خانگی</strong>
+                    <small>+۲۳٪ جستجو</small>
+                </div>
+            </div>
+
+            <div class="trend reveal">
+                <div class="rank">04</div>
+                <div class="trend-icon">◎</div>
+
+                <div class="trend-info">
+                    <strong>عینک هوشمند</strong>
+                    <small>+۱۹٪ جستجو</small>
+                </div>
+            </div>
+
+            <div class="trend reveal">
+                <div class="rank">05</div>
+                <div class="trend-icon">⚡</div>
+
+                <div class="trend-info">
+                    <strong>باتری‌های جدید</strong>
+                    <small>+۱۷٪ جستجو</small>
+                </div>
+            </div>
+
+            <div class="trend reveal">
+                <div class="rank">06</div>
+                <div class="trend-icon">∞</div>
+
+                <div class="trend-info">
+                    <strong>واقعیت ترکیبی</strong>
+                    <small>+۱۵٪ جستجو</small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     NEWSLETTER
+========================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="newsletter reveal">
+
+            <h2>
+                آینده را از دست نده
+            </h2>
+
+            <p>
+                هفته‌ای یک بار مهم‌ترین اتفاقات
+                دنیای دیجیتال را برایت ارسال می‌کنیم.
+            </p>
+
+            <div class="form">
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="ایمیل خود را وارد کنید"
+                    autocomplete="email"
+                >
+
+                <button
+                    class="btn primary"
+                    onclick="subscribe()"
+                >
+                    عضویت رایگان
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section class="section" id="faq">
+
+    <div class="container">
+
+        <div style="text-align:center">
+
+            <div class="title reveal">
+                سؤالات متداول
+            </div>
+
+            <div class="subtitle reveal">
+                چند سؤال رایج درباره AURA.
+            </div>
+
+        </div>
+
+        <div class="faq">
+
+            <div class="faq-item">
+
+                <button
+                    class="question"
+                    onclick="toggleFaq(this)"
+                >
+                    AURA چه نوع سایتی است؟
+                    <span class="plus">+</span>
+                </button>
+
+                <div class="answer">
+                    AURA یک وب‌سایت محتوایی مفهومی درباره تکنولوژی،
+                    هوش مصنوعی، گجت‌ها و آینده دیجیتال است.
+                </div>
+
+            </div>
+
+            <div class="faq-item">
+
+                <button
+                    class="question"
+                    onclick="toggleFaq(this)"
+                >
+                    آیا محتوا رایگان است؟
+                    <span class="plus">+</span>
+                </button>
+
+                <div class="answer">
+                    بله. تمام محتوای این نسخه نمایشی
+                    برای مطالعه رایگان در نظر گرفته شده است.
+                </div>
+
+            </div>
+
+            <div class="faq-item">
+
+                <button
+                    class="question"
+                    onclick="toggleFaq(this)"
+                >
+                    آیا سایت روی موبایل کار می‌کند؟
+                    <span class="plus">+</span>
+                </button>
+
+                <div class="answer">
+                    بله. رابط کاربری از ابتدا برای نمایشگرهای
+                    موبایل، تبلت و دسکتاپ طراحی شده است.
+                </div>
+
+            </div>
+
+            <div class="faq-item">
+
+                <button
+                    class="question"
+                    onclick="toggleFaq(this)"
+                >
+                    آیا امکان اضافه کردن بخش‌های بیشتر وجود دارد؟
+                    <span class="plus">+</span>
+                </button>
+
+                <div class="answer">
+                    بله. ساختار سایت طوری طراحی شده که می‌توان
+                    حساب کاربری، سیستم مقاله، کامنت، دیتابیس،
+                    پنل مدیریت و امکانات دیگر را به آن اضافه کرد.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+                    AUR<span>A</span>
+                </div>
+
+                <p>
+                    AURA یک تجربه مفهومی برای کشف فناوری‌های
+                    جدید است؛ جایی برای کسانی که دوست دارند
+                    قبل از دیگران بفهمند آینده به کدام سمت حرکت می‌کند.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4>AURA</h4>
+
+                <a href="#home">خانه</a>
+                <a href="#discover">کشف کن</a>
+                <a href="#articles">مقالات</a>
+                <a href="#trends">ترندها</a>
+
+            </div>
+
+            <div>
+
+                <h4>موضوعات</h4>
+
+                <a href="#articles" onclick="category('هوش مصنوعی')">
+                    هوش مصنوعی
+                </a>
+
+                <a href="#articles" onclick="category('گجت‌ها')">
+                    گجت‌ها
+                </a>
+
+                <a href="#articles" onclick="category('اپلیکیشن‌ها')">
+                    اپلیکیشن‌ها
+                </a>
+
+                <a href="#articles" onclick="category('آینده')">
+                    آینده
+                </a>
+
+            </div>
+
+            <div>
+
+                <h4>ارتباط</h4>
+
+                <a
+                    href="#"
+                    onclick="showToast('صفحه Instagram به‌زودی اضافه می‌شود');return false;"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="#"
+                    onclick="showToast('صفحه Telegram به‌زودی اضافه می‌شود');return false;"
+                >
+                    Telegram
+                </a>
+
+                <a
+                    href="#"
+                    onclick="showToast('صفحه YouTube به‌زودی اضافه می‌شود');return false;"
+                >
+                    YouTube
+                </a>
+
+                <a href="mailto:hello@aura.example">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 AURA
+            </span>
+
+            <span>
+                Designed for the
+                <b>Next Generation</b>
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- =========================
+     SEARCH OVERLAY
+========================= -->
+
+<div
+    class="overlay"
+    id="searchOverlay"
+>
+
+    <div class="search-box">
+
+        <input
+            id="searchInput"
+            placeholder="مثلاً هوش مصنوعی..."
+            autocomplete="off"
+        >
+
+        <div
+            class="results"
+            id="results"
+        >
+            برای جستجو شروع به تایپ کنید.
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal()"
+            aria-label="بستن"
+        >
+            ×
+        </button>
+
+        <h2 id="modalTitle"></h2>
+
+        <div
+            class="modal-meta"
+            id="modalMeta"
+        ></div>
+
+        <p id="modalText"></p>
+
+        <button
+            class="btn primary"
+            onclick="closeModal()"
+        >
+            متوجه شدم
+        </button>
+
+    </div>
+
+</div>
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+<script>
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("mobile")
+        .classList
+        .toggle("open");
+
+}
+
+function closeMenu(){
+
+    document
+        .getElementById("mobile")
+        .classList
+        .remove("open");
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function openSearch(){
+
+    const overlay =
+        document.getElementById("searchOverlay");
+
+    overlay.classList.add("show");
+
+    setTimeout(() => {
+
+        document
+            .getElementById("searchInput")
+            .focus();
+
+    },100);
+
+}
+
+function closeSearch(){
+
+    document
+        .getElementById("searchOverlay")
+        .classList
+        .remove("show");
+
+    document
+        .getElementById("searchInput")
+        .value = "";
+
+    document
+        .getElementById("results")
+        .textContent =
+        "برای جستجو شروع به تایپ کنید.";
+
+}
+
+
+/* کلیک بیرون از پنجره جستجو */
+
+document
+    .getElementById("searchOverlay")
+    .addEventListener("click",function(e){
+
+        if(e.target === this){
+            closeSearch();
+        }
+
+    });
+
+
+/* جستجوی مقالات */
+
+function search(){
+
+    const value =
+        document
+            .getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const articles =
+        document.querySelectorAll(".article");
+
+    const found = [];
+
+    articles.forEach(article => {
+
+        const title =
+            article
+                .querySelector("h3")
+                .textContent
+                .toLowerCase();
+
+        if(
+            value &&
+            title.includes(value)
+        ){
+
+            found.push(
+                article
+                    .querySelector("h3")
+                    .textContent
+            );
+
+        }
+
+    });
+
+    const result =
+        document.getElementById("results");
+
+    if(!value){
+
+        result.textContent =
+            "برای جستجو شروع به تایپ کنید.";
+
+        return;
+    }
+
+    if(!found.length){
+
+        result.textContent =
+            "مطلبی با این عبارت پیدا نشد.";
+
+        return;
+    }
+
+    result.innerHTML =
+        "نتایج پیدا شده: " +
+        "<b style='color:#fff'>" +
+        found.join("، ") +
+        "</b>";
+
+}
+
+
+/* =========================
+   ARTICLE FILTER
+========================= */
+
+function filterArticles(type,button){
+
+    document
+        .querySelectorAll(".filter")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+    button.classList.add("active");
+
+    document
+        .querySelectorAll(".article")
+        .forEach(article => {
+
+            if(
+                type === "all" ||
+                article.dataset.type === type
+            ){
+
+                article.style.display = "";
+
+            }else{
+
+                article.style.display = "none";
+
+            }
+
+        });
+
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+function category(name){
+
+    showToast(
+        "بخش " + name + " انتخاب شد ✓"
+    );
+
+    document
+        .getElementById("articles")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   ARTICLE MODAL
+========================= */
+
+function openArticle(title,text){
+
+    document
+        .getElementById("modalTitle")
+        .textContent = title;
+
+    document
+        .getElementById("modalMeta")
+        .textContent =
+        "AURA • مقاله منتخب";
+
+    document
+        .getElementById("modalText")
+        .textContent = text;
+
+    document
+        .getElementById("modal")
+        .classList
+        .add("show");
+
+}
+
+function closeModal(){
+
+    document
+        .getElementById("modal")
+        .classList
+        .remove("show");
+
+}
+
+
+/* کلیک بیرون از مودال */
+
+document
+    .getElementById("modal")
+    .addEventListener("click",function(e){
+
+        if(e.target === this){
+            closeModal();
+        }
+
+    });
+
+
+/* =========================
+   FAQ
+========================= */
+
+function toggleFaq(button){
+
+    const item =
+        button.parentElement;
+
+    document
+        .querySelectorAll(".faq-item")
+        .forEach(other => {
+
+            if(other !== item){
+
+                other
+                    .classList
+                    .remove("open");
+
+                other
+                    .querySelector(".plus")
+                    .textContent = "+";
+
+            }
+
+        });
+
+    item
+        .classList
+        .toggle("open");
+
+    button
+        .querySelector(".plus")
+        .textContent =
+        item.classList.contains("open")
+            ? "−"
+            : "+";
+
+}
+
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+function subscribe(){
+
+    const input =
+        document.getElementById("email");
+
+    const email =
+        input.value.trim();
+
+    if(!email){
+
+        showToast(
+            "ایمیل خود را وارد کنید"
+        );
+
+        input.focus();
+
+        return;
+    }
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailPattern.test(email)){
+
+        showToast(
+            "ایمیل وارد شده معتبر نیست"
+        );
+
+        input.focus();
+
+        return;
+    }
+
+    input.value = "";
+
+    showToast(
+        "عضویت شما با موفقیت انجام شد ✓"
+    );
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        },2400);
+
+}
+
+
+/* =========================
+   ESC KEY
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closeSearch();
+            closeModal();
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   SEARCH KEYBOARD
+========================= */
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        search
+    );
+
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    entry.target
+                        .classList
+                        .add("visible");
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.1
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+
+/* =========================
+   INITIAL ANIMATION
+========================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach((element,index) => {
+
+                setTimeout(() => {
+
+                    element
+                        .classList
+                        .add("visible");
+
+                },index * 35);
+
+            });
+
+    }
+);
+
+</script>
+
+</body>
+                  </html>
