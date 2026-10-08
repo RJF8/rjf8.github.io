@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>WANDER — کشف جهان</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Vazirmatn", sans-serif;
+            background: #07110f;
+            color: #f5f7f4;
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        :root {
+            --green: #8ee6b1;
+            --green2: #3bcf86;
+            --dark: #07110f;
+            --card: #0d1c18;
+            --card2: #12241f;
+            --text: #f5f7f4;
+            --muted: #91a49c;
+            --line: rgba(255, 255, 255, 0.09);
+        }
+
+
+        /* =========================================================
+           BACKGROUND
+        ========================================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(59, 207, 134, 0.13),
+                    transparent 27%
+                ),
+                radial-gradient(
+                    circle at 10% 60%,
+                    rgba(142, 230, 177, 0.08),
+                    transparent 30%
+                ),
+                #07110f;
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.025;
+
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 76px;
+            z-index: 100;
+
+            padding: 0 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(7, 17, 15, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logoIcon {
+            width: 39px;
+            height: 39px;
+
+            border-radius: 13px;
+
+            display: grid;
+            place-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #8ee6b1,
+                #3bcf86
+            );
+
+            color: #07110f;
+            font-size: 20px;
+
+            box-shadow: 0 0 30px rgba(59, 207, 134, 0.22);
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+
+            color: #aebdb7;
+            font-size: 14px;
+        }
+
+        nav a {
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .headerButton {
+            padding: 11px 18px;
+
+            border: 1px solid rgba(142, 230, 177, 0.25);
+            background: rgba(142, 230, 177, 0.08);
+
+            border-radius: 12px;
+
+            color: var(--green);
+        }
+
+        .menuBtn {
+            display: none;
+
+            width: 43px;
+            height: 43px;
+
+            border: 1px solid var(--line);
+            border-radius: 12px;
+
+            background: #10211c;
+            color: white;
+
+            font-size: 21px;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+
+            padding: 145px 7% 70px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+        }
+
+        .heroText {
+            width: 55%;
+            max-width: 720px;
+        }
+
+        .eyebrow {
+            color: var(--green);
+
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .eyebrow span {
+            width: 35px;
+            height: 1px;
+            background: var(--green);
+        }
+
+        h1 {
+            font-size: clamp(46px, 7vw, 88px);
+            line-height: 1.03;
+
+            letter-spacing: -4px;
+            margin-bottom: 25px;
+        }
+
+        .heroAccent {
+            color: var(--green);
+        }
+
+        .heroText p {
+            color: var(--muted);
+
+            font-size: 17px;
+            line-height: 2;
+
+            max-width: 620px;
+        }
+
+        .heroActions {
+            display: flex;
+            gap: 12px;
+
+            margin-top: 32px;
+
+            flex-wrap: wrap;
+        }
+
+        .primary {
+            border: 0;
+
+            padding: 15px 25px;
+
+            border-radius: 14px;
+
+            background: var(--green);
+            color: #07110f;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 35px rgba(59, 207, 134, 0.18);
+        }
+
+        .secondary {
+            padding: 14px 23px;
+
+            border-radius: 14px;
+
+            border: 1px solid var(--line);
+
+            background: rgba(255, 255, 255, 0.035);
+
+            color: white;
+        }
+
+        .heroVisual {
+            position: absolute;
+            left: 6%;
+
+            width: 38%;
+            max-width: 500px;
+            height: 500px;
+
+            border-radius: 35px;
+
+            overflow: hidden;
+
+            border: 1px solid var(--line);
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(3, 12, 9, 0.9),
+                    transparent 60%
+                ),
+                linear-gradient(
+                    135deg,
+                    #234f3d,
+                    #0d1b18 55%,
+                    #1f4535
+                );
+
+            box-shadow:
+                0 35px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        .heroVisual::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background: rgba(142, 230, 177, 0.15);
+
+            filter: blur(50px);
+
+            top: -60px;
+            left: -60px;
+        }
+
+        .mountain {
+            position: absolute;
+
+            bottom: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left: 190px solid transparent;
+            border-right: 190px solid transparent;
+            border-bottom: 280px solid #10251e;
+        }
+
+        .m1 {
+            left: -70px;
+        }
+
+        .m2 {
+            right: -90px;
+
+            transform: scale(0.8);
+
+            border-bottom-color: #18352b;
+        }
+
+        .sun {
+            position: absolute;
+
+            top: 70px;
+            right: 90px;
+
+            width: 85px;
+            height: 85px;
+
+            border-radius: 50%;
+
+            background: #b8f1cb;
+
+            box-shadow:
+                0 0 80px rgba(184, 241, 203, 0.35);
+        }
+
+        .visualInfo {
+            position: absolute;
+
+            bottom: 28px;
+            right: 28px;
+            left: 28px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .visualInfo small {
+            color: #9cb2a8;
+        }
+
+        .visualInfo strong {
+            display: block;
+
+            font-size: 20px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================================================
+           SEARCH
+        ========================================================= */
+
+        .searchBox {
+            width: min(1000px, 86%);
+
+            margin: -30px auto 0;
+
+            position: relative;
+            z-index: 3;
+
+            padding: 16px;
+
+            background: rgba(13, 28, 24, 0.88);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border: 1px solid var(--line);
+            border-radius: 20px;
+
+            display: flex;
+            gap: 10px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.28);
+        }
+
+        .searchBox input {
+            flex: 1;
+            min-width: 0;
+
+            border: 0;
+            outline: 0;
+
+            background: transparent;
+
+            color: white;
+
+            padding: 14px;
+
+            font-size: 15px;
+        }
+
+        .searchBox input::placeholder {
+            color: #71857d;
+        }
+
+        .searchBtn {
+            border: 0;
+
+            border-radius: 13px;
+
+            padding: 0 24px;
+
+            background: var(--green);
+            color: #07110f;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           GENERAL
+        ========================================================= */
+
+        section {
+            padding: 110px 7%;
+        }
+
+        .sectionHead {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            gap: 25px;
+
+            margin-bottom: 40px;
+        }
+
+        .sectionHead h2 {
+            font-size: clamp(28px, 4vw, 46px);
+
+            margin-top: 8px;
+        }
+
+        .sectionHead p {
+            color: var(--muted);
+
+            max-width: 450px;
+
+            line-height: 1.9;
+
+            font-size: 14px;
+        }
+
+        .tag {
+            color: var(--green);
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================================
+           DESTINATIONS
+        ========================================================= */
+
+        .destinations {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .destination {
+            min-height: 390px;
+
+            border: 1px solid var(--line);
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background: var(--card);
+
+            transition: 0.35s;
+        }
+
+        .destination:hover {
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(142, 230, 177, 0.28);
+        }
+
+        .destImage {
+            height: 100%;
+
+            position: absolute;
+            inset: 0;
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .dest1 {
+            background:
+                linear-gradient(
+                    to top,
+                    #07110f,
+                    transparent 65%
+                ),
+                radial-gradient(
+                    circle at 50% 25%,
+                    #e7b982,
+                    #9c6945 28%,
+                    #39271d 65%,
+                    #111713
+                );
+        }
+
+        .dest2 {
+            background:
+                linear-gradient(
+                    to top,
+                    #07110f,
+                    transparent 65%
+                ),
+                radial-gradient(
+                    circle at 70% 25%,
+                    #c8ecff,
+                    #5187a0 30%,
+                    #17333c 65%,
+                    #0b1515
+                );
+        }
+
+        .dest3 {
+            background:
+                linear-gradient(
+                    to top,
+                    #07110f,
+                    transparent 65%
+                ),
+                radial-gradient(
+                    circle at 35% 30%,
+                    #ffd99a,
+                    #d07d4e 30%,
+                    #35251c 65%,
+                    #0e1511
+                );
+        }
+
+        .destContent {
+            position: absolute;
+
+            bottom: 0;
+            right: 0;
+            left: 0;
+
+            padding: 27px;
+        }
+
+        .location {
+            color: var(--green);
+
+            font-size: 12px;
+
+            margin-bottom: 8px;
+        }
+
+        .destContent h3 {
+            font-size: 28px;
+
+            margin-bottom: 7px;
+        }
+
+        .destContent p {
+            color: #a4b4ad;
+
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 16px;
+
+            font-size: 12px;
+        }
+
+        .star {
+            color: #f7d77b;
+        }
+
+
+        /* =========================================================
+           TRAVEL TYPES
+        ========================================================= */
+
+        .types {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .type {
+            padding: 30px 22px;
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .type:hover {
+            background: var(--card2);
+
+            transform: translateY(-5px);
+        }
+
+        .typeIcon {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 15px;
+
+            background: rgba(142, 230, 177, 0.08);
+
+            display: grid;
+            place-items: center;
+
+            font-size: 23px;
+
+            margin-bottom: 20px;
+        }
+
+        .type h3 {
+            font-size: 17px;
+
+            margin-bottom: 9px;
+        }
+
+        .type p {
+            color: var(--muted);
+
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .stat {
+            padding: 45px 20px;
+
+            text-align: center;
+
+            border-left: 1px solid var(--line);
+        }
+
+        .stat:last-child {
+            border-left: 0;
+        }
+
+        .stat strong {
+            display: block;
+
+            font-size: 37px;
+
+            color: var(--green);
+        }
+
+        .stat span {
+            display: block;
+
+            color: var(--muted);
+
+            margin-top: 7px;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           PLANNER
+        ========================================================= */
+
+        .planner {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(142, 230, 177, 0.07),
+                    transparent 50%
+                ),
+                var(--card);
+
+            border: 1px solid var(--line);
+            border-radius: 28px;
+
+            padding: 35px;
+        }
+
+        .plannerGrid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 14px;
+        }
+
+        .field {
+            background: #091712;
+
+            border: 1px solid var(--line);
+            border-radius: 14px;
+
+            padding: 17px;
+        }
+
+        .field label {
+            display: block;
+
+            color: #71857d;
+
+            font-size: 11px;
+
+            margin-bottom: 8px;
+        }
+
+        .field select {
+            width: 100%;
+
+            border: 0;
+            outline: 0;
+
+            background: transparent;
+
+            color: white;
+
+            font-size: 14px;
+        }
+
+        .field select option {
+            background: #0d1c18;
+        }
+
+        .planButton {
+            width: 100%;
+
+            margin-top: 18px;
+
+            padding: 15px;
+
+            border: 0;
+            border-radius: 13px;
+
+            background: var(--green);
+            color: #07110f;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           STORIES
+        ========================================================= */
+
+        .stories {
+            display: grid;
+
+            grid-template-columns: 1.4fr 1fr 1fr;
+
+            gap: 17px;
+        }
+
+        .story {
+            min-height: 270px;
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+            border-radius: 21px;
+
+            padding: 27px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            transition: 0.3s;
+        }
+
+        .story:hover {
+            transform: translateY(-5px);
+        }
+
+        .story.big {
+            min-height: 350px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(7, 17, 15, 0.98),
+                    rgba(7, 17, 15, 0.05)
+                ),
+                radial-gradient(
+                    circle at 60% 30%,
+                    #51775f,
+                    #172d24 50%,
+                    #0b1512
+                );
+        }
+
+        .story:not(.big):nth-child(2) {
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(7, 17, 15, 0.98),
+                    rgba(7, 17, 15, 0.1)
+                ),
+                radial-gradient(
+                    circle at 30% 25%,
+                    #7a8d72,
+                    #25382d 50%,
+                    #0c1511
+                );
+        }
+
+        .story:not(.big):nth-child(3) {
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(7, 17, 15, 0.98),
+                    rgba(7, 17, 15, 0.1)
+                ),
+                radial-gradient(
+                    circle at 70% 25%,
+                    #8e6f53,
+                    #35251d 50%,
+                    #0d1512
+                );
+        }
+
+        .story span {
+            color: var(--green);
+
+            font-size: 11px;
+
+            margin-bottom: 9px;
+        }
+
+        .story h3 {
+            font-size: 21px;
+
+            margin-bottom: 7px;
+        }
+
+        .story p {
+            color: #a2b0aa;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           QUOTE
+        ========================================================= */
+
+        .quote {
+            padding: 100px 10%;
+
+            text-align: center;
+        }
+
+        .quoteMark {
+            color: var(--green);
+
+            font-size: 65px;
+
+            line-height: 0.6;
+        }
+
+        .quote h2 {
+            font-size: clamp(27px, 4vw, 48px);
+
+            line-height: 1.7;
+
+            max-width: 900px;
+
+            margin: 25px auto;
+        }
+
+        .quote p {
+            color: var(--muted);
+        }
+
+
+        /* =========================================================
+           NEWSLETTER
+        ========================================================= */
+
+        .newsletter {
+            padding: 70px 7%;
+        }
+
+        .newsBox {
+            border: 1px solid rgba(142, 230, 177, 0.17);
+
+            border-radius: 28px;
+
+            padding: 55px;
+
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(142, 230, 177, 0.1),
+                    transparent 30%
+                ),
+                var(--card);
+
+            text-align: center;
+        }
+
+        .newsBox h2 {
+            font-size: 34px;
+
+            margin-bottom: 12px;
+        }
+
+        .newsBox p {
+            color: var(--muted);
+
+            margin-bottom: 25px;
+        }
+
+        .emailForm {
+            max-width: 570px;
+
+            margin: auto;
+
+            display: flex;
+            gap: 8px;
+
+            padding: 6px;
+
+            border: 1px solid var(--line);
+            border-radius: 15px;
+
+            background: #091712;
+        }
+
+        .emailForm input {
+            flex: 1;
+
+            border: 0;
+            outline: 0;
+
+            background: transparent;
+
+            color: white;
+
+            padding: 12px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            border-top: 1px solid var(--line);
+
+            padding: 55px 7% 30px;
+        }
+
+        .footerGrid {
+            display: grid;
+
+            grid-template-columns:
+                1.5fr repeat(3, 1fr);
+
+            gap: 40px;
+        }
+
+        .footerBrand p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 2;
+
+            max-width: 300px;
+
+            margin-top: 15px;
+        }
+
+        .footerCol h4 {
+            margin-bottom: 17px;
+        }
+
+        .footerCol a {
+            display: block;
+
+            color: #81938c;
+
+            font-size: 13px;
+
+            margin: 10px 0;
+        }
+
+        .footerCol a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid var(--line);
+
+            margin-top: 40px;
+
+            padding-top: 22px;
+
+            color: #65766f;
+
+            font-size: 11px;
+
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.7);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            z-index: 500;
+
+            display: none;
+
+            place-items: center;
+
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: grid;
+        }
+
+        .modalBox {
+            width: min(500px, 100%);
+
+            background: #0d1c18;
+
+            border: 1px solid var(--line);
+
+            border-radius: 24px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, 0.5);
+
+            animation: modalIn 0.25s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close {
+            float: left;
+
+            border: 0;
+
+            background: transparent;
+
+            color: #9ca9a4;
+
+            font-size: 22px;
+        }
+
+        .close:hover {
+            color: white;
+        }
+
+        .modalBox h2 {
+            margin-bottom: 12px;
+        }
+
+        .modalBox p {
+            color: var(--muted);
+
+            line-height: 1.9;
+
+            font-size: 14px;
+        }
+
+        .result {
+            margin-top: 20px;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #091712;
+
+            border: 1px solid var(--line);
+
+            color: var(--green);
+
+            line-height: 1.9;
+        }
+
+        .modalLinks {
+            display: grid;
+
+            gap: 9px;
+
+            margin-top: 15px;
+        }
+
+        .modalLinks a {
+            padding: 12px;
+
+            background: #10211c;
+
+            border-radius: 10px;
+
+            transition: 0.2s;
+        }
+
+        .modalLinks a:hover {
+            background: #163229;
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            nav,
+            .headerButton {
+                display: none;
+            }
+
+            .menuBtn {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 125px;
+
+                display: block;
+            }
+
+            .heroText {
+                width: 100%;
+            }
+
+            .heroVisual {
+                position: relative;
+
+                left: auto;
+
+                width: 100%;
+                max-width: none;
+
+                height: 330px;
+
+                margin-top: 45px;
+            }
+
+            .destinations {
+                grid-template-columns: 1fr;
+            }
+
+            .destination {
+                min-height: 340px;
+            }
+
+            .types {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .plannerGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .stories {
+                grid-template-columns: 1fr;
+            }
+
+            .footerGrid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 560px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            section {
+                padding: 75px 5%;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .heroText p {
+                font-size: 14px;
+            }
+
+            .heroVisual {
+                height: 290px;
+            }
+
+            .searchBox {
+                width: 90%;
+
+                flex-direction: column;
+            }
+
+            .searchBtn {
+                height: 48px;
+            }
+
+            .types {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat strong {
+                font-size: 28px;
+            }
+
+            .planner {
+                padding: 22px;
+            }
+
+            .newsBox {
+                padding: 35px 20px;
+            }
+
+            .emailForm {
+                flex-direction: column;
+            }
+
+            .emailForm button {
+                height: 45px;
+            }
+
+            .footerGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .copyright {
+                flex-direction: column;
+
+                gap: 10px;
+            }
+
+            .visualInfo {
+                right: 20px;
+                left: 20px;
+                bottom: 20px;
+            }
+
+            .visualInfo strong {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Background -->
+    <div class="background"></div>
+    <div class="noise"></div>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header>
+
+        <a href="#home" class="logo">
+            <div class="logoIcon">✦</div>
+            WANDER
+        </a>
+
+        <nav>
+            <a href="#destinations">مقصدها</a>
+            <a href="#experiences">تجربه‌ها</a>
+            <a href="#planner">برنامه‌ریز</a>
+            <a href="#stories">مجله</a>
+        </nav>
+
+        <a href="#planner" class="headerButton">
+            شروع سفر
+        </a>
+
+        <button
+            class="menuBtn"
+            type="button"
+            aria-label="باز کردن منو"
+            onclick="openMenu()"
+        >
+            ☰
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="hero" id="home">
+
+            <div class="heroText">
+
+                <div class="eyebrow">
+                    <span></span>
+                    سفر از جایی شروع می‌شود که کنجکاوی آغاز می‌شود
+                </div>
+
+                <h1>
+                    دنیا بزرگ‌تر از آن است که
+                    <span class="heroAccent">در یک قاب</span>
+                    بماند.
+                </h1>
+
+                <p>
+                    WANDER یک راهنمای دیجیتال برای کشف مقصدهای متفاوت،
+                    تجربه‌های فراموش‌نشدنی و ساختن سفرهایی است که فقط
+                    عکس‌های زیبا از آن‌ها باقی نمی‌ماند؛ بلکه خاطره می‌شوند.
+                </p>
+
+                <div class="heroActions">
+
+                    <a href="#destinations" class="primary">
+                        کشف مقصدها ←
+                    </a>
+
+                    <a href="#planner" class="secondary">
+                        برنامه‌ریزی سفر
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="heroVisual">
+
+                <div class="sun"></div>
+
+                <div class="mountain m1"></div>
+                <div class="mountain m2"></div>
+
+                <div class="visualInfo">
+
+                    <div>
+                        <small>پیشنهاد این هفته</small>
+                        <strong>سفر به ناشناخته‌ها</strong>
+                    </div>
+
+                    <div>
+                        <small>فصل مناسب</small>
+                        <strong>پاییز</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SEARCH
+        ====================================================== -->
+
+        <div class="searchBox">
+
+            <input
+                id="searchInput"
+                type="text"
+                autocomplete="off"
+                placeholder="دنبال چه مقصدی می‌گردی؟ مثلاً کوهستان، دریا، شهر..."
+            >
+
+            <button
+                class="searchBtn"
+                type="button"
+                onclick="searchDestination()"
+            >
+                جست‌وجو
+            </button>
+
+        </div>
+
+
+        <!-- =====================================================
+             DESTINATIONS
+        ====================================================== -->
+
+        <section id="destinations">
+
+            <div class="sectionHead">
+
+                <div>
+                    <div class="tag">DESTINATIONS</div>
+
+                    <h2>
+                        مقصدهایی برای فرار از روزمرگی
+                    </h2>
+                </div>
+
+                <p>
+                    بعضی مکان‌ها فقط یک نقطه روی نقشه نیستند؛
+                    آن‌ها یک حس، یک داستان و یک تجربه تازه‌اند.
+                </p>
+
+            </div>
+
+
+            <div class="destinations">
+
+                <article class="destination">
+
+                    <div class="destImage dest1"></div>
+
+                    <div class="destContent">
+
+                        <div class="location">
+                            آفریقا • طبیعت
+                        </div>
+
+                        <h3>نامیب</h3>
+
+                        <p>
+                            جایی که شن‌های بی‌پایان با آسمانی عظیم
+                            و سکوتی عجیب ترکیب می‌شوند.
+                        </p>
+
+                        <div class="rating">
+                            <span class="star">★★★★★</span>
+                            4.9
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="destination">
+
+                    <div class="destImage dest2"></div>
+
+                    <div class="destContent">
+
+                        <div class="location">
+                            اروپا • طبیعت
+                        </div>
+
+                        <h3>آلپ</h3>
+
+                        <p>
+                            کوهستان، دریاچه‌های آرام و مسیرهایی که
+                            هر پیچ آن منظره‌ای تازه دارد.
+                        </p>
+
+                        <div class="rating">
+                            <span class="star">★★★★★</span>
+                            4.8
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="destination">
+
+                    <div class="destImage dest3"></div>
+
+                    <div class="destContent">
+
+                        <div class="location">
+                            خاورمیانه • فرهنگ
+                        </div>
+
+                        <h3>کویر</h3>
+
+                        <p>
+                            شب‌هایی پر از ستاره، سکوتی عمیق و تجربه‌ای
+                            کاملاً متفاوت از زندگی شهری.
+                        </p>
+
+                        <div class="rating">
+                            <span class="star">★★★★★</span>
+                            4.7
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EXPERIENCES
+        ====================================================== -->
+
+        <section id="experiences">
+
+            <div class="sectionHead">
+
+                <div>
+                    <div class="tag">EXPERIENCES</div>
+
+                    <h2>
+                        سفر را چطور دوست داری؟
+                    </h2>
+                </div>
+
+                <p>
+                    مقصد فقط نصف ماجراست. نوع تجربه‌ای که انتخاب می‌کنی،
+                    شکل سفر را کاملاً تغییر می‌دهد.
+                </p>
+
+            </div>
+
+
+            <div class="types">
+
+                <div class="type">
+                    <div class="typeIcon">🏔️</div>
+
+                    <h3>ماجراجویی</h3>
+
+                    <p>
+                        مسیرهای ناشناخته، طبیعت وحشی و تجربه‌هایی
+                        برای کسانی که دنبال هیجان هستند.
+                    </p>
+                </div>
+
+
+                <div class="type">
+                    <div class="typeIcon">🌊</div>
+
+                    <h3>آرامش</h3>
+
+                    <p>
+                        ساحل، طبیعت، اقامتگاه‌های آرام و چند روز
+                        فاصله گرفتن از شلوغی.
+                    </p>
+                </div>
+
+
+                <div class="type">
+                    <div class="typeIcon">🏛️</div>
+
+                    <h3>فرهنگ</h3>
+
+                    <p>
+                        معماری، غذا، تاریخ و داستان‌هایی که هر شهر
+                        در گوشه‌وکنار خود پنهان کرده است.
+                    </p>
+                </div>
+
+
+                <div class="type">
+                    <div class="typeIcon">📷</div>
+
+                    <h3>عکاسی</h3>
+
+                    <p>
+                        مقصدهایی با نور، منظره و معماری فوق‌العاده
+                        برای ساختن قاب‌های ماندگار.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STATS
+        ====================================================== -->
+
+        <section style="padding-top:30px;padding-bottom:30px;">
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>126+</strong>
+                    <span>مقصد پیشنهادی</span>
+                </div>
+
+                <div class="stat">
+                    <strong>48</strong>
+                    <span>کشور</span>
+                </div>
+
+                <div class="stat">
+                    <strong>320+</strong>
+                    <span>تجربه سفر</span>
+                </div>
+
+                <div class="stat">
+                    <strong>4.9</strong>
+                    <span>میانگین رضایت</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PLANNER
+        ====================================================== -->
+
+        <section id="planner">
+
+            <div class="sectionHead">
+
+                <div>
+                    <div class="tag">TRIP PLANNER</div>
+
+                    <h2>
+                        سفر خودت را بساز
+                    </h2>
+                </div>
+
+                <p>
+                    چند انتخاب ساده انجام بده و یک پیشنهاد اولیه
+                    برای نوع سفر مناسب خودت دریافت کن.
+                </p>
+
+            </div>
+
+
+            <div class="planner">
+
+                <div class="plannerGrid">
+
+                    <div class="field">
+
+                        <label for="tripType">
+                            نوع سفر
+                        </label>
+
+                        <select id="tripType">
+                            <option>ماجراجویی</option>
+                            <option>آرامش</option>
+                            <option>فرهنگی</option>
+                            <option>طبیعت‌گردی</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="duration">
+                            مدت سفر
+                        </label>
+
+                        <select id="duration">
+                            <option>۲ تا ۳ روز</option>
+                            <option>۴ تا ۷ روز</option>
+                            <option>۱ تا ۲ هفته</option>
+                            <option>بیشتر از دو هفته</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="mood">
+                            حال‌وهوای مقصد
+                        </label>
+
+                        <select id="mood">
+                            <option>کوهستان</option>
+                            <option>دریا</option>
+                            <option>شهر</option>
+                            <option>کویر</option>
+                            <option>جنگل</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="planButton"
+                    type="button"
+                    onclick="makePlan()"
+                >
+                    ساخت پیشنهاد سفر
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STORIES
+        ====================================================== -->
+
+        <section id="stories">
+
+            <div class="sectionHead">
+
+                <div>
+                    <div class="tag">WANDER JOURNAL</div>
+
+                    <h2>
+                        از مجله WANDER
+                    </h2>
+                </div>
+
+                <p>
+                    داستان‌های کوتاه درباره سفر، آدم‌ها و مکان‌هایی
+                    که ارزش دیدن دارند.
+                </p>
+
+            </div>
+
+
+            <div class="stories">
+
+                <article class="story big">
+
+                    <span>
+                        داستان سفر • ۸ دقیقه مطالعه
+                    </span>
+
+                    <h3>
+                        چرا بعضی سفرها بعد از برگشتن تازه شروع می‌شوند؟
+                    </h3>
+
+                    <p>
+                        گاهی چیزی که از یک سفر با خودمان می‌آوریم،
+                        عکس یا سوغاتی نیست؛ یک نگاه تازه به زندگی است.
+                    </p>
+
+                </article>
+
+
+                <article class="story">
+
+                    <span>
+                        راهنمای سفر
+                    </span>
+
+                    <h3>
+                        چطور سبک‌تر سفر کنیم؟
+                    </h3>
+
+                    <p>
+                        کمتر بردار، بیشتر تجربه کن و اجازه بده مقصد
+                        بخشی از داستانت باشد.
+                    </p>
+
+                </article>
+
+
+                <article class="story">
+
+                    <span>
+                        الهام
+                    </span>
+
+                    <h3>
+                        سفر برای دیدن نیست
+                    </h3>
+
+                    <p>
+                        بعضی شهرها را نباید فقط دید؛ باید در خیابان‌هایشان
+                        قدم زد و اجازه داد خودشان را معرفی کنند.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             QUOTE
+        ====================================================== -->
+
+        <section class="quote">
+
+            <div class="quoteMark">
+                “
+            </div>
+
+            <h2>
+                جهان را نمی‌توان فقط از روی نقشه شناخت؛
+                بعضی جاها باید قدم گذاشت تا فهمید چرا وجود دارند.
+            </h2>
+
+            <p>
+                — WANDER JOURNAL
+            </p>
+
+        </section>
+
+
+        <!-- =====================================================
+             NEWSLETTER
+        ====================================================== -->
+
+        <section class="newsletter">
+
+            <div class="newsBox">
+
+                <h2>
+                    مقصد بعدی‌ات شاید همین‌جا باشد.
+                </h2>
+
+                <p>
+                    برای دریافت ایده‌های تازه سفر، مقصدهای خاص
+                    و داستان‌های کوتاه، عضو WANDER شو.
+                </p>
+
+                <div class="emailForm">
+
+                    <input
+                        id="email"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="ایمیل خود را وارد کنید"
+                    >
+
+                    <button
+                        class="primary"
+                        type="button"
+                        onclick="subscribe()"
+                    >
+                        عضویت
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="footerGrid">
+
+            <div class="footerBrand">
+
+                <div class="logo">
+
+                    <div class="logoIcon">
+                        ✦
+                    </div>
+
+                    WANDER
+
+                </div>
+
+                <p>
+                    یک پروژه مستقل برای الهام گرفتن، کشف مقصدهای جدید
+                    و ساختن سفرهای متفاوت.
+                </p>
+
+            </div>
+
+
+            <div class="footerCol">
+
+                <h4>کشف</h4>
+
+                <a href="#destinations">
+                    مقصدها
+                </a>
+
+                <a href="#experiences">
+                    تجربه‌ها
+                </a>
+
+                <a href="#stories">
+                    مجله
+                </a>
+
+            </div>
+
+
+            <div class="footerCol">
+
+                <h4>برنامه‌ریزی</h4>
+
+                <a href="#planner">
+                    برنامه سفر
+                </a>
+
+                <a href="#destinations">
+                    راهنمای مقصد
+                </a>
+
+                <a href="#experiences">
+                    ایده‌های سفر
+                </a>
+
+            </div>
+
+
+            <div class="footerCol">
+
+                <h4>WANDER</h4>
+
+                <a href="#home">
+                    درباره پروژه
+                </a>
+
+                <a href="#home">
+                    تماس
+                </a>
+
+                <a href="#home">
+                    قوانین استفاده
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <span>
+                © 2026 WANDER
+            </span>
+
+            <span>
+                ساخته شده برای عاشقان کشف جهان
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         MODAL
+    ========================================================= -->
+
+    <div
+        class="modal"
+        id="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+    >
+
+        <div class="modalBox">
+
+            <button
+                class="close"
+                type="button"
+                aria-label="بستن"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+            <h2 id="modalTitle">
+                پیشنهاد WANDER
+            </h2>
+
+            <p id="modalText">
+                پیشنهاد شما آماده است.
+            </p>
+
+            <div
+                class="result"
+                id="modalResult"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const modal = document.getElementById("modal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalText = document.getElementById("modalText");
+        const modalResult = document.getElementById("modalResult");
+
+
+        /* =====================================================
+           SEARCH
+        ===================================================== */
+
+        function searchDestination() {
+
+            const input = document.getElementById("searchInput");
+            const value = input.value.trim();
+
+            if (!value) {
+
+                showModal(
+                    "جست‌وجو",
+                    "اول نام یا نوع مقصدی که دوست داری را وارد کن.",
+                    "مثلاً: کوهستان، دریا، شهر، کویر..."
+                );
+
+                return;
+            }
+
+            showModal(
+                "نتیجه جست‌وجو",
+                "WANDER مقصدهای مناسب برای جست‌وجوی شما را بررسی کرد.",
+                "جست‌وجوی «" +
+                escapeHTML(value) +
+                "» ثبت شد.<br><br>" +
+                "این نسخه آماده اتصال به پایگاه داده مقصدهاست."
+            );
+        }
+
+
+        /* =====================================================
+           TRIP PLANNER
+        ===================================================== */
+
+        function makePlan() {
+
+            const type =
+                document.getElementById("tripType").value;
+
+            const duration =
+                document.getElementById("duration").value;
+
+            const mood =
+                document.getElementById("mood").value;
+
+            let recommendation = "";
+
+
+            switch (mood) {
+
+                case "کوهستان":
+
+                    recommendation =
+                        "یک مقصد کوهستانی با مسیرهای طبیعت‌گردی و چشم‌اندازهای وسیع.";
+
+                    break;
+
+
+                case "دریا":
+
+                    recommendation =
+                        "یک مقصد ساحلی آرام با زمان کافی برای استراحت و کشف اطراف.";
+
+                    break;
+
+
+                case "شهر":
+
+                    recommendation =
+                        "یک شهر تاریخی یا مدرن با تمرکز روی غذا، معماری و زندگی محلی.";
+
+                    break;
+
+
+                case "کویر":
+
+                    recommendation =
+                        "یک سفر کویری با تماشای آسمان شب و تجربه سکوت واقعی.";
+
+                    break;
+
+
+                case "جنگل":
+
+                    recommendation =
+                        "یک مقصد جنگلی با مسیرهای پیاده‌روی و طبیعت بکر.";
+
+                    break;
+
+            }
+
+
+            const result =
+                escapeHTML(type) +
+                " • " +
+                escapeHTML(duration) +
+                " • " +
+                escapeHTML(mood) +
+                "<br><br>" +
+                escapeHTML(recommendation);
+
+
+            showModal(
+                "سفر پیشنهادی شما",
+                "بر اساس انتخاب‌هایت، این سبک سفر برایت مناسب است:",
+                result
+            );
+        }
+
+
+        /* =====================================================
+           SUBSCRIBE
+        ===================================================== */
+
+        function subscribe() {
+
+            const input =
+                document.getElementById("email");
+
+            const email =
+                input.value.trim();
+
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (!emailPattern.test(email)) {
+
+                showModal(
+                    "عضویت",
+                    "لطفاً یک ایمیل معتبر وارد کن.",
+                    "مثلاً example@email.com"
+                );
+
+                return;
+            }
+
+
+            showModal(
+                "خوش آمدی به WANDER",
+                "عضویت شما با موفقیت ثبت شد.",
+                "از این به بعد ایده‌های سفر بیشتری در انتظار توست."
+            );
+
+
+            input.value = "";
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        function showModal(title, text, result) {
+
+            modalTitle.textContent = title;
+
+            modalText.textContent = text;
+
+            /*
+             * result may contain <br>.
+             * It is generated locally and escaped where
+             * user input is involved.
+             */
+            modalResult.innerHTML = result;
+
+            modal.classList.add("active");
+
+            document.body.classList.add("modal-open");
+        }
+
+
+        function closeModal() {
+
+            modal.classList.remove("active");
+
+            document.body.classList.remove("modal-open");
+        }
+
+
+        /* Close by clicking outside */
+
+        modal.addEventListener("click", function (event) {
+
+            if (event.target === modal) {
+                closeModal();
+            }
+
+        });
+
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        function openMenu() {
+
+            modalTitle.textContent = "منوی WANDER";
+
+            modalText.textContent =
+                "بخش موردنظر خود را انتخاب کن.";
+
+            modalResult.innerHTML = `
+                <div class="modalLinks">
+
+                    <a
+                        href="#destinations"
+                        onclick="closeModal()"
+                    >
+                        مقصدها
+                    </a>
+
+                    <a
+                        href="#experiences"
+                        onclick="closeModal()"
+                    >
+                        تجربه‌ها
+                    </a>
+
+                    <a
+                        href="#planner"
+                        onclick="closeModal()"
+                    >
+                        برنامه‌ریز سفر
+                    </a>
+
+                    <a
+                        href="#stories"
+                        onclick="closeModal()"
+                    >
+                        مجله
+                    </a>
+
+                </div>
+            `;
+
+            modal.classList.add("active");
+
+            document.body.classList.add("modal-open");
+        }
+
+
+        /* =====================================================
+           KEYBOARD
+        ===================================================== */
+
+        document.addEventListener("keydown", function (event) {
+
+            if (event.key === "Escape") {
+                closeModal();
+            }
+
+        });
+
+
+        /* =====================================================
+           ENTER TO SEARCH
+        ===================================================== */
+
+        document
+            .getElementById("searchInput")
+            .addEventListener("keydown", function (event) {
+
+                if (event.key === "Enter") {
+                    searchDestination();
+                }
+
+            });
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            const div = document.createElement("div");
+
+            div.textContent = value;
+
+            return div.innerHTML;
+        }
+
+    </script>
+
+</body>
+
+</html>
