@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d18">
+<title>RJF8 Orders</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root{
+  --bg:#090d18;
+  --panel:#131a2d;
+  --border:#ffffff13;
+  --text:#f4f6ff;
+  --muted:#9ca8c4;
+  --purple:#a99bff;
+  --mint:#5fe1ce;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at 10% 0%,#7667ff23,transparent 40%),
+    radial-gradient(ellipse at 100% 40%,#35d2c411,transparent 35%),
+    var(--bg);
+  color:var(--text);
+  font-family:Vazirmatn,sans-serif;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:1150px;margin:auto;padding:22px 16px 45px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-bottom:26px
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:47px;height:47px;border-radius:15px;
+  display:grid;place-items:center;font-weight:800;color:#101426;
+  background:linear-gradient(135deg,#b9adff,#5fe1ce);
+  box-shadow:0 8px 28px #9284ff30
+}
+.brand h1{font-size:18px;margin:0}
+.brand p{font-size:12px;color:var(--muted);margin:3px 0}
+.card{
+  background:#131a2ddf;
+  border:1px solid var(--border);
+  border-radius:22px;
+  box-shadow:0 18px 55px #00000020;
+  backdrop-filter:blur(18px)
+}
+button{
+  border:1px solid var(--border);
+  background:#ffffff08;color:var(--text);
+  padding:11px 14px;border-radius:12px
+}
+button.primary{
+  background:linear-gradient(135deg,#b4a7ff,#8a7bff);
+  color:#101126;border:0;font-weight:800
+}
+button:disabled{opacity:.5}
+.hidden{display:none!important}
+.view{display:none}
+.view.active{display:block}
+.login-wrap{min-height:70vh;display:grid;place-items:center}
+.login{width:min(100%,440px);padding:28px}
+.eyebrow{color:var(--mint);font-size:12px;font-weight:800}
+h2{font-size:25px;margin:8px 0}
+.description{font-size:13px;color:var(--muted);line-height:2}
+.field{margin-top:16px}
+.field label{display:block;font-size:12px;margin-bottom:7px;color:#c6cce0}
+.field input{
+  width:100%;padding:13px;border-radius:12px;
+  border:1px solid var(--border);background:#0b1120;
+  color:white;outline:none
+}
+.field input:focus,.search:focus{border-color:var(--purple)}
+.wide{width:100%;margin-top:20px}
+.notice{
+  display:none;margin-top:14px;padding:12px;
+  background:#ffbd7010;border:1px solid #ffbd7030;
+  color:#ffd5a0;border-radius:12px;font-size:12px;
+  line-height:1.9;overflow-wrap:anywhere
+}
+.notice.show{display:block}
+.hero{
+  padding:23px;display:flex;justify-content:space-between;
+  align-items:center;gap:15px;margin-bottom:17px
+}
+.hero h2{margin:6px 0}
+.hero p{margin:0;font-size:13px;color:var(--muted);line-height:1.9}
+.connection{
+  white-space:nowrap;padding:9px 12px;border-radius:30px;
+  border:1px solid #5fe1ce35;color:var(--mint);font-size:11px
+}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:17px}
+.stat{padding:17px}
+.stat .label{font-size:12px;color:var(--muted)}
+.stat .number{font-size:28px;font-weight:800;margin-top:5px}
+.stat .small{font-size:11px;color:#8d98b7;margin-top:2px}
+.toolbar{display:flex;gap:10px;padding:14px;margin-bottom:14px}
+.search{
+  flex:1;min-width:100px;padding:11px;
+  background:#0b1120;border:1px solid var(--border);
+  border-radius:12px;color:white;outline:none
+}
+select{
+  background:#0b1120;color:white;
+  border:1px solid var(--border);border-radius:12px;
+  padding:10px;max-width:180px
+}
+.orders{display:grid;gap:11px}
+.order{
+  padding:17px;display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:15px;align-items:center;
+  transition:.2s
+}
+.order:hover{border-color:#a99bff55;transform:translateY(-2px)}
+.order-title{font-weight:800;font-size:15px;overflow-wrap:anywhere}
+.meta{
+  display:flex;flex-wrap:wrap;gap:8px 14px;
+  margin-top:9px;font-size:12px;color:var(--muted)
+}
+.message{font-size:12px;line-height:1.9;color:#c9d0e5;margin-top:9px;white-space:pre-wrap;overflow-wrap:anywhere}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:9px}
+.badge{padding:6px 10px;border-radius:20px;font-size:11px;border:1px solid var(--border);white-space:nowrap}
+.new{color:#b7aaff;background:#a99bff12}
+.review{color:#ffd18a;background:#ffd18a12}
+.progress{color:#79d6ff;background:#79d6ff12}
+.done{color:#75e3b0;background:#75e3b012}
+.status{font-size:11px;max-width:150px}
+.empty{padding:40px 15px;text-align:center;color:var(--muted);line-height:2}
+.footer{text-align:center;margin-top:27px;font-size:11px;color:#73809f}
+.footer strong{color:var(--purple)}
+.modal{
+  display:none;position:fixed;inset:0;z-index:10;
+  background:#000b;place-items:center;padding:16px
+}
+.modal.show{display:grid}
+.modal-card{width:min(100%,560px);padding:22px;max-height:85vh;overflow:auto}
+.modal-head{display:flex;justify-content:space-between;align-items:center}
+.detail{padding:12px 0;border-bottom:1px solid var(--border)}
+.detail label{font-size:11px;color:var(--muted);display:block;margin-bottom:5px}
+.detail div{font-size:13px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}
+.toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:#1a2440;border:1px solid var(--border);
+  padding:12px 17px;border-radius:13px;font-size:12px;
+  opacity:0;pointer-events:none;transition:.2s;z-index:20;
+  max-width:90%;text-align:center
+}
+.toast.show{opacity:1}
+@media(max-width:700px){
+  .app{padding:15px 12px 35px}
+  .stats{grid-template-columns:repeat(2,1fr);gap:9px}
+  .stat{padding:14px}
+  .stat .number{font-size:24px}
+  .hero{align-items:flex-start;flex-direction:column}
+  .toolbar{flex-wrap:wrap}
+  .search{flex-basis:100%}
+  .toolbar select{flex:1;max-width:none}
+  .order{grid-template-columns:1fr}
+  .side{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+  .login{padding:22px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">R8</div>
+    <div>
+      <h1>RJF8 Orders</h1>
+      <p>پنل اختصاصی مدیریت سفارش‌ها</p>
+    </div>
+  </div>
+  <button id="logout" class="hidden">خروج از حساب</button>
+</header>
+
+<section id="loginView" class="view active">
+  <div class="login-wrap">
+    <div class="login card">
+      <div class="eyebrow">PRIVATE WORKSPACE · RJF8</div>
+      <h2>مدیریت سفارش‌ها</h2>
+      <p class="description">
+        با حساب مدیریتی Supabase وارد شو تا سفارش‌های سایتت را مشاهده کنی.
+      </p>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">ایمیل حساب مدیر</label>
+          <input id="email" type="email" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="password">رمز عبور</label>
+          <input id="password" type="password" autocomplete="current-password" required>
+        </div>
+        <button class="primary wide" id="loginButton" type="submit">ورود به پنل</button>
+      </form>
+
+      <div class="notice" id="loginNotice"></div>
+      <p class="description" style="font-size:11px;margin-top:18px">
+        این اپ مستقل است؛ سفارش‌ها را از پروژهٔ Supabase سایت RJF8 می‌خواند.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="dashboardView" class="view">
+  <div class="hero card">
+    <div>
+      <div class="eyebrow">CONTROL CENTER</div>
+      <h2>سلام! 👋</h2>
+      <p>سفارش‌هایت را بررسی کن و وضعیت هر سفارش را مدیریت کن.</p>
+    </div>
+    <div class="connection" id="connection">در حال اتصال…</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat card"><div class="label">همه سفارش‌ها</div><div class="number" id="allCount">—</div><div class="small">کل ثبت‌ها</div></div>
+    <div class="stat card"><div class="label">سفارش جدید</div><div class="number" id="newCount">—</div><div class="small">نیازمند بررسی</div></div>
+    <div class="stat card"><div class="label">در حال انجام</div><div class="number" id="progressCount">—</div><div class="small">سفارش‌های فعال</div></div>
+    <div class="stat card"><div class="label">تکمیل‌شده</div><div class="number" id="doneCount">—</div><div class="small">سفارش‌های تمام‌شده</div></div>
+  </div>
+
+  <div class="toolbar card">
+    <input class="search" id="search" placeholder="جست‌وجو در سفارش‌ها…">
+    <select id="filter">
+      <option value="all">همه وضعیت‌ها</option>
+      <option value="new">جدید</option>
+      <option value="review">در حال بررسی</option>
+      <option value="progress">در حال انجام</option>
+      <option value="done">تکمیل‌شده</option>
+    </select>
+    <button id="refresh">↻ تازه‌سازی</button>
+  </div>
+
+  <div id="orders" class="orders">
+    <div class="card empty">در حال دریافت سفارش‌ها…</div>
+  </div>
+</section>
+
+<div class="footer">ساخته‌شده برای <strong>RJF8</strong> · Orders Dashboard</div>
+</div>
+
+<div id="modal" class="modal">
+  <div class="modal-card card">
+    <div class="modal-head">
+      <h3>جزئیات سفارش</h3>
+      <button id="closeModal">بستن ✕</button>
+    </div>
+    <div id="details"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+/* اطلاعات پروژه Supabase سایت RJF8 */
+const SUPABASE_URL = "https://gbuomuxrgmombwgsftce.supabase.co";
+const SUPABASE_KEY = "sb_publishable_HK5sAbMVgWYoLqVkhft57Q_bjCwAlGg";
+const TABLE = "orders";
+
+/*
+  وضعیت‌های اپ.
+  برای ذخیره دائمی وضعیت‌ها، ستون status باید در جدول orders ایجاد شود.
+*/
+const STATUSES = {
+  new:      {label:"جدید", cls:"new"},
+  review:   {label:"در حال بررسی", cls:"review"},
+  progress: {label:"در حال انجام", cls:"progress"},
+  done:     {label:"تکمیل‌شده", cls:"done"}
+};
+
+const $ = id => document.getElementById(id);
+let supabaseClient = null;
+let user = null;
+let orders = [];
+let realtime = null;
+let toastTimer = null;
+
+function toast(message) {
+  $("toast").textContent = message;
+  $("toast").classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $("toast").classList.remove("show"), 3200);
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  })[c]);
+}
+
+function dateText(value) {
+  if (!value) return "نامشخص";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+  return new Intl.DateTimeFormat("fa-IR", {
+    dateStyle:"medium", timeStyle:"short"
+  }).format(date);
+}
+
+function statusOf(order) {
+  return STATUSES[order.status] ? order.status : "new";
+}
+
+function setView(view) {
+  $("loginView").classList.toggle("active", view === "login");
+  $("dashboardView").classList.toggle("active", view === "dashboard");
+  $("logout").classList.toggle("hidden", view !== "dashboard");
+}
+
+function showLoginError(message) {
+  $("loginNotice").textContent = message;
+  $("loginNotice").classList.add("show");
+}
+
+function updateStats() {
+  $("allCount").textContent = orders.length;
+  $("newCount").textContent = orders.filter(o => statusOf(o) === "new").length;
+  $("progressCount").textContent = orders.filter(o => statusOf(o) === "progress").length;
+  $("doneCount").textContent = orders.filter(o => statusOf(o) === "done").length;
+}
+
+function renderOrders() {
+  updateStats();
+
+  const query = $("search").value.trim().toLocaleLowerCase("fa");
+  const filter = $("filter").value;
+
+  const filtered = orders.filter(o => {
+    const searchable = [o.name, o.email, o.service, o.message]
+      .map(v => String(v || "").toLocaleLowerCase("fa"))
+      .join(" ");
+    return (!query || searchable.includes(query)) &&
+           (filter === "all" || statusOf(o) === filter);
+  });
+
+  const container = $("orders");
+
+  if (!filtered.length) {
+    container.innerHTML = `
+      <div class="card empty">
+        <div style="font-size:28px">⌁</div>
+        سفارشی برای نمایش پیدا نشد.
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(o => {
+    const status = statusOf(o);
+    const info = STATUSES[status];
+
+    return `
+      <article class="order card">
+        <div>
+          <div class="order-title">${escapeHTML(o.service || "سفارش بدون عنوان")}</div>
+          <div class="meta">
+            <span>👤 ${escapeHTML(o.name || "بدون نام")}</span>
+            <span>✉ ${escapeHTML(o.email || "بدون ایمیل")}</span>
+            <span>◷ ${escapeHTML(dateText(o.created_at))}</span>
+          </div>
+          ${o.message ? `<div class="message">${escapeHTML(o.message.length > 200 ? o.message.slice(0,200)+"…" : o.message)}</div>` : ""}
+        </div>
+
+        <div class="side">
+          <span class="badge ${info.cls}">${info.label}</span>
+          <select class="status" data-status-id="${escapeHTML(o.id)}" aria-label="وضعیت سفارش">
+            ${Object.entries(STATUSES).map(([key,value]) =>
+              `<option value="${key}" ${status === key ? "selected" : ""}>${value.label}</option>`
+            ).join("")}
+          </select>
+          <button data-detail-id="${escapeHTML(o.id)}">جزئیات ←</button>
+        </div>
+      </article>`;
+  }).join("");
+
+  container.querySelectorAll("[data-status-id]").forEach(el => {
+    el.addEventListener("change", () => updateStatus(el.dataset.statusId, el.value, el));
+  });
+
+  container.querySelectorAll("[data-detail-id]").forEach(el => {
+    el.addEventListener("click", () => showDetails(el.dataset.detailId));
+  });
+}
+
+function showDetails(id) {
+  const order = orders.find(o => String(o.id) === String(id));
+  if (!order) return;
+
+  const rows = [
+    ["شناسه", order.id],
+    ["نام مشتری", order.name],
+    ["ایمیل", order.email],
+    ["خدمت", order.service],
+    ["زمان ثبت", dateText(order.created_at)],
+    ["وضعیت", STATUSES[statusOf(order)].label],
+    ["توضیحات", order.message]
+  ];
+
+  $("details").innerHTML = rows.map(([label,value]) => `
+    <div class="detail">
+      <label>${escapeHTML(label)}</label>
+      <div>${escapeHTML(value || "—")}</div>
+    </div>`).join("");
+
+  $("modal").classList.add("show");
+}
+
+async function updateStatus(id, status, select) {
+  select.disabled = true;
+
+  try {
+    const { error } = await supabaseClient
+      .from(TABLE)
+      .update({status})
+      .eq("id", id);
+
+    if (error) throw error;
+
+    const order = orders.find(o => String(o.id) === String(id));
+    if (order) order.status = status;
+
+    renderOrders();
+    toast("وضعیت سفارش ذخیره شد.");
+  } catch (error) {
+    console.error(error);
+    select.disabled = false;
+    toast("ذخیره وضعیت ناموفق بود. ستون status و مجوزهای دیتابیس را بررسی کن.");
+  }
+}
+
+async function loadOrders() {
+  $("orders").innerHTML = '<div class="card empty">در حال دریافت سفارش‌ها…</div>';
+
+  try {
+    const {data,error} = await supabaseClient
+      .from(TABLE)
+      .select("*")
+      .order("created_at", {ascending:false});
+
+    if (error) throw error;
+
+    orders = data || [];
+    renderOrders();
+    $("connection").textContent = "متصل به Supabase";
+  } catch (error) {
+    console.error(error);
+    $("orders").innerHTML = `
+      <div class="card empty">
+        دریافت سفارش‌ها ناموفق بود.<br>
+        <small>تنظیمات RLS، مجوز SELECT و نام جدول orders را بررسی کن.</small>
+      </div>`;
+    $("connection").textContent = "خطا در دریافت";
+  }
+}
+
+function connectRealtime() {
+  if (realtime) supabaseClient.removeChannel(realtime);
+
+  realtime = supabaseClient
+    .channel("rjf8-orders-feed")
+    .on("postgres_changes", {
+      event:"*",
+      schema:"public",
+      table:TABLE
+    }, payload => {
+      if (payload.eventType === "INSERT") {
+        toast("سفارش جدید دریافت شد ✨");
+
+        if ("Notification" in window &&
+            Notification.permission === "granted" &&
+            document.hidden) {
+          try {
+            new Notification("سفارش جدید RJF8", {
+              body: (payload.new.service || "سفارش جدید") +
+                    " — " + (payload.new.name || "مشتری")
+            });
+          } catch {}
+        }
+      }
+      loadOrders();
+    })
+    .subscribe(state => {
+      if (state === "SUBSCRIBED") {
+        $("connection").textContent = "اتصال زنده فعال";
+      }
+      if (state === "CHANNEL_ERROR" || state === "TIMED_OUT") {
+        $("connection").textContent = "بررسی اتصال زنده";
+      }
+    });
+}
+
+async function openDashboard(session) {
+  user = session.user;
+  setView("dashboard");
+  await loadOrders();
+  connectRealtime();
+
+  if ("Notification" in window && Notification.permission === "default") {
+    try { await Notification.requestPermission(); } catch {}
+  }
+}
+
+async function initialize() {
+  if (!window.supabase) {
+    showLoginError("کتابخانه Supabase بارگذاری نشد. اتصال اینترنت را بررسی کن.");
+    return;
+  }
+
+  supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY,
+    {
+      auth: {
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
+    }
+  );
+
+  const {data,error} = await supabaseClient.auth.getSession();
+
+  if (error) {
+    showLoginError(error.message);
+    return;
+  }
+
+  if (data.session) await openDashboard(data.session);
+}
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  $("loginButton").disabled = true;
+  $("loginButton").textContent = "در حال ورود…";
+  $("loginNotice").classList.remove("show");
+
+  try {
+    const {data,error} = await supabaseClient.auth.signInWithPassword({
+      email:$("email").value.trim(),
+      password:$("password").value
+    });
+
+    if (error) throw error;
+
+    await openDashboard(data.session);
+    toast("با موفقیت وارد شدی.");
+  } catch (error) {
+    showLoginError(
+      "ورود ناموفق بود. ایمیل و رمز حساب Supabase را بررسی کن. " +
+      (error.message || "")
+    );
+  } finally {
+    $("loginButton").disabled = false;
+    $("loginButton").textContent = "ورود به پنل";
+  }
+});
+
+$("logout").addEventListener("click", async () => {
+  if (realtime) {
+    await supabaseClient.removeChannel(realtime);
+    realtime = null;
+  }
+
+  await supabaseClient.auth.signOut();
+  orders = [];
+  user = null;
+  setView("login");
+  $("connection").textContent = "خارج شدی";
+});
+
+$("refresh").addEventListener("click", loadOrders);
+$("search").addEventListener("input", renderOrders);
+$("filter").addEventListener("change", renderOrders);
+$("closeModal").addEventListener("click", () => $("modal").classList.remove("show"));
+$("modal").addEventListener("click", e => {
+  if (e.target === $("modal")) $("modal").classList.remove("show");
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && user) loadOrders();
+});
+
+initialize();
+</script>
+</body>
+</html>
