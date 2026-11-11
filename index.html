@@ -951,6 +951,64 @@ footer{
     margin:120px auto;
   }
 }
+
+/* ================= RJF8 FUTURISTIC REDESIGN ================= */
+:root{--rjf-cyan:#55d9ff;--rjf-violet:#a879ff;--rjf-line:rgba(132,190,255,.17)}
+html{scroll-padding-top:105px}
+body{background:#060811;color:#f4f7ff}
+body:before{inset:0;background:
+ radial-gradient(ellipse at 12% 8%,rgba(35,142,255,.18),transparent 32%),
+ radial-gradient(ellipse at 88% 23%,rgba(137,72,255,.16),transparent 30%),
+ radial-gradient(ellipse at 55% 100%,rgba(20,204,201,.08),transparent 35%),
+ linear-gradient(rgba(104,159,222,.035) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(104,159,222,.035) 1px,transparent 1px);
+ background-size:auto,auto,auto,52px 52px,52px 52px;filter:none;animation:none;z-index:-3}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:linear-gradient(115deg,transparent 0 48%,rgba(80,176,255,.025) 50%,transparent 52%);opacity:.8}
+.glass{background:linear-gradient(145deg,rgba(17,28,48,.84),rgba(8,13,25,.78));border:1px solid var(--rjf-line);box-shadow:0 18px 55px rgba(0,0,0,.34),inset 0 1px rgba(255,255,255,.055);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.nav{border:1px solid rgba(102,185,255,.2);background:rgba(6,10,20,.78);box-shadow:0 12px 45px #0008,0 0 35px rgba(54,157,255,.07);backdrop-filter:blur(24px)}
+.logo{background:linear-gradient(140deg,#eafaff,#60d7ff 48%,#9a72ff);box-shadow:0 0 28px rgba(77,197,255,.42);border-radius:13px}
+.navlinks a:hover,.navlinks a.active{background:rgba(72,191,255,.12);color:#8fe4ff;box-shadow:inset 0 0 0 1px rgba(72,191,255,.15)}
+.navlinks a{transition:.25s}
+.eyebrow{border:1px solid rgba(75,203,255,.25);background:rgba(50,166,255,.07);color:#a9eaff;letter-spacing:1.4px}
+.dot{background:#61f2bd;box-shadow:0 0 14px #61f2bd}
+h1{font-weight:900;line-height:1.16}
+.grad{background:linear-gradient(100deg,#f4fcff 2%,#59d8ff 48%,#b18aff 95%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 22px rgba(73,189,255,.2))}
+.lead{color:#aab8ce}
+.btn{border-radius:13px}
+.primary{color:#06101b;background:linear-gradient(105deg,#63ddff,#a58aff);box-shadow:0 9px 30px rgba(63,181,255,.2);font-weight:800}
+.primary:hover{box-shadow:0 12px 38px rgba(76,191,255,.35);filter:brightness(1.08)}
+.secondary{border:1px solid rgba(104,196,255,.25);background:rgba(60,150,255,.07);color:#d8edff}
+.hero{position:relative;isolation:isolate}
+.hero:before{content:"";position:absolute;top:17%;left:3%;width:260px;height:260px;border-radius:50%;background:rgba(57,150,255,.11);filter:blur(85px);z-index:-1}
+.heroCard{border-radius:30px;border-color:rgba(86,195,255,.28);background:radial-gradient(circle at 50% 45%,rgba(54,145,255,.15),transparent 55%),linear-gradient(145deg,rgba(15,27,49,.96),rgba(9,13,27,.9));box-shadow:0 25px 75px #0008,0 0 55px rgba(60,155,255,.1);min-height:420px;display:flex;flex-direction:column;justify-content:space-between}
+.heroCard:before{content:"RJF8";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Arial,sans-serif;font-weight:900;letter-spacing:-7px;font-size:clamp(70px,10vw,112px);direction:ltr;color:transparent;-webkit-text-stroke:1px rgba(105,213,255,.24);text-shadow:0 0 35px rgba(74,181,255,.16);white-space:nowrap;pointer-events:none}
+.orb{width:220px;height:220px;position:relative;z-index:1;border:1px solid rgba(115,220,255,.62);background:radial-gradient(circle at 32% 28%,#effcff 0,#7ce4ff 8%,#3288dd 26%,#35236d 57%,#10152d 72%);box-shadow:0 0 30px rgba(66,196,255,.42),inset -20px -25px 55px rgba(0,0,0,.65),inset 12px 12px 35px rgba(255,255,255,.25);animation:float 6s ease-in-out infinite}
+.orb:before,.orb:after{content:"";position:absolute;inset:-25px;border:1px solid rgba(83,204,255,.45);border-radius:50%;transform:rotateX(68deg) rotateZ(-25deg);box-shadow:0 0 25px rgba(67,178,255,.14)}
+.orb:after{inset:-44px;border-color:rgba(168,121,255,.3);transform:rotateX(68deg) rotateZ(35deg)}
+.cardLine{position:relative;z-index:2;border-color:rgba(132,190,255,.15);font-size:12px}
+.cardLine b{color:#bdeeff;letter-spacing:.4px}
+.feature,.card{border-radius:22px;transition:transform .35s,border-color .35s,box-shadow .35s}
+.card:hover,.feature:hover{transform:translateY(-7px);border-color:rgba(84,202,255,.42);box-shadow:0 22px 55px rgba(0,0,0,.4),0 0 30px rgba(57,157,255,.08)}
+.sectionTitle{font-weight:800}
+.sectionSub{color:#8f9db4}
+.projectCard{min-height:360px;background:linear-gradient(150deg,rgba(18,31,53,.9),rgba(8,13,25,.94))}
+.projectVisual{height:165px;border-radius:18px;background:radial-gradient(circle at 50% 45%,rgba(67,194,255,.28),transparent 28%),linear-gradient(135deg,#142b49,#101329 65%,#21163c);border:1px solid rgba(91,191,255,.2)}
+.projectCard:nth-child(2n) .projectVisual{background:radial-gradient(circle at 50% 45%,rgba(176,116,255,.3),transparent 30%),linear-gradient(135deg,#28204a,#11152b 70%,#0b1c31)}
+.projectCard:nth-child(3n) .projectVisual{background:radial-gradient(circle at 50% 45%,rgba(66,236,205,.2),transparent 30%),linear-gradient(135deg,#12363d,#10172b 70%,#171332)}
+.projectSymbol{font-size:53px;color:#a6eaff;text-shadow:0 0 25px rgba(73,199,255,.65);filter:drop-shadow(0 0 18px rgba(73,199,255,.4))}
+.projectTag{color:#78d9ff;letter-spacing:1.5px;font-size:10px}
+.projectButton{margin-top:auto;align-self:flex-start}
+.serviceCard,.detailBox,.formCard,.orderInfo{border-color:rgba(105,190,255,.16)}
+.serviceNumber{color:#65d7ff}
+input,textarea,select{background:rgba(3,8,18,.72)!important;border:1px solid rgba(119,179,235,.2)!important;color:#f2f7ff!important;border-radius:13px!important}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#58cfff!important;box-shadow:0 0 0 3px rgba(73,191,255,.1)!important}
+footer{color:#687992;border-top:1px solid rgba(132,190,255,.1);margin-top:25px}
+.reveal{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.75,.2,1)}
+@media(max-width:850px){.heroCard{display:flex;min-height:310px;max-width:480px;width:100%;margin:10px auto 0}.orb{width:155px;height:155px}.heroCard:before{font-size:76px}}
+@media(max-width:760px){.navlinks{background:rgba(6,11,22,.97);border:1px solid rgba(94,186,255,.2);box-shadow:0 18px 45px #0009}.hero{padding-top:125px}.projectCard{min-height:330px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* ================= END RJF8 REDESIGN ================= */
+
 </style>
 </head>
 
@@ -997,20 +1055,17 @@ footer{
 
 <span class="eyebrow glass">
 <i class="dot"></i>
-CREATIVE DIGITAL STUDIO
+RJF8 · CREATIVE TECHNOLOGY
 </span>
 
 <h1>
-طراحی می‌کنم،
+ایده‌ها را
 <br>
-<span class="grad">می‌سازم و تجربه می‌کنم.</span>
+<span class="grad">به تجربه تبدیل می‌کنم.</span>
 </h1>
 
 <p class="lead">
-من در زمینه طراحی و ساخت پروژه‌های دیجیتال، بازی‌های تعاملی،
-وب‌سایت‌های مدرن و تجربه‌های خلاقانه فعالیت می‌کنم؛
-از ایده اولیه تا ساخت و اجرای نهایی، همه‌چیز با تمرکز روی
-کیفیت، ظاهر حرفه‌ای و تجربه کاربر انجام می‌شود.
+من خالق تجربه‌های دیجیتال در نقطه تلاقی طراحی، تکنولوژی و خلاقیت هستم؛ از وب‌سایت و محصول دیجیتال تا بازی، انیمیشن و ایده‌هایی که هنوز مرزی برایشان تعریف نشده است.
 </p>
 
 <div class="actions">
@@ -2484,6 +2539,24 @@ submitBtn.textContent="ارسال سفارش 🚀";
 
 route();
 
+</script>
+
+
+<script>
+/* RJF8 ambient pointer light — visual only, leaves app logic untouched */
+(function(){
+  const light=document.createElement('div');
+  light.setAttribute('aria-hidden','true');
+  light.style.cssText='position:fixed;width:300px;height:300px;border-radius:50%;pointer-events:none;z-index:0;left:-500px;top:-500px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(58,174,255,.085),transparent 68%);mix-blend-mode:screen';
+  document.body.appendChild(light);
+  let raf=0;
+  window.addEventListener('pointermove',function(e){
+    if(raf)cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(function(){light.style.left=e.clientX+'px';light.style.top=e.clientY+'px';});
+  },{passive:true});
+  window.addEventListener('pointerleave',function(){light.style.opacity='0'});
+  window.addEventListener('pointerenter',function(){light.style.opacity='1'});
+})();
 </script>
 
 </body>
