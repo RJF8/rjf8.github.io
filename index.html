@@ -2144,53 +2144,98 @@ const authName = document.getElementById("authName");
 const authLogoutBtn = document.getElementById("authLogoutBtn");
 
 function renderAuthUser(user){
+  if(!googleLoginBtn || !authUserBox) return;
   if(user){
     googleLoginBtn.style.display = "none";
     authUserBox.style.display = "flex";
-    authName.textContent = user.user_metadata?.full_name || user.user_metadata?.name || user.email || "کاربر";
+    if(authName) authName.textContent =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      user.email ||
+      "کاربر";
     const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture;
-    if(avatar){ authAvatar.src = avatar; authAvatar.style.display = "block"; }
-    else { authAvatar.style.display = "none"; }
+    if(authAvatar){
+      if(avatar){ authAvatar.src = avatar; authAvatar.style.display = "block"; }
+      else { authAvatar.removeAttribute("src"); authAvatar.style.display = "none"; }
+    }
   }else{
     googleLoginBtn.style.display = "inline-flex";
     authUserBox.style.display = "none";
-    authAvatar.removeAttribute("src");
+    if(authAvatar){ authAvatar.removeAttribute("src"); authAvatar.style.display = "none"; }
   }
 }
 
-googleLoginBtn.addEventListener("click", async ()=>{
+function authErrorMessage(error){
+  const text = String(error?.message || error?.error_description || error || "");
+  if(/provider.*not enabled|unsupported provider/i.test(text))
+    return "ورود گوگل هنوز در تنظیمات Supabase فعال نشده است.";
+  if(/redirect_uri|redirect.*not allowed/i.test(text))
+    return "آدرس بازگشت سایت در تنظیمات Redirect URLs سوپابیس ثبت نشده است.";
+  return text || "ورود با گوگل انجام نشد.";
+}
+
+// نمایش خطای بازگشت OAuth، به‌جای اینکه کاربر بی‌خبر به صفحه اصلی برگردد.
+const authUrlParams = new URLSearchParams(window.location.search);
+const authHashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+const oauthError = authUrlParams.get("error_description") ||
+                   authUrlParams.get("error") ||
+                   authHashParams.get("error_description") ||
+                   authHashParams.get("error");
+if(oauthError){
+  console.error("OAuth callback error:", oauthError);
+  setTimeout(()=>toast("خطای ورود گوگل: " + decodeURIComponent(oauthError).slice(0,150)), 500);
+}
+
+googleLoginBtn?.addEventListener("click", async ()=>{
   googleLoginBtn.disabled = true;
   googleLoginBtn.textContent = "در حال اتصال...";
   try{
     const {error} = await supabaseClient.auth.signInWithOAuth({
       provider:"google",
-      options:{redirectTo:window.location.origin + window.location.pathname}
+      options:{
+        redirectTo:window.location.origin + window.location.pathname,
+        queryParams:{prompt:"select_account"}
+      }
     });
     if(error) throw error;
   }catch(error){
     console.error("Google sign-in error:",error);
-    toast("ورود گوگل هنوز در تنظیمات Supabase فعال نشده است.");
+    toast(authErrorMessage(error));
     googleLoginBtn.disabled = false;
     googleLoginBtn.innerHTML = "<span aria-hidden='true'>G</span> ورود با گوگل";
   }
 });
 
-authLogoutBtn.addEventListener("click", async ()=>{
-  const {error} = await supabaseClient.auth.signOut();
-  if(error){ console.error(error); toast("خروج انجام نشد."); }
-  else toast("با موفقیت خارج شدی.");
+authLogoutBtn?.addEventListener("click", async ()=>{
+  authLogoutBtn.disabled = true;
+  try{
+    const {error} = await supabaseClient.auth.signOut();
+    if(error) throw error;
+    toast("با موفقیت خارج شدی.");
+  }catch(error){
+    console.error("Sign-out error:",error);
+    toast("خروج انجام نشد: " + (error.message || "خطای ناشناخته"));
+  }finally{
+    authLogoutBtn.disabled = false;
+  }
 });
 
-supabaseClient.auth.getSession().then(({data,error})=>{
-  if(error) console.error("Auth session error:",error);
-  renderAuthUser(data?.session?.user || null);
-});
-supabaseClient.auth.onAuthStateChange((_event,session)=>{
+(async()=>{
+  try{
+    const {data,error} = await supabaseClient.auth.getSession();
+    if(error) throw error;
+    renderAuthUser(data?.session?.user || null);
+  }catch(error){
+    console.error("Auth session error:",error);
+    renderAuthUser(null);
+  }
+})();
+
+supabaseClient.auth.onAuthStateChange((event,session)=>{
   renderAuthUser(session?.user || null);
+  if(event === "SIGNED_IN") toast("ورود با موفقیت انجام شد.");
 });
-
-
-
+ 
 /* ================= SERVICE DATA ================= */
 
 const services = {
@@ -2539,74 +2584,68 @@ const orderForm=document.getElementById("orderForm");
 const submitBtn=document.getElementById("submitBtn");
 const formStatus=document.getElementById("formStatus");
 
-orderForm.addEventListener("submit",async event=>{
-
-event.preventDefault();
-
-const name=document.getElementById("name").value.trim();
-const email=document.getElementById("email").value.trim();
-const service=document.getElementById("service").value;
-const message=document.getElementById("message").value.trim();
-
-if(!name||!email||!service||!message){
-
-formStatus.textContent="لطفاً همه فیلدها را کامل کن.";
-formStatus.className="status error";
-
-return;
+function readableOrderError(error){
+  const code = String(error?.code || "");
+  const message = String(error?.message || "");
+  if(code === "42501" || /row-level security|permission denied/i.test(message))
+    return "دسترسی ثبت سفارش در دیتابیس بسته است (RLS یا مجوز INSERT).";
+  if(code === "42P01" || /relation .* does not exist/i.test(message))
+    return "جدول orders در دیتابیس پیدا نشد.";
+  if(code === "PGRST205" || /could not find the table/i.test(message))
+    return "جدول orders در API سوپابیس در دسترس نیست؛ نام جدول و انتشار Data API را بررسی کن.";
+  if(/failed to fetch|networkerror|fetch failed/i.test(message))
+    return "ارتباط با سرور برقرار نشد؛ اتصال اینترنت یا آدرس پروژه را بررسی کن.";
+  return message || "خطای نامشخص در ثبت سفارش.";
 }
 
-submitBtn.disabled=true;
-submitBtn.style.opacity=".55";
-submitBtn.textContent="در حال ارسال...";
+orderForm?.addEventListener("submit",async event=>{
+  event.preventDefault();
+  if(submitBtn?.disabled) return;
 
-formStatus.textContent="در حال ارسال سفارش...";
-formStatus.className="status";
+  const name=document.getElementById("name")?.value.trim() || "";
+  const email=document.getElementById("email")?.value.trim() || "";
+  const service=document.getElementById("service")?.value || "";
+  const message=document.getElementById("message")?.value.trim() || "";
 
-try{
+  if(!name || !email || !service || !message){
+    formStatus.textContent="لطفاً همه فیلدها را کامل کن.";
+    formStatus.className="status error";
+    return;
+  }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    formStatus.textContent="لطفاً یک ایمیل معتبر وارد کن.";
+    formStatus.className="status error";
+    return;
+  }
 
-const {error}=await supabaseClient
-.from("orders")
-.insert([
-{
-name:name,
-email:email,
-service:service,
-message:message
-}
-]);
+  submitBtn.disabled=true;
+  submitBtn.style.opacity=".55";
+  submitBtn.textContent="در حال ارسال...";
+  formStatus.textContent="در حال ارسال سفارش...";
+  formStatus.className="status";
 
-if(error){
-throw error;
-}
+  try{
+    const {error}=await supabaseClient
+      .from("orders")
+      .insert({name,email,service,message});
 
-orderForm.reset();
+    if(error) throw error;
 
-formStatus.textContent="";
-
-location.hash="success";
-
-toast("سفارش با موفقیت ثبت شد.");
-
-}catch(error){
-
-console.error("Supabase order error:",error);
-
-formStatus.textContent=
-"ارسال انجام نشد. اتصال دیتابیس یا تنظیمات جدول را بررسی کن.";
-
-formStatus.className="status error";
-
-toast("خطا در ارسال سفارش.");
-
-}finally{
-
-submitBtn.disabled=false;
-submitBtn.style.opacity="1";
-submitBtn.textContent="ارسال سفارش 🚀";
-
-}
-
+    orderForm.reset();
+    formStatus.textContent="";
+    location.hash="success";
+    toast("سفارش با موفقیت ثبت شد.");
+  }catch(error){
+    console.error("Supabase order error:",error);
+    const detail=readableOrderError(error);
+    formStatus.textContent="ثبت نشد: " + detail;
+    formStatus.className="status error";
+    toast("ثبت سفارش ناموفق بود.");
+  }finally{
+    submitBtn.disabled=false;
+    submitBtn.style.opacity="1";
+    submitBtn.textContent="ارسال سفارش 🚀";
+  }
 });
 
 
