@@ -1009,6 +1009,17 @@ footer{color:#687992;border-top:1px solid rgba(132,190,255,.1);margin-top:25px}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 /* ================= END RJF8 REDESIGN ================= */
 
+
+/* ================= GOOGLE AUTH ================= */
+.authArea{display:flex;align-items:center;gap:8px;min-width:0}
+.authBtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:14px;background:linear-gradient(110deg,#fff,#dcecff);color:#101827;font-size:13px;font-weight:800;white-space:nowrap;box-shadow:0 8px 24px rgba(80,160,255,.13)}
+.authBtn:disabled{opacity:.6;cursor:wait}
+.authUser{display:none;align-items:center;gap:8px;padding:5px 9px;border:1px solid rgba(104,196,255,.22);background:rgba(60,150,255,.07);border-radius:14px;max-width:190px}
+.authUser img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+.authUser span{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:95px}
+.authLogout{background:transparent;color:#ffb4c2;font-size:12px;padding:6px}
+@media(max-width:760px){.authArea{margin-right:auto;margin-left:8px}.authBtn{padding:9px 10px;font-size:11px}.authUser{max-width:145px}.authUser span{max-width:65px}.nav{gap:6px}.menuBtn{flex-shrink:0}}
+
 </style>
 </head>
 
@@ -1032,6 +1043,15 @@ footer{color:#687992;border-top:1px solid rgba(132,190,255,.1);margin-top:25px}
     <a href="#services">خدمات</a>
     <a href="#contact">ارتباط</a>
 
+  </div>
+
+  <div class="authArea" id="authArea">
+    <button class="authBtn" id="googleLoginBtn" type="button"><span aria-hidden="true">G</span> ورود با گوگل</button>
+    <div class="authUser" id="authUser">
+      <img id="authAvatar" alt="" referrerpolicy="no-referrer">
+      <span id="authName"></span>
+      <button class="authLogout" id="authLogoutBtn" type="button">خروج</button>
+    </div>
   </div>
 
   <button class="menuBtn" id="menuBtn">☰</button>
@@ -2114,6 +2134,61 @@ window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
+
+
+/* ================= GOOGLE SIGN-IN ================= */
+const googleLoginBtn = document.getElementById("googleLoginBtn");
+const authUserBox = document.getElementById("authUser");
+const authAvatar = document.getElementById("authAvatar");
+const authName = document.getElementById("authName");
+const authLogoutBtn = document.getElementById("authLogoutBtn");
+
+function renderAuthUser(user){
+  if(user){
+    googleLoginBtn.style.display = "none";
+    authUserBox.style.display = "flex";
+    authName.textContent = user.user_metadata?.full_name || user.user_metadata?.name || user.email || "کاربر";
+    const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture;
+    if(avatar){ authAvatar.src = avatar; authAvatar.style.display = "block"; }
+    else { authAvatar.style.display = "none"; }
+  }else{
+    googleLoginBtn.style.display = "inline-flex";
+    authUserBox.style.display = "none";
+    authAvatar.removeAttribute("src");
+  }
+}
+
+googleLoginBtn.addEventListener("click", async ()=>{
+  googleLoginBtn.disabled = true;
+  googleLoginBtn.textContent = "در حال اتصال...";
+  try{
+    const {error} = await supabaseClient.auth.signInWithOAuth({
+      provider:"google",
+      options:{redirectTo:window.location.origin + window.location.pathname}
+    });
+    if(error) throw error;
+  }catch(error){
+    console.error("Google sign-in error:",error);
+    toast("ورود گوگل هنوز در تنظیمات Supabase فعال نشده است.");
+    googleLoginBtn.disabled = false;
+    googleLoginBtn.innerHTML = "<span aria-hidden='true'>G</span> ورود با گوگل";
+  }
+});
+
+authLogoutBtn.addEventListener("click", async ()=>{
+  const {error} = await supabaseClient.auth.signOut();
+  if(error){ console.error(error); toast("خروج انجام نشد."); }
+  else toast("با موفقیت خارج شدی.");
+});
+
+supabaseClient.auth.getSession().then(({data,error})=>{
+  if(error) console.error("Auth session error:",error);
+  renderAuthUser(data?.session?.user || null);
+});
+supabaseClient.auth.onAuthStateChange((_event,session)=>{
+  renderAuthUser(session?.user || null);
+});
+
 
 
 /* ================= SERVICE DATA ================= */
